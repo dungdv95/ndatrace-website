@@ -78,7 +78,10 @@ const listQa = [
 export default function BlogSection() {
   const [qaValue, setQaValue] = useState("ndaTrace");
   return (
-    <div className="mt-[94px] container mx-auto 2xl:px-[123px] xl:px-[90px]">
+    <section
+      id="inquiry"
+      className="mt-[94px] container mx-auto 2xl:px-[123px] xl:px-[90px]"
+    >
       <div className="flex flex-col gap-[94px]">
         <div className="flex flex-col gap-10">
           <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">
@@ -182,6 +185,6 @@ export default function BlogSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

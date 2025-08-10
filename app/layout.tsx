@@ -21,12 +21,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pila.vn"),
-  title: "CÔNG TY CỔ PHẦN TẬP ĐOÀN PILA",
-  description: "CÔNG TY CỔ PHẦN TẬP ĐOÀN PILA",
+  metadataBase: new URL("https://ndatrace-website.vercel.app"),
+  title: "NDA TRACE",
+  description:
+    "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
   openGraph: {
-    title: "CÔNG TY CỔ PHẦN TẬP ĐOÀN PILA",
-    description: "CÔNG TY CỔ PHẦN TẬP ĐOÀN PILA",
+    title: "NDA TRACE",
+    description:
+      "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
     images: [
       {
         url: `https://pila.vn/images/thumbnail.jpg`,
@@ -36,8 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CÔNG TY CỔ PHẦN TẬP ĐOÀN PILA",
-    description: "CÔNG TY CỔ PHẦN TẬP ĐOÀN PILA",
+    title: "NDA TRACE",
+    description:
+      "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
     images: [
       {
         url: `https://pila.vn/images/thumbnail.jpg`,

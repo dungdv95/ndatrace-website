@@ -2,7 +2,10 @@ import { Icons } from "../icons";
 
 export default function BenefitSection() {
   return (
-    <div className="mt-[68px] container mx-auto 2xl:px-[123px] xl:px-[90px]">
+    <section
+      id="benefit"
+      className="mt-[68px] container mx-auto 2xl:px-[123px] xl:px-[90px]"
+    >
       <div className="flex justify-center mb-[47px]">
         <span className=" text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">
           Lợi ích của NDATrace
@@ -73,6 +76,6 @@ export default function BenefitSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

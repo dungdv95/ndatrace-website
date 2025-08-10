@@ -2,7 +2,10 @@ import { Icons } from "../icons";
 
 export default function FeatureSection() {
   return (
-    <div className="mt-[93px] bg-[#F7FCFC] pt-[53px] pb-[86px]">
+    <section
+      id="feature"
+      className="mt-[93px] bg-[#F7FCFC] pt-[53px] pb-[86px]"
+    >
       <div className="container mx-auto 2xl:px-[123px] xl:px-[90px]">
         <div className="flex flex-col gap-6">
           <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tractking-[-0.72px]">
@@ -84,6 +87,6 @@ export default function FeatureSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

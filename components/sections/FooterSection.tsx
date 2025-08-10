@@ -1,30 +1,84 @@
 import { Icons } from "../icons";
 
+const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
+
 const navs = [
-  "Giới thiệu",
-  "Lợi ích",
-  "Tính năng",
-  "Công nghệ",
-  "Hỏi đáp",
-  "Liên hệ",
+  {
+    id: 1,
+    title: "Giới thiệu",
+    idSection: "about",
+  },
+  {
+    id: 2,
+    title: "Lợi ích",
+    idSection: "benefit",
+  },
+  {
+    id: 3,
+    title: "Tính năng",
+    idSection: "feature",
+  },
+  {
+    id: 4,
+    title: "Công nghệ",
+    idSection: "technology",
+  },
+  {
+    id: 5,
+    title: "Hỏi đáp",
+    idSection: "inquiry",
+  },
+  {
+    id: 6,
+    title: "Liên hệ",
+    idSection: "contact",
+  },
 ];
 
 export default function FooterSection() {
   return (
-    <div className="mt-[64px] bg-footer flex flex-col gap-8">
+    <section id="contact" className="mt-[64px] bg-footer flex flex-col gap-8">
       <div className="container mx-auto mt-[77px] 2xl:px-[123px] xl:px-[90px]">
         <div className="flex flex-col gap-[80px]">
           <div className="flex gap-[140px] items-center">
             <div className="w-[32%] flex-shrink-0">
-              <Icons.logoFooter />
+              <div
+                className="w-fit cursor-pointer"
+                onClick={(event) => {
+                  wait().then(() => {
+                    const el = document.getElementById("about");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  });
+                  event.preventDefault();
+                }}
+              >
+                <Icons.logoFooter />
+              </div>
             </div>
             <div className="w-full flex justify-between items-center">
               {navs.map((item, index) => (
                 <span
-                  className="text-[#194185] text-base leading-normal font-medium tracking-[-0.6px]"
+                  className="cursor-pointer text-[#194185] text-base leading-normal font-medium tracking-[-0.6px]"
                   key={index}
+                  onClick={(event) => {
+                    wait().then(() => {
+                      const el = document.getElementById(item.idSection);
+                      if (el) {
+                        const rect = el.getBoundingClientRect();
+                        const scrollTop =
+                          window.pageYOffset ||
+                          document.documentElement.scrollTop;
+                        const offset = 105; // số px muốn dịch xuống thêm
+                        const targetY = rect.top + scrollTop - offset;
+                        window.scrollTo({ top: targetY, behavior: "smooth" });
+                      }
+                    });
+                    event.preventDefault();
+                  }}
                 >
-                  {item}
+                  {item.title}
                 </span>
               ))}
             </div>
@@ -102,6 +156,6 @@ export default function FooterSection() {
           © 2025 Copyright by NDATrace
         </span>
       </div>
-    </div>
+    </section>
   );
 }

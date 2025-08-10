@@ -3,7 +3,10 @@ import { Button } from "../ui/button";
 
 export default function TechSection() {
   return (
-    <div className="mt-[46px] container mx-auto 2xl:px-[123px] xl:px-[90px]">
+    <section
+      id="technology"
+      className="mt-[46px] container mx-auto 2xl:px-[123px] xl:px-[90px]"
+    >
       <div className="flex flex-col gap-8">
         <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold">
           Công nghệ của NDATrace
@@ -86,6 +89,6 @@ export default function TechSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
