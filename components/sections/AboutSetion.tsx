@@ -7,7 +7,7 @@ import FieldSection from "./FieldSection";
 export default function AboutSection() {
   return (
     <section id="about" className="">
-      <div className="pt-[161px] mb-[26px]">
+      <div className="pt-[161px] mb-[66px]">
         <div className="h-[728px] bg-about flex flex-col gap-[23px]">
           <div className="flex flex-col gap-4">
             <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">

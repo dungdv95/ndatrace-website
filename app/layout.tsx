@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
     images: [
       {
-        url: `https://pila.vn/images/thumbnail.jpg`,
+        url: `https://ndatrace-website.vercel.app/images/thumbnail.jpg`,
         alt: "Hình ảnh",
       },
     ],
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
     images: [
       {
-        url: `https://pila.vn/images/thumbnail.jpg`,
+        url: `https://ndatrace-website.vercel.app/images/thumbnail.jpg`,
         alt: "Hình ảnh",
       },
     ],
