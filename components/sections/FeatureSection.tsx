@@ -6,7 +6,7 @@ export default function FeatureSection() {
       id="feature"
       className="mt-[93px] bg-[#F7FCFC] pt-[53px] pb-[86px]"
     >
-      <div className="container mx-auto 2xl:px-[123px] xl:px-[90px]">
+      <div className="container mx-auto 2xl:px-[123px] xl:px-[60px]">
         <div className="flex flex-col gap-6">
           <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tractking-[-0.72px]">
             Tính năng của NDATrace
@@ -20,19 +20,19 @@ export default function FeatureSection() {
             <br /> bạch, an toàn và hiệu quả
           </span>
           <div className="mt-[33px] flex justify-between gap-[30px]">
-            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4">
+            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]">
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
-                  <Icons.featureIdentify />
+                  <Icons.featureIdentify className="max-xl:w-[200px] max-xl:h-[125px]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-center text-[#194185] text-sm leading-5">
+                  <span className="text-center text-[#194185] text-sm leading-5 max-xl:text-xs">
                     NDATrace UID
                   </span>
-                  <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold">
+                  <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                     Định danh
                   </span>
-                  <span className="mt-4 text-center text-[#194185] text-base leading-6">
+                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm">
                     Mỗi sản phẩm sẽ được phát hành mã định danh phi tập trung
                     (DID) theo chuẩn W3C được thể hiện dưới dạng QR hoặc chip
                     định danh, đáp ứng tiêu chuẩn mã vạch GS1 Digital Link. Từ
@@ -42,19 +42,19 @@ export default function FeatureSection() {
                 </div>
               </div>
             </div>
-            <div className="w-full bg-white shadow-lg rounded-[12px] px-6 pt-[65px] pb-4">
+            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]">
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
-                  <Icons.featureRetrieval />
+                  <Icons.featureRetrieval className="max-xl:w-[164px] max-xl:h-[125px]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-center text-[#194185] text-sm leading-5">
+                  <span className="text-center text-[#194185] text-sm leading-5 max-xl:text-xs">
                     NDATrace Website
                   </span>
-                  <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold">
+                  <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                     Truy xuất
                   </span>
-                  <span className="mt-4 text-center text-[#194185] text-base leading-6">
+                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm">
                     Hiển thị các thông tin, nguồn gốc và hoạt động xác thực
                     trong vòng đời sản phẩm. Cho phép người dùng đánh giá, phản
                     hồi và tích điểm sản phẩm sau khi mua hàng.
@@ -62,19 +62,19 @@ export default function FeatureSection() {
                 </div>
               </div>
             </div>
-            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4">
+            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]">
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
-                  <Icons.featureVerify />
+                  <Icons.featureVerify className="max-xl:w-[157px] max-xl:h-[125px]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-center text-[#194185] text-sm leading-5">
+                  <span className="text-center text-[#194185] text-sm leading-5 max-xl:text-xs">
                     NDATrace Portal
                   </span>
-                  <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold">
+                  <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                     Xác thực
                   </span>
-                  <span className="mt-4 text-center text-[#194185] text-base leading-6">
+                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm">
                     Công cụ cho phép tổ chức, doanh nghiệp (Bên cấp phát) đăng
                     ký tài khoản, khởi tạo DID sản phẩm và cấp phép phát hành
                     bằng chứng xác thực VC cho các bên xác minh trong chuỗi cung

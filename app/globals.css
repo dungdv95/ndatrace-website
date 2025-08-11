@@ -169,3 +169,24 @@ body {
 .bg-footer {
   background: linear-gradient(120deg, #f2fffe 26.6%, #daf8ff 78.59%);
 }
+.header-shadow {
+  box-shadow: 0 0px 24px 0px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.mb-bg-about {
+  background: linear-gradient(
+      132deg,
+      #fff 45.85%,
+      rgba(212, 252, 255, 0.8) 86.89%
+    ),
+    linear-gradient(217deg, #fff 34.9%, rgba(199, 233, 255, 0.8) 88.67%);
+}
+.mb-bg-menu {
+  background: linear-gradient(
+    178deg,
+    #fff 14.79%,
+    #f2fffe 65.63%,
+    #daf8ff 92.93%
+  );
+}

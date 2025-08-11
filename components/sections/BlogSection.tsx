@@ -48,7 +48,7 @@ const listQa = [
     code: "ndaTraceUid",
     title: "NDATrace UID là gì?",
     answer:
-      "NDATrace là Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá, ứng dụng công nghệ blockchain trên nền tảng sử dụng NDADID (Hệ thống định danh phi tập trung quốc gia) và NDAChain (Nền tảng Chuỗi khối Quốc gia) để đảm bảo tính minh bạch, an toàn và chống giả mạo cho tất cả các bên liên quan.",
+      "NDATrace UID là thông tin định danh duy nhất, liên kết với mã định danh phi tập trung (DID) theo chuẩn W3C và được thể hiện dưới dạng mã QR hoặc chip định danh, đáp ứng tiêu chuẩn mã vạch Quốc Tế GS1 Data Link.",
   },
   {
     id: 3,
@@ -56,14 +56,14 @@ const listQa = [
     title:
       "Khách hàng sử dụng NDATrace để truy xuất xác thực nguồn gốc hàng hoá như thế nào?",
     answer:
-      "NDATrace là Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá, ứng dụng công nghệ blockchain trên nền tảng sử dụng NDADID (Hệ thống định danh phi tập trung quốc gia) và NDAChain (Nền tảng Chuỗi khối Quốc gia) để đảm bảo tính minh bạch, an toàn và chống giả mạo cho tất cả các bên liên quan.",
+      "Các tổ chức (Bên cấp phát - Issuer) đăng ký tài khoản trên NDATrace Portal để khởi tạo mã định danh (DID) sản phẩm và thực hiện xác thực cho các hoạt động trong chuỗi cung ứng (phát hành VC). \nCác bên tham gia trong chuỗi cung ứng (từ nhà sản xuất, cơ quan kiểm định, đơn vị vận chuyển - phân phối đến người tiêu dùng) có thể dễ dàng kiểm tra thông tin, nguồn gốc và hoạt động xác thực trong vòng đời sản phẩm thông qua NDATrace UID (dưới dạng mã QR hoặc chip định danh) mà không cần đăng ký tài khoản. Ứng dụng còn cho phép người dùng đánh giá, phản hồi và tích điểm sản phẩm sau khi mua hàng.",
   },
   {
     id: 4,
     code: "object",
     title: "Những đối tượng nào có thể sử dụng NDATrace?",
     answer:
-      "NDATrace là Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá, ứng dụng công nghệ blockchain trên nền tảng sử dụng NDADID (Hệ thống định danh phi tập trung quốc gia) và NDAChain (Nền tảng Chuỗi khối Quốc gia) để đảm bảo tính minh bạch, an toàn và chống giả mạo cho tất cả các bên liên quan.",
+      "Tất cả mọi đối tượng trong chuỗi cung ứng đều có thể truy xuất nguồn gốc thông qua NDATrace UID. Tuy nhiên, chỉ có các Bên cấp phát (Issuer) đã đăng ký tài khoản trên NDATrace Portal mới có thể khởi tạo DID sản phẩm và xác thực hoạt động (phát hành VC).",
   },
   {
     id: 5,
@@ -71,7 +71,7 @@ const listQa = [
     title:
       "Tại sao NDATrace tối ưu hơn các giải pháp truy xuất nguồn gốc thông thường?",
     answer:
-      "NDATrace là Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá, ứng dụng công nghệ blockchain trên nền tảng sử dụng NDADID (Hệ thống định danh phi tập trung quốc gia) và NDAChain (Nền tảng Chuỗi khối Quốc gia) để đảm bảo tính minh bạch, an toàn và chống giả mạo cho tất cả các bên liên quan.",
+      "Hoạt động trên nền tảng quốc gia NDAChain và NDADID, NDATrace vượt trội nhờ ứng dụng công nghệ chuỗi khối (blockchain) và định danh phi tập trung (DID) đáp ứng các chuẩn quốc tế, giúp đảm bảo minh bạch và không thể làm giả. Không chỉ truy xuất nguồn gốc, NDATrace còn mang đến trải nghiệm cho người dùng cuối như tích điểm, đánh giá sản phẩm và phản hồi sau mua - tạo vòng đời tương tác số toàn diện so với các giải pháp khác.",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function BlogSection() {
   return (
     <section
       id="inquiry"
-      className="mt-[94px] container mx-auto 2xl:px-[123px] xl:px-[90px]"
+      className="mt-[94px] container mx-auto 2xl:px-[123px] xl:px-[60px]"
     >
       <div className="flex flex-col gap-[94px]">
         <div className="flex flex-col gap-10">
@@ -100,9 +100,7 @@ export default function BlogSection() {
                 Tin tức
               </Button>
               <span className="text-[#194185] text-xl leading-[30px] font-semibold">
-                Việt Nam sắp trình làng nền tảng xác thực, định danh hàng hóa
-                <br />
-                xuyên biên giới
+                {`Việt Nam sắp trình làng nền tảng xác thực, định danh hàng hóa xuyên biên giới`}
               </span>
               <span className="text-[#194185] text-sm leading-5 ">
                 24/07/2025
@@ -115,7 +113,7 @@ export default function BlogSection() {
             </div>
             <div className="w-1/2 flex flex-col gap-[30px]">
               {listNews.map((item, index) => (
-                <div key={index} className="flex gap-[30px]">
+                <div key={index} className="flex gap-[30px] max-xl:gap-6">
                   <div className="w-[191px] h-[147px] flex-shrink-0">
                     <img
                       src={item.img}
@@ -126,7 +124,7 @@ export default function BlogSection() {
                     <Button className="w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]">
                       Tin tức
                     </Button>
-                    <span className="text-[#194185] text-xl leading-[30px] font-semibold">
+                    <span className="text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg">
                       {item.title}
                     </span>
                     <span className="text-[#194185] text-sm leading-5 ">
@@ -165,7 +163,7 @@ export default function BlogSection() {
                       : "border-b-white"
                   )}
                 >
-                  <AccordionTrigger className="cursor-pointer hover:no-underline px-6 py-4 text-[#194185] text-xl leading-[30px] font-semibold items-center gap-0">
+                  <AccordionTrigger className="cursor-pointer hover:no-underline px-6 py-4 text-[#194185] text-xl leading-[30px] font-semibold items-center gap-0 max-xl:text-lg">
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent
@@ -175,7 +173,7 @@ export default function BlogSection() {
                         "border-b border-b-[#E9EAEB] rounded-b-[12px]"
                     )}
                   >
-                    <p className="text-[#194185] text-base leading-6">
+                    <p className="text-[#194185] text-base leading-6 whitespace-pre-line max-xl:text-sm">
                       {item.answer}
                     </p>
                   </AccordionContent>

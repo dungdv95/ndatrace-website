@@ -21,29 +21,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ndatrace-website.vercel.app"),
-  title: "NDA TRACE",
+  metadataBase: new URL("https://ndatrace.vn"),
+  title: "NDATrace - Giải pháp Truy xuất Xác thực Nguồn gốc chuẩn Quốc gia",
   description:
-    "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
+    "Giải pháp Truy xuất toàn diện - Tích hợp nền tảng Dữ liệu Quốc gia. Minh bạch - An toàn - Chống giả mạo.",
   openGraph: {
-    title: "NDA TRACE",
+    title: "NDATrace - Giải pháp Truy xuất Xác thực Nguồn gốc chuẩn Quốc gia",
     description:
-      "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
+      "Giải pháp Truy xuất toàn diện - Tích hợp nền tảng Dữ liệu Quốc gia. Minh bạch - An toàn - Chống giả mạo.",
     images: [
       {
-        url: `https://ndatrace-website.vercel.app/images/thumbnail.jpg`,
+        url: `https://ndatrace.vn/images/thumbnail.jpg`,
         alt: "Hình ảnh",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NDA TRACE",
+    title: "NDATrace - Giải pháp Truy xuất Xác thực Nguồn gốc chuẩn Quốc gia",
     description:
-      "Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
+      "Giải pháp Truy xuất toàn diện - Tích hợp nền tảng Dữ liệu Quốc gia. Minh bạch - An toàn - Chống giả mạo.",
     images: [
       {
-        url: `https://ndatrace-website.vercel.app/images/thumbnail.jpg`,
+        url: `https://ndatrace.vn/images/thumbnail.jpg`,
         alt: "Hình ảnh",
       },
     ],

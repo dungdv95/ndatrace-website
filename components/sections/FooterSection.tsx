@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Icons } from "../icons";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
@@ -38,9 +39,9 @@ const navs = [
 export default function FooterSection() {
   return (
     <section id="contact" className="mt-[64px] bg-footer flex flex-col gap-8">
-      <div className="container mx-auto mt-[77px] 2xl:px-[123px] xl:px-[90px]">
+      <div className="container mx-auto mt-[77px] 2xl:px-[123px] xl:px-[60px]">
         <div className="flex flex-col gap-[80px]">
-          <div className="flex gap-[140px] items-center">
+          <div className="flex gap-[140px] items-center max-xl:gap-[80px]">
             <div className="w-[32%] flex-shrink-0">
               <div
                 className="w-fit cursor-pointer"
@@ -54,7 +55,7 @@ export default function FooterSection() {
                   event.preventDefault();
                 }}
               >
-                <Icons.logoFooter />
+                <Icons.logoFooter className="max-xl:w-[260px] max-xl:h-[60px]" />
               </div>
             </div>
             <div className="w-full flex justify-between items-center">
@@ -83,55 +84,72 @@ export default function FooterSection() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-[30px]">
-            <div className="flex gap-[140px]">
+          <div className="flex flex-col gap-[30px] max-xl:gap-5">
+            <div className="flex gap-[140px] max-xl:gap-[80px]">
               <div className="w-[32%] flex-shrink-0">
-                <span className="text-[#194185] text-2xl leading-8 font-semibold">
+                <span className="text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                   Minh bạch Chuỗi cung ứng
                   <br />
                   Nâng tầm hàng Việt
                 </span>
               </div>
               <div className="w-full flex gap-[30px]">
-                <span className="w-[45%] text-[#194185] text-2xl leading-8 font-semibold">
+                <span className="w-[45%] text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                   Liên hệ
                 </span>
-                <span className="w-[45%] text-[#194185] text-2xl leading-8 font-semibold">
+                <span className="w-[45%] text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                   Sản phẩm
                 </span>
               </div>
             </div>
-            <div className="flex gap-[140px]">
+            <div className="flex gap-[140px] max-xl:gap-[80px]">
               <div className="w-[32%] flex-shrink-0">
-                <span className="text-[#194185] text-lg leading-7 text-balance">
+                <span className="text-[#194185] text-lg leading-7 text-balance max-xl:text-base">
                   NDATrace - Nền tảng chiến lược kiến tạo hạ tầng thương mại số
                   quốc gia, hướng tới một nền kinh tế hiện đại, nơi mỗi sản phẩm
                   có danh tính số và mọi giao dịch đều minh bạch, đáng tin cậy.
                 </span>
               </div>
-              <div className="w-full flex gap-[30px]">
-                <div className="w-[45%] flex flex-col gap-6">
-                  <span className="text-[#194185] text-base leading-6">
+              <div className="w-full flex gap-[30px] max-xl:gap-7">
+                <div className="w-[45%] flex flex-col gap-6 max-xl:gap-4">
+                  <Link
+                    href="mailto:info@ndatrace.vn"
+                    className="text-[#194185] text-base leading-6"
+                  >
                     info@ndatrace.vn
-                  </span>
+                  </Link>
                   <span className="text-[#194185] text-base leading-6">
                     37 Trần Bình Trọng, Phường Cửa Nam,
                     <br />
                     Hà Nội
                   </span>
                   <div className="mt-1.5 flex gap-6">
-                    <div>
+                    <Link
+                      target="_blank"
+                      href={"https://www.facebook.com/NDATrace"}
+                      className="cursor-pointer"
+                    >
                       <Icons.footerFacebook />
-                    </div>
-                    <div>
+                    </Link>
+                    <Link
+                      target="_blank"
+                      href={"https://www.tiktok.com/@ndatrace"}
+                      className="cursor-pointer"
+                    >
                       <Icons.footerTiktok />
-                    </div>
-                    <div>
+                    </Link>
+                    <Link
+                      target="_blank"
+                      href={
+                        "https://www.youtube.com/channel/UC9sncb5QoL2Mlqp67q56ZGQ"
+                      }
+                      className="cursor-pointer"
+                    >
                       <Icons.footerYoutube />
-                    </div>
+                    </Link>
                   </div>
                 </div>
-                <div className="w-[55%] flex flex-col gap-6">
+                <div className="w-[55%] flex flex-col gap-6 max-xl:gap-4">
                   <span className="text-[#194185] text-base leading-6">
                     NDAChain - Nền tảng Blockchain quốc gia
                   </span>
