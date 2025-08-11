@@ -343,7 +343,7 @@ function MobileHeader({ isScrolledToTop }: { isScrolledToTop: boolean }) {
           duration: 1.1,
         }}
         className={cn(
-          "py-4 px-4 ",
+          "py-6 px-4 max-[32rem]:py-4",
           isScrolledToTop ? "bg-transparent" : "bg-white/90 shadow-sm"
         )}
       >

@@ -3,6 +3,7 @@
 import { useIsMobile } from "../hooks/use-mobile";
 import { Icons } from "../icons";
 import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 import FieldSection from "./FieldSection";
 
 export default function AboutSection() {
@@ -10,37 +11,120 @@ export default function AboutSection() {
 
   if (isMobile) {
     return (
-      <section id="about" className="mb-bg-about pt-[90px] pb-[22px] ">
-        <div className="flex flex-col gap-4 ">
-          <span className="px-4 text-center text-[#0057D6] text-xl leading-[30px] font-semibold">
-            Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng
-            hoá
-          </span>
-          <span className="px-4 text-center text-[#194185] text-sm leading-[25px]">
-            NDATrace là giải pháp truy xuất nguồn gốc hàng hoá toàn diện, giúp
-            theo dõi minh bạch toàn bộ hành trình sản phẩm trong chuỗi cung ứng,
-            từ sản xuất đến tay người tiêu dùng.
-          </span>
-          <div className="mt-9 relative flex justify-center">
-            <div className="w-[400px] h-[286px]">
-              <img
-                src="images/about-bg.png"
-                className="object-cover h-full w-full"
-              />
+      <section id="about" className="flex flex-col">
+        <div className="mb-bg-about pt-[90px] pb-[22px] max-[31.25rem]:pb-0">
+          <div className="flex flex-col gap-4 ">
+            <div className="px-4 flex justify-center">
+              <span className="text-center text-[#0057D6] leading-[30px] font-semibold text-2xl max-w-4/5 max-[28.5rem]:text-xl">
+                Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc
+                hàng hoá
+              </span>
             </div>
-            <div className="absolute bottom-[-80px]">
-              <div className="w-[106px] h-[215px]">
+            <div className="px-4 flex justify-center ">
+              <span className="text-center text-[#194185] text-sm leading-[25px] max-w-4/5">
+                NDATrace là giải pháp truy xuất nguồn gốc hàng hoá toàn diện,
+                giúp theo dõi minh bạch toàn bộ hành trình sản phẩm trong chuỗi
+                cung ứng, từ sản xuất đến tay người tiêu dùng.
+              </span>
+            </div>
+            <div className="mt-9 relative flex justify-center">
+              <div className="">
                 <img
-                  src="images/ip16Plus.png"
+                  src="images/about-bg.png"
                   className="object-cover h-full w-full"
                 />
               </div>
+              <div
+                className="absolute bottom-[-140px] max-[43.75rem]:bottom-[-160px]
+            max-[40.625rem]:bottom-[-150px] max-[37.5rem]:bottom-[-140px]
+            max-[34.375rem]:bottom-[-130px] max-[31.25rem]:bottom-[-106px]
+            max-[28.125rem]:bottom-[-97px] max-[25rem]:bottom-[-85px]"
+              >
+                <div
+                  className="w-[175px] h-[355px] max-[40.625rem]:w-[165px] max-[40.625rem]:h-[335px]
+                max-[37.5rem]:w-[150px] max-[37.5rem]:h-[304px]
+                max-[34.375rem]:w-[140px] max-[34.375rem]:h-[284px]
+                max-[31.25rem]:w-[122px] max-[31.25rem]:h-[247px]
+                max-[28.125rem]:w-[110px] max-[28.125rem]:h-[223px]
+                max-[25rem]:w-[100px] max-[25rem]:h-[203px]
+              "
+                >
+                  <img
+                    src="images/ip16Plus.png"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+              </div>
+              <div
+                className="absolute top-[-38px] left-[-25px] max-[43.75rem]:left-[-50px]
+            max-[40.625rem]:left-[-75px] max-[37.5rem]:left-[-105px]
+            max-[34.375rem]:left-[-50px] max-[31.25rem]:left-[-80px]
+            max-[28.125rem]:left-[-50px]
+            max-[25rem]:left-[-60px]
+            "
+              >
+                <Icons.aboutLeft
+                  className="w-[370px] h-[194px] max-[34.375rem]:w-[300px] max-[34.375rem]:h-[158px] 
+              max-[28.125rem]:w-[250px] max-[28.125rem]:h-[131px]"
+                />
+              </div>
+              <div
+                className="absolute top-[-38px] right-[-10px] max-[43.75rem]:right-[-40px]
+            max-[40.625rem]:right-[-65px] max-[37.5rem]:right-[-95px]
+            max-[34.375rem]:right-[-50px] max-[31.25rem]:right-[-65px]
+            max-[28.125rem]:right-[-50px] max-[25rem]:right-[-60px]"
+              >
+                <Icons.aboutRight
+                  className="w-[370px] h-[194px] max-[34.375rem]:w-[300px] max-[34.375rem]:h-[158px] 
+              max-[28.125rem]:w-[250px] max-[28.125rem]:h-[131px]"
+                />
+              </div>
             </div>
-            <div className="absolute top-[-38px] left-[-20px]">
-              <Icons.aboutLeft className="w-[234px] h-[123px]" />
+          </div>
+        </div>
+        <div
+          className="mt-[170px] max-[43.75rem]:mt-[180px] max-[37.5rem]:mt-[160px] max-[34.375rem]:mt-[150px]
+        max-[31.25rem]:mt-[140px] max-[28.125rem]:mt-[130px] max-[25rem]:mt-[120px]
+        flex flex-col
+        "
+        >
+          <div className="px-12 flex gap-12 max-[37.5rem]:px-4 max-[37.5rem]:gap-4">
+            <div className="w-1/2 pb-[18px] flex flex-col gap-[10px] items-center">
+              <span className="text-[#002D87] text-2xl leading-8 font-semibold">
+                30+
+              </span>
+              <span className="text-center text-[#002D87] text-base leading-6">
+                Doanh nghiệp trong và ngoài nước đồng hành
+              </span>
             </div>
-            <div className="absolute top-[-38px] right-[-20px]">
-              <Icons.aboutRight className="w-[234px] h-[123px]" />
+            <div className="w-[1px] bg-[#E9EAEB]" />
+            <div className="w-1/2 pb-[18px] flex flex-col gap-[10px] items-center">
+              <span className="text-[#002D87] text-2xl leading-8 font-semibold">
+                400+
+              </span>
+              <span className="text-center text-[#002D87] text-base leading-6">
+                Loại mặt hàng được định danh và xác thực
+              </span>
+            </div>
+          </div>
+          <Separator className="m-0 bg-[#E9EAEB]" />
+          <div className="px-12 flex gap-12 max-[37.5rem]:px-4 max-[37.5rem]:gap-4">
+            <div className="w-1/2 py-[18px] flex flex-col gap-[10px] items-center">
+              <span className="text-[#002D87] text-2xl leading-8 font-semibold">
+                25,000+
+              </span>
+              <span className="text-center text-[#002D87] text-base leading-6">
+                Tem/mã định danh đã được phát hành
+              </span>
+            </div>
+            <div className="w-[1px] bg-[#E9EAEB]" />
+            <div className="w-1/2 py-[18px] flex flex-col gap-[10px] items-center">
+              <span className="text-[#002D87] text-2xl leading-8 font-semibold">
+                80,000+
+              </span>
+              <span className="text-center text-[#002D87] text-base leading-6">
+                Lượt xác thực trên hệ thống
+              </span>
             </div>
           </div>
         </div>
