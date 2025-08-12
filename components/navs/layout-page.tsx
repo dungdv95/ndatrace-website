@@ -12,7 +12,7 @@ export default function LayoutPage({ children }: LayoutProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolledToTop(window.scrollY < 90);
+      setIsScrolledToTop(window.scrollY < 10);
     };
 
     // Add event listener for scroll events

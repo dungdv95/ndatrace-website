@@ -190,3 +190,7 @@ body {
     #daf8ff 92.93%
   );
 }
+
+.mb-bg-footer {
+  background: linear-gradient(140deg, #f2fffe 39.27%, #daf8ff 63.87%);
+}

@@ -8,6 +8,8 @@ import {
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Icons } from "../icons";
+import { useIsMobile } from "../hooks/use-mobile";
+import { motion } from "motion/react";
 
 const listNews = [
   {
@@ -76,45 +78,282 @@ const listQa = [
 ];
 
 export default function BlogSection() {
+  const isMobile = useIsMobile();
   const [qaValue, setQaValue] = useState("ndaTrace");
+
+  if (isMobile) {
+    return (
+      <section id="inquiry" className="px-4 pt-[50px] flex flex-col gap-[62px]">
+        <div className="flex flex-col gap-6 items-center">
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-[#0057D6] text-xl leading-[30px] font-semibold"
+          >
+            Blog
+          </motion.span>
+
+          <div className="flex flex-col gap-2">
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="w-full h-full"
+            >
+              <img
+                src="images/mobileBlog.png"
+                className="object-cover h-full w-full rounded-[16px]"
+              />
+            </motion.div>
+
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+            >
+              <Button className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]">
+                Tin tức
+              </Button>
+            </motion.div>
+
+            <motion.span
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="text-[#194185] text-xl leading-[30px] font-semibold max-[28.125rem]:whitespace-pre-line"
+            >{`Việt Nam sắp trình làng nền tảng\nxác thực, định danh hàng hóa\nxuyên biên giới`}</motion.span>
+
+            <motion.span
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="text-[#194185] text-xs leading-5"
+            >
+              24 / 07 / 2025
+            </motion.span>
+
+            <motion.span
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="text-[#194185] text-xs leading-5"
+            >
+              NDA Trace đáp ứng chuẩn quốc tế GS1 và tương thích với hệ thống
+              xác thực, truy xuất toàn cầu EBSI, hỗ trợ toàn diện cho doanh
+              nghiệp kết nối chuỗi cung ứng xuyên biên giới.
+            </motion.span>
+          </div>
+          <div className="flex flex-col gap-6">
+            {listNews.map((item, index) => (
+              <motion.div
+                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                }}
+                key={index}
+                className="flex gap-4 items-start"
+              >
+                <div className="w-[118px] flex-shrink-0">
+                  <img
+                    src={item.img}
+                    className="object-contain h-full w-full  rounded-[10px]"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Button className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]">
+                    Tin tức
+                  </Button>
+                  <span className="text-[#194185] text-sm leading-6 font-semibold">
+                    {item.title}
+                  </span>
+                  <span className="text-[#194185] text-sm leading-5">
+                    {item.date}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-6 items-center">
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-[#0057D6] text-xl leading-[30px] font-semibold"
+          >
+            Câu hỏi thường gặp
+          </motion.span>
+
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="w-full"
+          >
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full bg-[#EFF8FF] rounded-[12px]"
+              value={qaValue}
+              onValueChange={setQaValue}
+            >
+              {listQa.map((item, index) => (
+                <AccordionItem
+                  key={item.code}
+                  value={item.code}
+                  className={cn(
+                    qaValue === item.code
+                      ? "border-b-[#E9EAEB]"
+                      : "border-b-white"
+                  )}
+                >
+                  <AccordionTrigger className="cursor-pointer hover:no-underline p-4 text-[#194185] text-xl leading-[30px] font-semibold items-center gap-0 max-xl:text-lg">
+                    {item.title}
+                  </AccordionTrigger>
+                  <AccordionContent
+                    className={cn(
+                      "bg-white border-t border-x border-t-[#E9EAEB] border-x-[#E9EAEB] p-6",
+                      index === listQa.length - 1 &&
+                        "border-b border-b-[#E9EAEB] rounded-b-[12px]"
+                    )}
+                  >
+                    <p className="text-[#194185] text-base leading-6 whitespace-pre-line max-xl:text-sm">
+                      {item.answer}
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="inquiry"
-      className="mt-[94px] container mx-auto 2xl:px-[123px] xl:px-[60px]"
+      className="pt-[100px] container mx-auto 2xl:px-[123px] xl:px-[60px]"
     >
       <div className="flex flex-col gap-[94px]">
         <div className="flex flex-col gap-10">
-          <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]"
+          >
             Blog
-          </span>
-          <div className="flex justify-between gap-[29px]">
+          </motion.span>
+
+          <div className="flex justify-between gap-[29px] max-lg:gap-5">
             <div className="w-1/2 flex flex-col gap-2">
-              <div className="w-full h-[320px]">
+              <motion.div
+                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                }}
+                className="w-full h-[320px]"
+              >
                 <img
                   src="images/blog.png"
                   className="object-cover h-full w-full rounded-[16px]"
                 />
-              </div>
+              </motion.div>
 
-              <Button className="mt-1 w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]">
-                Tin tức
-              </Button>
-              <span className="text-[#194185] text-xl leading-[30px] font-semibold">
-                {`Việt Nam sắp trình làng nền tảng xác thực, định danh hàng hóa xuyên biên giới`}
-              </span>
-              <span className="text-[#194185] text-sm leading-5 ">
+              <motion.div
+                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                }}
+              >
+                <Button className="mt-1 w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]">
+                  Tin tức
+                </Button>
+              </motion.div>
+
+              <motion.span
+                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                }}
+                className="text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
+              >{`Việt Nam sắp trình làng nền tảng xác thực, định danh hàng hóa xuyên biên giới`}</motion.span>
+
+              <motion.span
+                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                }}
+                className="text-[#194185] text-sm leading-5 "
+              >
                 24/07/2025
-              </span>
-              <span className="mt-2 text-[#194185] text-sm leading-5 ">
+              </motion.span>
+              <motion.span
+                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                }}
+                className="mt-2 text-[#194185] text-sm leading-5 "
+              >
                 NDA Trace đáp ứng chuẩn quốc tế GS1 và tương thích với hệ thống
                 xác thực, truy xuất toàn cầu EBSI, hỗ trợ toàn diện cho doanh
                 nghiệp kết nối chuỗi cung ứng xuyên biên giới.
-              </span>
+              </motion.span>
             </div>
             <div className="w-1/2 flex flex-col gap-[30px]">
               {listNews.map((item, index) => (
-                <div key={index} className="flex gap-[30px] max-xl:gap-6">
-                  <div className="w-[191px] h-[147px] flex-shrink-0">
+                <motion.div
+                  viewport={{ once: true }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 1.1,
+                  }}
+                  key={index}
+                  className="flex gap-[30px] max-xl:gap-6 max-lg:gap-4"
+                >
+                  <div className="w-[191px] h-[147px] flex-shrink-0 max-lg:w-[169px] max-lg:h-[130px]">
                     <img
                       src={item.img}
                       className="object-contain h-full w-full  rounded-[10px]"
@@ -124,28 +363,53 @@ export default function BlogSection() {
                     <Button className="w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]">
                       Tin tức
                     </Button>
-                    <span className="text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg">
+                    <span className="text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base">
                       {item.title}
                     </span>
                     <span className="text-[#194185] text-sm leading-5 ">
                       {item.date}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
         <div className="flex gap-[30px]">
           <div className="relative w-1/2">
-            <span className="text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">
+            <motion.span
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="text-center text-[#181818] text-[30px] leading-[38px] tracking-[-0.72px] font-bold"
+            >
               Câu hỏi thường gặp
-            </span>
-            <div className="absolute top-[86px] left-[-180px]">
-              <Icons.blogQaIcon />
-            </div>
+            </motion.span>
+
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="absolute top-[86px] left-[-180px] max-lg:top-[120px]"
+            >
+              <Icons.blogQaIcon className="max-lg:w-[535px] max-lg:h-[280px]" />
+            </motion.div>
           </div>
-          <div className="w-1/2">
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="w-1/2"
+          >
             <Accordion
               type="single"
               collapsible
@@ -180,7 +444,7 @@ export default function BlogSection() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

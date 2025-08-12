@@ -8,6 +8,7 @@ import {
   CarouselItem,
 } from "../ui/carousel";
 import { Button } from "../ui/button";
+import { motion } from "motion/react";
 
 const listBenefit = [
   {
@@ -49,15 +50,33 @@ export default function BenefitSection() {
         id="benefit"
         className="px-4 flex flex-col items-center py-[52px]"
       >
-        <span className="text-[#0057D6] text-xl leading-[30px] font-semibold">
+        <motion.span
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="text-[#0057D6] text-xl leading-[30px] font-semibold"
+        >
           Lợi ích của NDATrace
-        </span>
-        <div className="mt-[27px] h-[441px] w-[218px]">
+        </motion.span>
+
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="mt-[27px] h-[441px] w-[218px]"
+        >
           <img
             src="images/ip16Plus.png"
             className="object-cover h-full w-full"
           />
-        </div>
+        </motion.div>
+
         <BenefitSlide />
       </section>
     );
@@ -68,74 +87,126 @@ export default function BenefitSection() {
       id="benefit"
       className="container mx-auto 2xl:px-[123px] xl:px-[60px]"
     >
-      <div className="flex justify-center mb-[47px]">
+      <motion.div
+        viewport={{ once: true }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1.1,
+        }}
+        className="flex justify-center mb-[47px]"
+      >
         <span className=" text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">
           Lợi ích của NDATrace
         </span>
-      </div>
-      <div className="flex gap-[65px] max-2xl:gap-[45px] max-xl:gap-[30px]">
+      </motion.div>
+
+      <div className="flex gap-[65px] max-2xl:gap-[45px] max-xl:gap-[30px] max-lg:gap-3">
         <div className="w-1/2 grow flex flex-col justify-between">
-          <div className=" p-4 bg-benefit rounded-[16px] flex flex-col gap-6 max-xl:gap-4">
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="p-4 bg-benefit rounded-[16px] flex flex-col gap-6 max-xl:gap-4 max-lg:gap-2"
+          >
             <div className="flex justify-end">
-              <Icons.benefitShield className="max-xl:h-10 max-xl:w-10" />
+              <Icons.benefitShield className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
-            <span className="text-end text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl">
+            <span className="text-end text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg">
               Bảo vệ thương hiệu
             </span>
-            <span className="text-end text-[#002D87] text-base leading-6 max-xl:text-sm">
+            <span className="text-end text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
               Chống giả mạo và bảo mật tuyệt đối, giúp người dùng dễ dàng nhận
               biết hàng thật hàng giả, bảo vệ thương hiệu và tăng giá trị sản
               phẩm
             </span>
-          </div>
-          <div className=" p-4 bg-benefit-data rounded-[16px] flex flex-col gap-6 max-xl:gap-4">
+          </motion.div>
+
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="p-4 bg-benefit-data rounded-[16px] flex flex-col gap-6 max-xl:gap-4 max-lg:gap-2"
+          >
             <div className="flex justify-end">
-              <Icons.benefitData className="max-xl:h-10 max-xl:w-10" />
+              <Icons.benefitData className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
-            <span className="text-end text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl">
+            <span className="text-end text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg">
               Bảo toàn dữ liệu
             </span>
-            <span className="text-end text-[#002D87] text-base leading-6 max-xl:text-sm">
+            <span className="text-end text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
               Doanh nghiệp và người dùng có toàn quyền kiểm soát dữ liệu của
               mình, chỉ chia sẻ thông tin cần thiết với các bên liên quan
             </span>
-          </div>
+          </motion.div>
         </div>
-        <div className="grow-0">
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="grow-0"
+        >
           <div className="h-[566px] w-[279px]">
             <img
               src="images/ip16Plus.png"
               className="object-cover h-full w-full"
             />
           </div>
-        </div>
+        </motion.div>
+
         <div className="w-1/2 grow flex flex-col justify-between">
-          <div className="p-4 bg-benefit rounded-[16px] flex flex-col gap-6 max-xl:gap-4">
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="p-4 bg-benefit rounded-[16px] flex flex-col gap-6 max-xl:gap-4 max-lg:gap-2"
+          >
             <div className="flex justify-start">
-              <Icons.benefitCustom className="max-xl:h-10 max-xl:w-10" />
+              <Icons.benefitCustom className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
-            <span className="text-start text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl">
+            <span className="text-start text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg line-clamp-1">
               Tăng giá trị với khách hàng
             </span>
-            <span className="text-start text-[#002D87] text-base leading-6 max-xl:text-sm">
+            <span className="text-start text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
               Dễ dàng tương tác hai chiều với khách hàng, nhận các phản hồi và
               gia tăng tỷ lệ mua lại, sự trung thành của khách hàng thông qua
               các chương trình tích điểm, thành viên, khuyến mãi
             </span>
-          </div>
-          <div className="p-4 bg-benefit-data rounded-[16px] flex flex-col gap-6 max-xl:gap-4">
+          </motion.div>
+
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="p-4 bg-benefit-data rounded-[16px] flex flex-col gap-6 max-xl:gap-4 max-lg:gap-2"
+          >
             <div className="flex justify-start">
-              <Icons.benefitGlobal className="max-xl:h-10 max-xl:w-10" />
+              <Icons.benefitGlobal className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
-            <span className="text-start text-[#002D87] text-2xl leading-8 font-medium">
+            <span className="text-start text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg line-clamp-1">
               Tích hợp toàn cầu
             </span>
-            <span className="text-start text-[#002D87] text-base leading-6">
+            <span className="text-start text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
               NDATrace tuân thủ các tiêu chuẩn toàn cầu như W3C DID và GS1, cho
               phép liên kết dễ dàng với các hệ thống truy xuất quốc tế. Điều này
               đặc biệt quan trọng cho các ngành xuất nhập khẩu
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -167,7 +238,15 @@ function BenefitSlide() {
     });
   }, [api]);
   return (
-    <div className="mt-5 flex flex-col gap-[17px]">
+    <motion.div
+      viewport={{ once: true }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1.1,
+      }}
+      className="mt-5 flex flex-col gap-[17px]"
+    >
       <Carousel
         opts={{ align: "start" }}
         className="w-full max-w-[450px] max-[31.25rem]:max-w-[350px]"
@@ -204,6 +283,6 @@ function BenefitSlide() {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

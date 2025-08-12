@@ -1,5 +1,6 @@
 import { useIsMobile } from "../hooks/use-mobile";
 import { Icons } from "../icons";
+import { motion } from "motion/react";
 
 export default function FeatureSection() {
   const isMobile = useIsMobile();
@@ -11,17 +12,43 @@ export default function FeatureSection() {
         className="px-4 bg-[#F7FCFC] pt-[30px] pb-[38px] flex flex-col items-center gap-6"
       >
         <div className="flex flex-col gap-4">
-          <span className="text-center text-[#0057D6] leading-[30px] font-semibold text-3xl max-[34.375rem]:text-xl">
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-center text-[#0057D6] leading-[30px] font-semibold text-3xl max-[34.375rem]:text-xl"
+          >
             Tính năng của NDATrace
-          </span>
-          <span className="text-center text-[#194185] text-base leading-[25px] max-[34.375rem]:text-sm">
+          </motion.span>
+
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-center text-[#194185] text-base leading-[25px] max-[34.375rem]:text-sm"
+          >
             NDATrace giúp các tổ chức, doanh nghiệp, cơ quan quản lý, người tiêu
             dùng dễ dàng lưu trữ, theo dõi, xác minh và truy xuất thông tin của
             toàn bộ hành trình sản phẩm từ sản xuất, vận hành cho tới phân phối
             một cách minh bạch, an toàn và hiệu quả
-          </span>
+          </motion.span>
         </div>
-        <div className="w-2/3 max-[37.5rem]:w-full p-6 bg-white rounded-[12px] flex flex-col gap-6">
+
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="w-2/3 max-[37.5rem]:w-full p-6 bg-white rounded-[12px] flex flex-col gap-6"
+        >
           <div className="flex justify-center">
             <Icons.mobileFeatureIdentify className="w-[153px] h-[177px]" />
           </div>
@@ -39,9 +66,17 @@ export default function FeatureSection() {
               lưu thông thuận lợi với tiêu chuẩn toàn cầu.
             </span>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="w-2/3 max-[37.5rem]:w-full p-6 bg-white rounded-[12px] flex flex-col gap-6">
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="w-2/3 max-[37.5rem]:w-full p-6 bg-white rounded-[12px] flex flex-col gap-6"
+        >
           <div className="flex justify-center">
             <Icons.mobileFeatureRetrieval className="w-[235px] h-[177px]" />
           </div>
@@ -58,9 +93,17 @@ export default function FeatureSection() {
               sản phẩm sau khi mua hàng.
             </span>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="w-2/3 max-[37.5rem]:w-full  p-6 bg-white rounded-[12px] flex flex-col gap-6">
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="w-2/3 max-[37.5rem]:w-full p-6 bg-white rounded-[12px] flex flex-col gap-6"
+        >
           <div className="flex justify-center">
             <Icons.mobileFeatureVerify className="w-[223px] h-[177px]" />
           </div>
@@ -79,7 +122,7 @@ export default function FeatureSection() {
               và vận hành tới tay người dùng.
             </span>
           </div>
-        </div>
+        </motion.div>
       </section>
     );
   }
@@ -91,22 +134,48 @@ export default function FeatureSection() {
     >
       <div className="container mx-auto 2xl:px-[123px] xl:px-[60px]">
         <div className="flex flex-col gap-6">
-          <span className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tractking-[-0.72px]">
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tractking-[-0.72px]"
+          >
             Tính năng của NDATrace
-          </span>
-          <span className="text-center text-[#194185] text-sm leading-[25px]">
+          </motion.span>
+
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-center text-[#194185] text-sm leading-[25px]"
+          >
             NDATrace giúp các tổ chức, doanh nghiệp, cơ quan quản lý, người tiêu
             dùng dễ dàng lưu trữ, theo dõi, xác minh
             <br />
             và truy xuất thông tin của toàn bộ hành trình sản phẩm từ sản xuất,
             vận hành cho tới phân phối một cách minh
             <br /> bạch, an toàn và hiệu quả
-          </span>
+          </motion.span>
+
           <div className="mt-[33px] flex justify-between gap-[30px]">
-            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]">
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]"
+            >
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
-                  <Icons.featureIdentify className="max-xl:w-[200px] max-xl:h-[125px]" />
+                  <Icons.featureIdentify className="max-xl:w-[200px] max-xl:h-[125px] max-lg:w-[180px] max-lg:h-[113px]" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-center text-[#194185] text-sm leading-5 max-xl:text-xs">
@@ -115,7 +184,7 @@ export default function FeatureSection() {
                   <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                     Định danh
                   </span>
-                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm">
+                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm max-lg:text-xs max-lg:mt-2">
                     Mỗi sản phẩm sẽ được phát hành mã định danh phi tập trung
                     (DID) theo chuẩn W3C được thể hiện dưới dạng QR hoặc chip
                     định danh, đáp ứng tiêu chuẩn mã vạch GS1 Digital Link. Từ
@@ -124,11 +193,20 @@ export default function FeatureSection() {
                   </span>
                 </div>
               </div>
-            </div>
-            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]">
+            </motion.div>
+
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]"
+            >
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
-                  <Icons.featureRetrieval className="max-xl:w-[164px] max-xl:h-[125px]" />
+                  <Icons.featureRetrieval className="max-xl:w-[164px] max-xl:h-[125px] max-lg:w-[148px] max-lg:h-[113px]" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-center text-[#194185] text-sm leading-5 max-xl:text-xs">
@@ -137,18 +215,27 @@ export default function FeatureSection() {
                   <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                     Truy xuất
                   </span>
-                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm">
+                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm max-lg:text-xs max-lg:mt-2">
                     Hiển thị các thông tin, nguồn gốc và hoạt động xác thực
                     trong vòng đời sản phẩm. Cho phép người dùng đánh giá, phản
                     hồi và tích điểm sản phẩm sau khi mua hàng.
                   </span>
                 </div>
               </div>
-            </div>
-            <div className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]">
+            </motion.div>
+
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="w-full bg-white rounded-[12px] px-6 pt-[65px] pb-4 hover:shadow-xl max-xl:pt-[50px]"
+            >
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
-                  <Icons.featureVerify className="max-xl:w-[157px] max-xl:h-[125px]" />
+                  <Icons.featureVerify className="max-xl:w-[157px] max-xl:h-[125px] max-lg:w-[142px] max-lg:h-[113px]" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-center text-[#194185] text-sm leading-5 max-xl:text-xs">
@@ -157,7 +244,7 @@ export default function FeatureSection() {
                   <span className="mt-1 text-center text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl">
                     Xác thực
                   </span>
-                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm">
+                  <span className="mt-4 text-center text-[#194185] text-base leading-6 max-xl:text-sm max-lg:text-xs max-lg:mt-2">
                     Công cụ cho phép tổ chức, doanh nghiệp (Bên cấp phát) đăng
                     ký tài khoản, khởi tạo DID sản phẩm và cấp phép phát hành
                     bằng chứng xác thực VC cho các bên xác minh trong chuỗi cung
@@ -166,7 +253,7 @@ export default function FeatureSection() {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

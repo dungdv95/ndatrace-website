@@ -160,13 +160,21 @@ function DesktopHeader() {
       )}
     >
       <div className="container mx-auto 2xl:px-[123px] xl:px-[60px]">
-        <div className="flex items-center gap-[82px] py-2 max-xl:gap-[50px] max-lg:gap-[10px] bg-white rounded-4xl header-shadow">
-          <div className="grow px-4 flex justify-between items-center max-lg:px-0">
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="flex items-center gap-[82px] py-2 max-xl:gap-[50px] max-lg:gap-[10px] bg-white rounded-4xl header-shadow"
+        >
+          <div className="grow px-4 flex justify-between items-center max-lg:px-5">
             {lisNavs.slice(0, 4).map((item, index) => (
               <span
                 key={index}
                 className={cn(
-                  "cursor-pointer text-base leading-normal tracking-[-0.6px] max-lg:text-sm",
+                  "cursor-pointer text-base leading-normal tracking-[-0.6px] max-lg:text-xs",
                   activeSection === item.idSection
                     ? "text-[#0057D6] font-bold"
                     : "text-[#194185] font-medium"
@@ -205,12 +213,12 @@ function DesktopHeader() {
           >
             <Icons.ndaTraceLogoIcons className="max-lg:w-[180px]" />
           </div>
-          <div className="grow px-4 flex justify-between items-center max-lg:px-0">
+          <div className="grow px-4 flex justify-between items-center max-lg:px-5">
             {lisNavs.slice(4, 7).map((item, index) => (
               <span
                 key={index}
                 className={cn(
-                  "cursor-pointer text-[#194185] font-medium text-base leading-normal tracking-[-0.6px] max-lg:text-sm",
+                  "cursor-pointer text-[#194185] font-medium text-base leading-normal tracking-[-0.6px] max-lg:text-xs",
                   activeSection === item.idSection
                     ? "text-[#0057D6] font-bold"
                     : "text-[#194185] font-medium"
@@ -234,7 +242,7 @@ function DesktopHeader() {
                 {item.name}
               </span>
             ))}
-            <div className="p-1 border border-[#1849A9] rounded-[4px] flex gap-1 items-center">
+            <div className="p-1 border border-[#1849A9] rounded-[4px] flex gap-1 items-center max-lg:hidden">
               <div
                 className={cn(
                   "cursor-pointer rounded-[4px] px-2 py-0.5 ",
@@ -273,7 +281,7 @@ function DesktopHeader() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </header>
   );
