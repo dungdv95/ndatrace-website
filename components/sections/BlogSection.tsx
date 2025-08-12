@@ -10,6 +10,12 @@ import { cn } from "@/lib/utils";
 import { Icons } from "../icons";
 import { useIsMobile } from "../hooks/use-mobile";
 import { motion } from "motion/react";
+import { useQuery } from "@tanstack/react-query";
+import apis from "@/lib/apis/blogs/index";
+import ErrorNotice from "../notice/notice-error";
+import { Skeleton } from "../ui/skeleton";
+import { useRouter } from "next/navigation";
+import moment from "moment";
 
 const listNews = [
   {
@@ -79,183 +85,94 @@ const listQa = [
 
 export default function BlogSection() {
   const isMobile = useIsMobile();
-  const [qaValue, setQaValue] = useState("ndaTrace");
+
+  const {
+    data: data,
+    error,
+    isError,
+    isFetching,
+  } = useQuery({
+    queryKey: ["/blogs/list", {}],
+    queryFn: () =>
+      apis.getBlogPost({
+        pageIndex: 1,
+        pageSize: 10,
+        applicationFilter: "ndatrace",
+      }),
+    retry: 0,
+    // keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
+  if (isFetching) {
+    return <>{isMobile ? <LoadMobile /> : <LoadDesktop />}</>;
+  }
+  if (isError) {
+    return <ErrorNotice error={error as Error} />;
+  }
+
+  if (data === undefined || data === null) {
+    return null;
+  }
 
   if (isMobile) {
-    return (
-      <section id="inquiry" className="px-4 pt-[50px] flex flex-col gap-[62px]">
-        <div className="flex flex-col gap-6 items-center">
-          <motion.span
-            viewport={{ once: true }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.1,
-            }}
-            className="text-[#0057D6] text-xl leading-[30px] font-semibold"
-          >
-            Blog
-          </motion.span>
-
-          <div className="flex flex-col gap-2">
-            <motion.div
-              viewport={{ once: true }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.1,
-              }}
-              className="w-full h-full"
-            >
-              <img
-                src="images/mobileBlog.png"
-                className="object-cover h-full w-full rounded-[16px]"
-              />
-            </motion.div>
-
-            <motion.div
-              viewport={{ once: true }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.1,
-              }}
-            >
-              <Button className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]">
-                Tin tức
-              </Button>
-            </motion.div>
-
-            <motion.span
-              viewport={{ once: true }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.1,
-              }}
-              className="text-[#194185] text-xl leading-[30px] font-semibold max-[28.125rem]:whitespace-pre-line"
-            >{`Việt Nam sắp trình làng nền tảng\nxác thực, định danh hàng hóa\nxuyên biên giới`}</motion.span>
-
-            <motion.span
-              viewport={{ once: true }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.1,
-              }}
-              className="text-[#194185] text-xs leading-5"
-            >
-              24 / 07 / 2025
-            </motion.span>
-
-            <motion.span
-              viewport={{ once: true }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.1,
-              }}
-              className="text-[#194185] text-xs leading-5"
-            >
-              NDA Trace đáp ứng chuẩn quốc tế GS1 và tương thích với hệ thống
-              xác thực, truy xuất toàn cầu EBSI, hỗ trợ toàn diện cho doanh
-              nghiệp kết nối chuỗi cung ứng xuyên biên giới.
-            </motion.span>
-          </div>
-          <div className="flex flex-col gap-6">
-            {listNews.map((item, index) => (
-              <motion.div
-                viewport={{ once: true }}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 1.1,
-                }}
-                key={index}
-                className="flex gap-4 items-start"
-              >
-                <div className="w-[118px] flex-shrink-0">
-                  <img
-                    src={item.img}
-                    className="object-contain h-full w-full  rounded-[10px]"
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Button className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]">
-                    Tin tức
-                  </Button>
-                  <span className="text-[#194185] text-sm leading-6 font-semibold">
-                    {item.title}
-                  </span>
-                  <span className="text-[#194185] text-sm leading-5">
-                    {item.date}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-col gap-6 items-center">
-          <motion.span
-            viewport={{ once: true }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.1,
-            }}
-            className="text-[#0057D6] text-xl leading-[30px] font-semibold"
-          >
-            Câu hỏi thường gặp
-          </motion.span>
-
-          <motion.div
-            viewport={{ once: true }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.1,
-            }}
-            className="w-full"
-          >
-            <Accordion
-              type="single"
-              collapsible
-              className="w-full bg-[#EFF8FF] rounded-[12px]"
-              value={qaValue}
-              onValueChange={setQaValue}
-            >
-              {listQa.map((item, index) => (
-                <AccordionItem
-                  key={item.code}
-                  value={item.code}
-                  className={cn(
-                    qaValue === item.code
-                      ? "border-b-[#E9EAEB]"
-                      : "border-b-white"
-                  )}
-                >
-                  <AccordionTrigger className="cursor-pointer hover:no-underline p-4 text-[#194185] text-xl leading-[30px] font-semibold items-center gap-0 max-xl:text-lg">
-                    {item.title}
-                  </AccordionTrigger>
-                  <AccordionContent
-                    className={cn(
-                      "bg-white border-t border-x border-t-[#E9EAEB] border-x-[#E9EAEB] p-6",
-                      index === listQa.length - 1 &&
-                        "border-b border-b-[#E9EAEB] rounded-b-[12px]"
-                    )}
-                  >
-                    <p className="text-[#194185] text-base leading-6 whitespace-pre-line max-xl:text-sm">
-                      {item.answer}
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
-        </div>
-      </section>
-    );
+    return <MoblieBlog data={data} />;
   }
+  return <DesktopBlog data={data} />;
+}
+
+function LoadDesktop() {
+  return (
+    <div className="pt-[100px] container mx-auto 2xl:px-[123px] xl:px-[60px]">
+      <div className="flex flex-col gap-10">
+        <div className="flex justify-center">
+          <Skeleton className="h-11 w-[300px] " />
+        </div>
+
+        <div className="flex justify-between gap-[29px] max-lg:gap-5">
+          <div className="w-1/2 flex flex-col gap-2">
+            <Skeleton className="h-[319px] w-full " />
+            <Skeleton className="h-[22px] w-[55px] " />
+            <Skeleton className="h-8 w-full " />
+            <Skeleton className="h-[20px] w-[100px] " />
+            <Skeleton className="h-12 w-full " />
+          </div>
+          <div className="w-1/2 flex flex-col gap-[30px]">
+            <div className="flex gap-[30px]">
+              <Skeleton className="h-[130px] w-[169px] flex-shrink-0" />
+              <div className="w-full flex flex-col gap-2">
+                <Skeleton className="h-[22px] w-[55px] " />
+                <Skeleton className="h-8 w-full " />
+                <Skeleton className="h-[20px] w-[100px] " />
+              </div>
+            </div>
+            <div className="flex gap-[30px]">
+              <Skeleton className="h-[130px] w-[169px] flex-shrink-0" />
+              <div className="w-full flex flex-col gap-2">
+                <Skeleton className="h-[22px] w-[55px] " />
+                <Skeleton className="h-8 w-full " />
+                <Skeleton className="h-[20px] w-[100px] " />
+              </div>
+            </div>
+            <div className="flex gap-[30px]">
+              <Skeleton className="h-[130px] w-[169px] flex-shrink-0" />
+              <div className="w-full flex flex-col gap-2">
+                <Skeleton className="h-[22px] w-[55px] " />
+                <Skeleton className="h-8 w-full " />
+                <Skeleton className="h-[20px] w-[100px] " />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DesktopBlog({ data }: { data: any }) {
+  console.log("data", data);
+  const router = useRouter();
+  const [qaValue, setQaValue] = useState("ndaTrace");
 
   return (
     <section
@@ -288,7 +205,7 @@ export default function BlogSection() {
                 className="w-full h-[320px]"
               >
                 <img
-                  src="images/blog.png"
+                  src={data[0]?.thumbnail}
                   className="object-cover h-full w-full rounded-[16px]"
                 />
               </motion.div>
@@ -301,7 +218,14 @@ export default function BlogSection() {
                   duration: 1.1,
                 }}
               >
-                <Button className="mt-1 w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]">
+                <Button
+                  onClick={() => {
+                    router.push(
+                      `https://www.ndatrace.vn/vn/blogs/${data[0]?.slug}`
+                    );
+                  }}
+                  className="cursor-pointer mt-1 w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
+                >
                   Tin tức
                 </Button>
               </motion.div>
@@ -314,7 +238,9 @@ export default function BlogSection() {
                   duration: 1.1,
                 }}
                 className="text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
-              >{`Việt Nam sắp trình làng nền tảng xác thực, định danh hàng hóa xuyên biên giới`}</motion.span>
+              >
+                {data[0]?.name}
+              </motion.span>
 
               <motion.span
                 viewport={{ once: true }}
@@ -325,7 +251,7 @@ export default function BlogSection() {
                 }}
                 className="text-[#194185] text-sm leading-5 "
               >
-                24/07/2025
+                {moment(data[0]?.createdAt).format("DD/MM/YYYY")}
               </motion.span>
               <motion.span
                 viewport={{ once: true }}
@@ -336,13 +262,11 @@ export default function BlogSection() {
                 }}
                 className="mt-2 text-[#194185] text-sm leading-5 "
               >
-                NDA Trace đáp ứng chuẩn quốc tế GS1 và tương thích với hệ thống
-                xác thực, truy xuất toàn cầu EBSI, hỗ trợ toàn diện cho doanh
-                nghiệp kết nối chuỗi cung ứng xuyên biên giới.
+                {data[0]?.description}
               </motion.span>
             </div>
             <div className="w-1/2 flex flex-col gap-[30px]">
-              {listNews.map((item, index) => (
+              {data.slice(1, 4).map((item: any, index: number) => (
                 <motion.div
                   viewport={{ once: true }}
                   initial={{ opacity: 0, y: 40 }}
@@ -355,19 +279,26 @@ export default function BlogSection() {
                 >
                   <div className="w-[191px] h-[147px] flex-shrink-0 max-lg:w-[169px] max-lg:h-[130px]">
                     <img
-                      src={item.img}
-                      className="object-contain h-full w-full  rounded-[10px]"
+                      src={item.thumbnail}
+                      className="object-cover h-full w-full  rounded-[10px]"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Button className="w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]">
+                    <Button
+                      onClick={() => {
+                        router.push(
+                          `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
+                        );
+                      }}
+                      className="cursor-pointer w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
+                    >
                       Tin tức
                     </Button>
                     <span className="text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base">
-                      {item.title}
+                      {item.name}
                     </span>
                     <span className="text-[#194185] text-sm leading-5 ">
-                      {item.date}
+                      {moment(item?.createdAt).format("DD/MM/YYYY")}
                     </span>
                   </div>
                 </motion.div>
@@ -446,6 +377,238 @@ export default function BlogSection() {
             </Accordion>
           </motion.div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function LoadMobile() {
+  return (
+    <div className="px-4 pt-[50px] flex flex-col gap-4">
+      <div className="flex justify-center">
+        <Skeleton className="h-[30px] w-[200px]" />
+      </div>
+      <Skeleton className="h-[228px] w-full" />
+      <Skeleton className="h-[22px] w-[55px]" />
+      <Skeleton className="h-[30px] w-full" />
+      <Skeleton className="h-[20px] w-[100px]" />
+      <Skeleton className="h-[50px] w-full" />
+      <div className="flex gap-[30px]">
+        <Skeleton className="h-[91px] w-[118px] flex-shrink-0" />
+        <div className="w-full flex flex-col gap-2">
+          <Skeleton className="h-[22px] w-[55px] " />
+          <Skeleton className="h-8 w-full " />
+          <Skeleton className="h-[20px] w-[100px] " />
+        </div>
+      </div>
+      <div className="flex gap-[30px]">
+        <Skeleton className="h-[91px] w-[118px] flex-shrink-0" />
+        <div className="w-full flex flex-col gap-2">
+          <Skeleton className="h-[22px] w-[55px] " />
+          <Skeleton className="h-8 w-full " />
+          <Skeleton className="h-[20px] w-[100px] " />
+        </div>
+      </div>
+      <div className="flex gap-[30px]">
+        <Skeleton className="h-[91px] w-[118px] flex-shrink-0" />
+        <div className="w-full flex flex-col gap-2">
+          <Skeleton className="h-[22px] w-[55px] " />
+          <Skeleton className="h-8 w-full " />
+          <Skeleton className="h-[20px] w-[100px] " />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MoblieBlog({ data }: { data: any }) {
+  const router = useRouter();
+  console.log("data", data);
+  const [qaValue, setQaValue] = useState("ndaTrace");
+  return (
+    <section id="inquiry" className="px-4 pt-[50px] flex flex-col gap-[62px]">
+      <div className="flex flex-col gap-6 items-center">
+        <motion.span
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="text-[#0057D6] text-xl leading-[30px] font-semibold"
+        >
+          Blog
+        </motion.span>
+
+        <div className="flex flex-col gap-2">
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="w-full h-full"
+          >
+            <img
+              src={data[0]?.thumbnail}
+              className="object-cover h-full w-full rounded-[16px]"
+            />
+          </motion.div>
+
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+          >
+            <Button
+              onClick={() => {
+                router.push(
+                  `https://www.ndatrace.vn/vn/blogs/${data[0]?.slug}`
+                );
+              }}
+              className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]"
+            >
+              Tin tức
+            </Button>
+          </motion.div>
+
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-[#194185] text-xl leading-[30px] font-semibold max-[28.125rem]:whitespace-pre-line"
+          >
+            {data[0]?.name}
+          </motion.span>
+
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-[#194185] text-xs leading-5"
+          >
+            {moment(data[0]?.createdAt).format("DD/MM/YYYY")}
+          </motion.span>
+
+          <motion.span
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+            }}
+            className="text-[#194185] text-xs leading-5"
+          >
+            {data[0]?.description}
+          </motion.span>
+        </div>
+        <div className="flex flex-col gap-6">
+          {data.slice(1, 4).map((item: any, index: number) => (
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              key={index}
+              className="flex gap-4 items-start"
+            >
+              <div className="w-[118px] h-[91px] flex-shrink-0">
+                <img
+                  src={item.thumbnail}
+                  className="object-cover h-full w-full  rounded-[10px]"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Button
+                  onClick={() => {
+                    router.push(
+                      `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
+                    );
+                  }}
+                  className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]"
+                >
+                  Tin tức
+                </Button>
+                <span className="text-[#194185] text-sm leading-6 font-semibold">
+                  {item.name}
+                </span>
+                <span className="text-[#194185] text-sm leading-5">
+                  {moment(item?.createdAt).format("DD/MM/YYYY")}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-6 items-center">
+        <motion.span
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="text-[#0057D6] text-xl leading-[30px] font-semibold"
+        >
+          Câu hỏi thường gặp
+        </motion.span>
+
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.1,
+          }}
+          className="w-full"
+        >
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full bg-[#EFF8FF] rounded-[12px]"
+            value={qaValue}
+            onValueChange={setQaValue}
+          >
+            {listQa.map((item, index) => (
+              <AccordionItem
+                key={item.code}
+                value={item.code}
+                className={cn(
+                  qaValue === item.code
+                    ? "border-b-[#E9EAEB]"
+                    : "border-b-white"
+                )}
+              >
+                <AccordionTrigger className="cursor-pointer hover:no-underline p-4 text-[#194185] text-xl leading-[30px] font-semibold items-center gap-0 max-xl:text-lg">
+                  {item.title}
+                </AccordionTrigger>
+                <AccordionContent
+                  className={cn(
+                    "bg-white border-t border-x border-t-[#E9EAEB] border-x-[#E9EAEB] p-6",
+                    index === listQa.length - 1 &&
+                      "border-b border-b-[#E9EAEB] rounded-b-[12px]"
+                  )}
+                >
+                  <p className="text-[#194185] text-base leading-6 whitespace-pre-line max-xl:text-sm">
+                    {item.answer}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { Icons } from "../icons";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Separator } from "../ui/separator";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -41,6 +42,7 @@ const navs = [
 
 export default function FooterSection() {
   const isMobile = useIsMobile();
+  const router = useRouter();
 
   if (isMobile) {
     return (
@@ -224,6 +226,9 @@ export default function FooterSection() {
                   duration: 1.1,
                 }}
                 className="mt-1.5 text-[#194185] text-base leading-6"
+                onClick={() => {
+                  router.push("https://ndachain.vn/");
+                }}
               >
                 NDAChain - Nền tảng Blockchain quốc gia
               </motion.span>
@@ -235,6 +240,9 @@ export default function FooterSection() {
                   duration: 1.1,
                 }}
                 className="text-[#194185] text-base leading-6"
+                onClick={() => {
+                  router.push("https://ndachain.vn/");
+                }}
               >
                 NDADID - Hệ thống Định danh phi tập trung
               </motion.span>
@@ -260,6 +268,9 @@ export default function FooterSection() {
                   duration: 1.1,
                 }}
                 className="text-[#194185] text-base leading-6"
+                onClick={() => {
+                  router.push("https://www.ndakey.vn/");
+                }}
               >
                 NDAKey - Ứng dụng định danh phi tập trung
               </motion.span>
@@ -338,7 +349,7 @@ export default function FooterSection() {
                       });
                       event.preventDefault();
                     }}
-                    className="cursor-pointer text-[#194185] text-base leading-normal font-medium tracking-[-0.6px]"
+                    className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-normal font-medium tracking-[-0.6px]"
                     key={index}
                   >
                     {item.title}
@@ -453,7 +464,10 @@ export default function FooterSection() {
                       transition={{
                         duration: 1.1,
                       }}
-                      className="text-[#194185] text-base leading-6 max-lg:text-sm "
+                      className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-6 max-lg:text-sm "
+                      onClick={() => {
+                        router.push("https://ndachain.vn/");
+                      }}
                     >
                       NDAChain - Nền tảng Blockchain quốc gia
                     </motion.span>
@@ -465,7 +479,10 @@ export default function FooterSection() {
                       transition={{
                         duration: 1.1,
                       }}
-                      className="text-[#194185] text-base leading-6 max-lg:text-sm "
+                      className="cursor-pointer text-[#194185] text-base hover:text-[#194185]/70 leading-6 max-lg:text-sm "
+                      onClick={() => {
+                        router.push("https://ndachain.vn/");
+                      }}
                     >
                       NDADID - Hệ thống Định danh phi tập trung
                     </motion.span>
@@ -477,7 +494,7 @@ export default function FooterSection() {
                       transition={{
                         duration: 1.1,
                       }}
-                      className="text-[#194185] text-base leading-6 max-lg:text-sm "
+                      className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-6 max-lg:text-sm "
                     >
                       NDATrace - Nền tảng quốc gia về Định danh, Xác thực và
                       Truy xuất nguồn gốc hàng hoá
@@ -489,7 +506,10 @@ export default function FooterSection() {
                       transition={{
                         duration: 1.1,
                       }}
-                      className="text-[#194185] text-base leading-6 max-lg:text-sm "
+                      className="cursor-pointer text-[#194185] text-base hover:text-[#194185]/70 leading-6 max-lg:text-sm "
+                      onClick={() => {
+                        router.push("https://www.ndakey.vn/");
+                      }}
                     >
                       NDAKey - Ứng dụng định danh phi tập trung
                     </motion.span>

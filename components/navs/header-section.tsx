@@ -185,8 +185,8 @@ function DesktopHeader({
                 className={cn(
                   "cursor-pointer text-base leading-normal tracking-[-0.6px] max-lg:text-xs",
                   activeSection === item.idSection
-                    ? "text-[#0057D6] font-bold"
-                    : "text-[#194185] font-medium"
+                    ? "text-[#0057D6] font-bold hover:text-[#0057D6]/70"
+                    : "text-[#194185] font-medium hover:text-[#194185]/70"
                 )}
                 onClick={(event) => {
                   wait().then(() => {
@@ -229,8 +229,8 @@ function DesktopHeader({
                 className={cn(
                   "cursor-pointer text-[#194185] font-medium text-base leading-normal tracking-[-0.6px] max-lg:text-xs",
                   activeSection === item.idSection
-                    ? "text-[#0057D6] font-bold"
-                    : "text-[#194185] font-medium"
+                    ? "text-[#0057D6] font-bold hover:text-[#0057D6]/70"
+                    : "text-[#194185] font-medium hover:text-[#194185]/70"
                 )}
                 onClick={(event) => {
                   wait().then(() => {

@@ -63,7 +63,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="animate-pulse bg-[#EFF8FF] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className=" bg-[#EFF8FF] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitMilk className="w-[30px] h-[30px]" />
@@ -80,7 +80,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="animate-pulse bg-[#EFF4FF] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className=" bg-[#EFF4FF] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitCosmetics className="w-[30px] h-[30px]" />
@@ -97,7 +97,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="animate-pulse bg-[#EDFCF2] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className=" bg-[#EDFCF2] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitFood className="w-[30px] h-[30px]" />
@@ -114,7 +114,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="animate-pulse bg-[#EEF4FF] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className=" bg-[#EEF4FF] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitDiamond className="w-[30px] h-[30px]" />
@@ -131,7 +131,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="animate-pulse bg-[#FEFBE8] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className=" bg-[#FEFBE8] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitDress className="w-[30px] h-[30px]" />
@@ -148,7 +148,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="animate-pulse bg-[#FFF4ED] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className=" bg-[#FFF4ED] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitLogistic className="w-[30px] h-[30px]" />
@@ -165,7 +165,7 @@ export default function FieldSection() {
             transition={{
               duration: 1.1,
             }}
-            className="col-start-2 max-[43.75rem]:gap-3 max-[43.75rem]:col-span-2 max-[43.75rem]:justify-self-center  animate-pulse bg-[#FEF3F2] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
+            className="col-start-2 max-[43.75rem]:gap-3 max-[43.75rem]:col-span-2 max-[43.75rem]:justify-self-center bg-[#FEF3F2] px-2 py-1 rounded-[8px] flex gap-[8px] items-center"
           >
             <div>
               <Icons.benefitSetting className="w-[30px] h-[30px]" />
@@ -222,11 +222,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="z-10 absolute top-[25%] left-[-44px] max-lg:left-[30px]"
         >
-          <div className="animate-pulse bg-[#EFF8FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#EFF8FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitMilk className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
@@ -241,11 +241,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="h-full absolute top-0 left-[-146px] flex items-center max-xl:left-[-105px] max-lg:left-[5px]"
         >
-          <div className="animate-pulse bg-[#EDFCF2] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#EDFCF2] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitFood className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
@@ -260,11 +260,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="absolute top-[75%] left-[51px] max-lg:left-[30px]"
         >
-          <div className="animate-pulse bg-[#FEFBE8] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#FEFBE8] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitDress className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
@@ -279,11 +279,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="absolute bottom-[86px] flex justify-center w-full"
         >
-          <div className="animate-pulse bg-[#FEF3F2] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#FEF3F2] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitSetting className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
@@ -298,11 +298,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="z-10 absolute top-[75%] right-[-12px] max-lg:right-[20px]"
         >
-          <div className="animate-pulse bg-[#FFF4ED] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#FFF4ED] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitLogistic className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
@@ -317,11 +317,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="h-full absolute top-0 right-[-146px] flex items-center max-xl:right-[-105px] max-lg:right-[-5px]"
         >
-          <div className="animate-pulse bg-[#EEF4FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#EEF4FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitDiamond className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
@@ -336,11 +336,11 @@ export default function FieldSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1.3,
+            duration: 2.0,
           }}
           className="absolute top-[25%] right-[-8px] max-lg:right-[20px]"
         >
-          <div className="animate-pulse bg-[#EFF4FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
+          <div className=" bg-[#EFF4FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitCosmetics className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
