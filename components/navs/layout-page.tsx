@@ -8,6 +8,7 @@ interface LayoutProps {
 
 export default function LayoutPage({ children }: LayoutProps) {
   const [isScrolledToTop, setIsScrolledToTop] = useState(true);
+  const [isScrolledToTopDesktop, setIsScrolledToTopDesktop] = useState(true);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -25,9 +26,27 @@ export default function LayoutPage({ children }: LayoutProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolledToTopDesktop(window.scrollY < 120);
+    };
+
+    // Add event listener for scroll events
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white overflow-hidden font-display selection:bg-blue-300">
-      <HeaderSection isScrolledToTop={isScrolledToTop} />
+      <HeaderSection
+        isScrolledToTop={isScrolledToTop}
+        isScrolledToTopDesktop={isScrolledToTopDesktop}
+      />
       {children}
     </div>
   );

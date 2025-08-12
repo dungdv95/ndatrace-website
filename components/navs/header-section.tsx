@@ -65,8 +65,10 @@ const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
 
 export default function HeaderSection({
   isScrolledToTop,
+  isScrolledToTopDesktop,
 }: {
   isScrolledToTop: boolean;
+  isScrolledToTopDesktop: boolean;
 }) {
   const isMobile = useIsMobile();
 
@@ -74,10 +76,14 @@ export default function HeaderSection({
     return <MobileHeader isScrolledToTop={isScrolledToTop} />;
   }
 
-  return <DesktopHeader />;
+  return <DesktopHeader isScrolledToTopDesktop={isScrolledToTopDesktop} />;
 }
 
-function DesktopHeader() {
+function DesktopHeader({
+  isScrolledToTopDesktop,
+}: {
+  isScrolledToTopDesktop: boolean;
+}) {
   const [isVie, setIsVie] = useState(true);
   const [activeSection, setActiveSection] = useState("");
   const [isVisible, setIsVisible] = useState(true);
@@ -167,7 +173,10 @@ function DesktopHeader() {
           transition={{
             duration: 1.1,
           }}
-          className="flex items-center gap-[82px] py-2 max-xl:gap-[50px] max-lg:gap-[10px] bg-white rounded-4xl header-shadow"
+          className={cn(
+            "flex items-center gap-[82px] py-2 max-xl:gap-[50px] max-lg:gap-[10px] bg-white rounded-4xl ",
+            !isScrolledToTopDesktop && "header-shadow"
+          )}
         >
           <div className="grow px-4 flex justify-between items-center max-lg:px-5">
             {lisNavs.slice(0, 4).map((item, index) => (
