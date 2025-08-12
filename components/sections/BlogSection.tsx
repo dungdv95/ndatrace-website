@@ -384,7 +384,7 @@ export default function BlogSection() {
               transition={{
                 duration: 1.1,
               }}
-              className="text-center text-[#181818] text-[30px] leading-[38px] tracking-[-0.72px] font-bold"
+              className="text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]"
             >
               Câu hỏi thường gặp
             </motion.span>
