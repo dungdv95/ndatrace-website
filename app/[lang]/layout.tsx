@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "./theme-provider";
-import LayoutPage from "@/components/navs/layout-page";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/sonner";
 import { i18n, type Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
+import LayoutData from "@/components/navs/layout-data";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -77,7 +77,7 @@ export default async function RootLayout(props: {
           disableTransitionOnChange
         >
           <Providers>
-            <LayoutPage dictionary={dictionary}>{children}</LayoutPage>
+            <LayoutData dictionary={dictionary}>{children}</LayoutData>
           </Providers>
         </ThemeProvider>
         <Toaster richColors position="bottom-center" />

@@ -96,5 +96,10 @@
     "ndaDid": "NDADID - Hệ thống Định danh phi tập trung",
     "ndaTrace": "NDATrace - Nền tảng quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
     "ndaKey": "NDAKey - Ứng dụng định danh phi tập trung"
+  },
+  "blogList": {
+    "all": "Tất cả",
+    "technology": "Công nghệ",
+    "news": "Tin tức"
   }
 }

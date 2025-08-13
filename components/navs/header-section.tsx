@@ -16,7 +16,7 @@ import {
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
 import { getDictionary } from "@/get-dictionary";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { i18n, type Locale } from "@/i18n-config";
 import Link from "next/link";
 
@@ -102,10 +102,9 @@ function DesktopHeader({
   isScrolledToTopDesktop: boolean;
   headerTitle: Awaited<ReturnType<typeof getDictionary>>["header"];
 }) {
-  const [isVie, setIsVie] = useState(true);
+  const router = useRouter();
   const [activeSection, setActiveSection] = useState("");
   const [isVisible, setIsVisible] = useState(true);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
@@ -149,32 +148,6 @@ function DesktopHeader({
     window.addEventListener("scroll", controlNavbar);
     return () => window.removeEventListener("scroll", controlNavbar);
   }, [lastScrollY]);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     // Khi có action scroll → ẩn navbar
-  //     setIsVisible(false);
-
-  //     // Nếu đang có timer cũ → xóa
-  //     if (scrollTimeout.current) {
-  //       clearTimeout(scrollTimeout.current);
-  //     }
-
-  //     // Sau khi dừng scroll 200ms → hiện lại navbar
-  //     scrollTimeout.current = setTimeout(() => {
-  //       setIsVisible(true);
-  //     }, 400);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //     if (scrollTimeout.current) {
-  //       clearTimeout(scrollTimeout.current);
-  //     }
-  //   };
-  // }, []);
 
   return (
     <header
@@ -251,19 +224,23 @@ function DesktopHeader({
                     : "text-[#194185] font-medium hover:text-[#194185]/70"
                 )}
                 onClick={(event) => {
-                  wait().then(() => {
-                    const el = document.getElementById(item.idSection);
-                    if (el) {
-                      const rect = el.getBoundingClientRect();
-                      const scrollTop =
-                        window.pageYOffset ||
-                        document.documentElement.scrollTop;
-                      const offset = 105; // số px muốn dịch xuống thêm
-                      const targetY = rect.top + scrollTop - offset;
-                      window.scrollTo({ top: targetY, behavior: "smooth" });
-                    }
-                  });
-                  event.preventDefault();
+                  if (item.name === "blog") {
+                    router.push("/blogs");
+                  } else {
+                    wait().then(() => {
+                      const el = document.getElementById(item.idSection);
+                      if (el) {
+                        const rect = el.getBoundingClientRect();
+                        const scrollTop =
+                          window.pageYOffset ||
+                          document.documentElement.scrollTop;
+                        const offset = 105; // số px muốn dịch xuống thêm
+                        const targetY = rect.top + scrollTop - offset;
+                        window.scrollTo({ top: targetY, behavior: "smooth" });
+                      }
+                    });
+                    event.preventDefault();
+                  }
                 }}
               >
                 {headerTitle[item.name as keyof typeof headerTitle]}

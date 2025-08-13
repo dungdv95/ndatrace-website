@@ -14,9 +14,10 @@ import { useQuery } from "@tanstack/react-query";
 import apis from "@/lib/apis/blogs/index";
 import ErrorNotice from "../notice/notice-error";
 import { Skeleton } from "../ui/skeleton";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import moment from "moment";
 import { getDictionary } from "@/get-dictionary";
+import { BlogProps, useStore } from "../navs/store";
 
 const listQa = [
   {
@@ -68,7 +69,7 @@ export default function BlogSection({
     queryFn: () =>
       apis.getBlogPost({
         pageIndex: 1,
-        pageSize: 10,
+        pageSize: 4,
         applicationFilter: "ndatrace",
       }),
     retry: 0,
@@ -145,12 +146,13 @@ function DesktopBlog({
   data,
   blogLang,
 }: {
-  data: any;
+  data: BlogProps[];
   blogLang: Awaited<ReturnType<typeof getDictionary>>["blogs"];
 }) {
-  console.log("data", data);
+  //   console.log("data", data);
   const router = useRouter();
   const [qaValue, setQaValue] = useState("ndaTrace");
+  const pathName = usePathname();
 
   return (
     <section
@@ -180,7 +182,10 @@ function DesktopBlog({
                 transition={{
                   duration: 1.1,
                 }}
-                className="w-full h-[320px]"
+                className="cursor-pointer w-full h-[320px]"
+                onClick={() => {
+                  router.push(`/blogs/${data[0]?.slug}`);
+                }}
               >
                 <img
                   src={data[0]?.thumbnail}
@@ -196,16 +201,16 @@ function DesktopBlog({
                   duration: 1.1,
                 }}
               >
-                <Button
-                  onClick={() => {
-                    router.push(
-                      `https://www.ndatrace.vn/vn/blogs/${data[0]?.slug}`
-                    );
-                  }}
-                  className="cursor-pointer mt-1 w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
-                >
-                  {blogLang.news}
-                </Button>
+                <div className="flex gap-2 items-center">
+                  {data[0]?.categoryIds.map((item, index) => (
+                    <Button
+                      key={index}
+                      className="mt-1 h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
+                    >
+                      {getTitleCategory(item, pathName)}
+                    </Button>
+                  ))}
+                </div>
               </motion.div>
 
               <motion.span
@@ -215,7 +220,10 @@ function DesktopBlog({
                 transition={{
                   duration: 1.1,
                 }}
-                className="text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
+                className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
+                onClick={() => {
+                  router.push(`/blogs/${data[0]?.slug}`);
+                }}
               >
                 {data[0]?.name}
               </motion.span>
@@ -244,7 +252,7 @@ function DesktopBlog({
               </motion.span>
             </div>
             <div className="w-1/2 flex flex-col gap-[30px]">
-              {data.slice(1, 4).map((item: any, index: number) => (
+              {data.slice(1, 5).map((item, index: number) => (
                 <motion.div
                   viewport={{ once: true }}
                   initial={{ opacity: 0, y: 40 }}
@@ -255,24 +263,40 @@ function DesktopBlog({
                   key={index}
                   className="flex gap-[30px] max-xl:gap-6 max-lg:gap-4"
                 >
-                  <div className="w-[191px] h-[147px] flex-shrink-0 max-lg:w-[169px] max-lg:h-[130px]">
+                  <div
+                    className="cursor-pointer w-[191px] h-[147px] flex-shrink-0 max-lg:w-[169px] max-lg:h-[130px]"
+                    onClick={() => {
+                      router.push(`/blogs/${item.slug}`);
+                    }}
+                  >
                     <img
                       src={item.thumbnail}
                       className="object-cover h-full w-full  rounded-[10px]"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Button
+                    <div className="flex gap-2 items-center">
+                      {item.categoryIds.map((category, idxCategory) => (
+                        <Button
+                          key={`category_${idxCategory}`}
+                          //   onClick={() => {
+                          //     router.push(
+                          //       `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
+                          //     );
+                          //   }}
+                          className="h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
+                        >
+                          {/* {blogLang.news} */}
+                          {getTitleCategory(category, pathName)}
+                        </Button>
+                      ))}
+                    </div>
+                    <span
+                      className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base"
                       onClick={() => {
-                        router.push(
-                          `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
-                        );
+                        router.push(`/blogs/${item.slug}`);
                       }}
-                      className="cursor-pointer w-[55px] h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
                     >
-                      {blogLang.news}
-                    </Button>
-                    <span className="text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base">
                       {item.name}
                     </span>
                     <span className="text-[#194185] text-sm leading-5 ">
@@ -403,7 +427,7 @@ function MoblieBlog({
   data,
   blogLang,
 }: {
-  data: any;
+  data: BlogProps[];
   blogLang: Awaited<ReturnType<typeof getDictionary>>["blogs"];
 }) {
   const router = useRouter();
@@ -597,3 +621,12 @@ function MoblieBlog({
     </section>
   );
 }
+
+const getTitleCategory = (categoryIds: string, pathName: string) => {
+  let listCategory = useStore.getState().listCategory;
+  if (pathName.includes("en")) {
+    return listCategory.find((el) => el.id === categoryIds)?.translations.en
+      .values.name;
+  }
+  return listCategory.find((el) => el.id === categoryIds)?.name;
+};

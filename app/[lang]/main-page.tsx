@@ -80,17 +80,6 @@ export default function MainPage({
       >
         <BlogSection blogLang={dictionary?.blogs} />
       </motion.div>
-
-      <motion.div
-        viewport={{ once: true }}
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-        }}
-      >
-        <FooterSection footerLang={dictionary?.footer} />
-      </motion.div>
     </>
   );
 }

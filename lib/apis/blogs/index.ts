@@ -5,13 +5,19 @@ async function getBlogPost({
   pageIndex,
   pageSize,
   applicationFilter,
+  categoryIdFilter,
 }: {
   pageIndex: number;
   pageSize: number;
   applicationFilter: string;
+  categoryIdFilter?: string;
 }) {
   const response = await customFetch(
-    `${API.BLOG.GET}?pagination.page=${pageIndex}&pagination.pageSize=${pageSize}&applicationFilter=${applicationFilter}`,
+    `${
+      API.BLOG.GET
+    }?pagination.page=${pageIndex}&pagination.pageSize=${pageSize}&applicationFilter=${applicationFilter}${
+      categoryIdFilter ? `&categoryIdFilter=${categoryIdFilter}` : ""
+    }`,
     {
       method: "GET",
       headers: {
@@ -31,6 +37,33 @@ async function getBlogPost({
   return data ? data?.blogs : [];
 }
 
+async function getCategories({
+  applicationFilter,
+}: {
+  applicationFilter: string;
+}) {
+  const response = await customFetch(
+    `${API.BLOG.CATEGORY}?applicationFilter=${applicationFilter}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (response.status !== 200) {
+    throw {
+      code: data?.code,
+      message: data?.error ? data?.error : data?.message,
+    };
+  }
+
+  return data ? data?.categories : [];
+}
+
 export default Object.freeze({
   getBlogPost,
+  getCategories,
 });

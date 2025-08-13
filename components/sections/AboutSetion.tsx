@@ -13,7 +13,7 @@ export default function AboutSection({
 }: {
   aboutLang: Awaited<ReturnType<typeof getDictionary>>["about"];
 }) {
-  console.log("aboutLang", aboutLang);
+  //   console.log("aboutLang", aboutLang);
   const router = useRouter();
   const isMobile = useIsMobile();
 

@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import HeaderSection from "./header-section";
 import { getDictionary } from "@/get-dictionary";
+import { motion } from "motion/react";
+import FooterSection from "../sections/FooterSection";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,7 +13,6 @@ interface LayoutProps {
 export default function LayoutPage({ children, dictionary }: LayoutProps) {
   const [isScrolledToTop, setIsScrolledToTop] = useState(true);
   const [isScrolledToTopDesktop, setIsScrolledToTopDesktop] = useState(true);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +52,16 @@ export default function LayoutPage({ children, dictionary }: LayoutProps) {
         isScrolledToTopDesktop={isScrolledToTopDesktop}
       />
       {children}
+      <motion.div
+        viewport={{ once: true }}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.6,
+        }}
+      >
+        <FooterSection footerLang={dictionary?.footer} />
+      </motion.div>
     </div>
   );
 }
