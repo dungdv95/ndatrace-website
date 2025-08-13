@@ -72,7 +72,7 @@ export default function RootLayout({
         </ThemeProvider>
         <Toaster richColors position="bottom-center" />
       </body>
-      <GoogleAnalytics gaId="G-QKN4ZPXJ6S" />
+      <GoogleAnalytics gaId="G-1234567890" />
     </html>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Icons } from "../icons";
 import { Button } from "../ui/button";
@@ -7,6 +8,7 @@ import { Separator } from "../ui/separator";
 import { motion } from "motion/react";
 
 export default function AboutSection() {
+  const router = useRouter();
   const isMobile = useIsMobile();
 
   if (isMobile) {
@@ -43,6 +45,25 @@ export default function AboutSection() {
                 giúp theo dõi minh bạch toàn bộ hành trình sản phẩm trong chuỗi
                 cung ứng, từ sản xuất đến tay người tiêu dùng.
               </span>
+            </motion.div>
+
+            <motion.div
+              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+              }}
+              className="flex justify-center"
+            >
+              <Button
+                onClick={() => {
+                  router.push("https://stats.ndatrace.vn/");
+                }}
+                className="cursor-pointer w-[150px] h-9 bg-white hover:bg-slate-50 border border-[#84CAFF] rounded-[8px] text-[#175CD3] text-sm leading-5 font-semibold"
+              >
+                Xem thống kê
+              </Button>
             </motion.div>
 
             <div className="mt-9 relative flex justify-center">
@@ -270,7 +291,12 @@ export default function AboutSection() {
             }}
             className="mt-2 flex justify-center"
           >
-            <Button className="cursor-pointer w-[180px] h-10 bg-white hover:bg-slate-50 border border-[#84CAFF] rounded-[8px] text-[#175CD3] text-sm leading-5 font-semibold">
+            <Button
+              onClick={() => {
+                router.push("https://stats.ndatrace.vn/");
+              }}
+              className="cursor-pointer w-[180px] h-10 bg-white hover:bg-slate-50 border border-[#84CAFF] rounded-[8px] text-[#175CD3] text-sm leading-5 font-semibold"
+            >
               Xem thống kê
             </Button>
           </motion.div>
