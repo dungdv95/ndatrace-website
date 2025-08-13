@@ -6,8 +6,14 @@ import { Icons } from "../icons";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { motion } from "motion/react";
+import { getDictionary } from "@/get-dictionary";
 
-export default function AboutSection() {
+export default function AboutSection({
+  aboutLang,
+}: {
+  aboutLang: Awaited<ReturnType<typeof getDictionary>>["about"];
+}) {
+  console.log("aboutLang", aboutLang);
   const router = useRouter();
   const isMobile = useIsMobile();
 
@@ -26,8 +32,7 @@ export default function AboutSection() {
               className="px-4 flex justify-center"
             >
               <span className="text-center text-[#0057D6] leading-[30px] font-semibold text-2xl max-w-4/5 max-[28.5rem]:text-xl">
-                Nền tảng Quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc
-                hàng hoá
+                {aboutLang.title}
               </span>
             </motion.div>
 
@@ -41,9 +46,7 @@ export default function AboutSection() {
               className="px-4 flex justify-center "
             >
               <span className="text-center text-[#194185] text-sm leading-[25px] max-w-4/5">
-                NDATrace là giải pháp truy xuất nguồn gốc hàng hoá toàn diện,
-                giúp theo dõi minh bạch toàn bộ hành trình sản phẩm trong chuỗi
-                cung ứng, từ sản xuất đến tay người tiêu dùng.
+                {aboutLang.description}
               </span>
             </motion.div>
 
@@ -62,7 +65,7 @@ export default function AboutSection() {
                 }}
                 className="cursor-pointer w-[150px] h-9 bg-white hover:bg-slate-50 border border-[#84CAFF] rounded-[8px] text-[#175CD3] text-sm leading-5 font-semibold"
               >
-                Xem thống kê
+                {aboutLang.titleButton}
               </Button>
             </motion.div>
 
@@ -77,7 +80,7 @@ export default function AboutSection() {
                 className="relative z-10"
               >
                 <img
-                  src="images/about-bg.png"
+                  src={aboutLang.aboutImg}
                   className="object-cover h-full w-full"
                 />
               </motion.div>
@@ -103,7 +106,7 @@ export default function AboutSection() {
               "
                 >
                   <img
-                    src="images/ip16Plus.png"
+                    src="/images/ip16Plus.png"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -168,7 +171,7 @@ export default function AboutSection() {
                 30+
               </span>
               <span className="text-center text-[#002D87] text-base leading-6">
-                Doanh nghiệp trong và ngoài nước đồng hành
+                {aboutLang.business}
               </span>
             </motion.div>
             <motion.div
@@ -194,7 +197,7 @@ export default function AboutSection() {
                 400+
               </span>
               <span className="text-center text-[#002D87] text-base leading-6">
-                Loại mặt hàng được định danh và xác thực
+                {aboutLang.commodity}
               </span>
             </motion.div>
           </div>
@@ -213,7 +216,7 @@ export default function AboutSection() {
                 25,000+
               </span>
               <span className="text-center text-[#002D87] text-base leading-6">
-                Tem/mã định danh đã được phát hành
+                {aboutLang.code}
               </span>
             </motion.div>
 
@@ -240,7 +243,7 @@ export default function AboutSection() {
                 80,000+
               </span>
               <span className="text-center text-[#002D87] text-base leading-6">
-                Lượt xác thực trên hệ thống
+                {aboutLang.auth}
               </span>
             </motion.div>
           </div>
@@ -260,11 +263,9 @@ export default function AboutSection() {
             transition={{
               duration: 1.1,
             }}
-            className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px] max-lg:text-3xl"
+            className="text-center text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px] max-lg:text-3xl whitespace-pre-line"
           >
-            Nền tảng Quốc gia về Định danh, Xác thực và
-            <br />
-            Truy xuất nguồn gốc hàng hoá
+            {aboutLang.title}
           </motion.span>
 
           <motion.span
@@ -274,12 +275,9 @@ export default function AboutSection() {
             transition={{
               duration: 1.1,
             }}
-            className="text-center text-[#194185] text-sm leading-[25px]"
+            className="text-center text-[#194185] text-sm leading-[25px] whitespace-pre-line"
           >
-            NDATrace là giải pháp truy xuất nguồn gốc hàng hoá toàn diện, giúp
-            theo dõi minh bạch toàn bộ hành trình sản
-            <br />
-            phẩm trong chuỗi cung ứng, từ sản xuất đến tay người tiêu dùng.
+            {aboutLang.description}
           </motion.span>
 
           <motion.div
@@ -297,7 +295,7 @@ export default function AboutSection() {
               }}
               className="cursor-pointer w-[180px] h-10 bg-white hover:bg-slate-50 border border-[#84CAFF] rounded-[8px] text-[#175CD3] text-sm leading-5 font-semibold"
             >
-              Xem thống kê
+              {aboutLang.titleButton}
             </Button>
           </motion.div>
         </div>
@@ -313,7 +311,7 @@ export default function AboutSection() {
           >
             <div className="relative z-10">
               <img
-                src="images/about-bg.png"
+                src={aboutLang.aboutImg}
                 className="object-cover h-full w-full"
               />
             </div>
@@ -326,7 +324,7 @@ export default function AboutSection() {
             <div className="z-20 absolute bottom-[-175px] w-full flex justify-center">
               <div className="h-[441px] w-[218px]">
                 <img
-                  src="images/ip16Plus.png"
+                  src="/images/ip16Plus.png"
                   className="object-cover h-full w-full"
                 />
               </div>
@@ -350,7 +348,7 @@ export default function AboutSection() {
                 30+
               </span>
               <span className="text-center text-[#002D87] text-xl leading-[30px] max-2xl:text-lg min-lg:whitespace-pre-line max-lg:text-sm">
-                {`Doanh nghiệp trong và\nngoài nước đồng hành`}
+                {aboutLang.business}
               </span>
             </div>
             <div className="flex flex-col gap-[10px] items-center max-lg:gap-1.5">
@@ -358,7 +356,7 @@ export default function AboutSection() {
                 400+
               </span>
               <span className="text-center text-[#002D87] text-xl leading-[30px] max-2xl:text-lg min-lg:whitespace-pre-line max-lg:text-sm">
-                {`Loại mặt hàng được\nđịnh danh và xác thực`}
+                {aboutLang.commodity}
               </span>
             </div>
           </motion.div>
@@ -376,7 +374,7 @@ export default function AboutSection() {
                 25,000+
               </span>
               <span className="text-center text-[#002D87] text-xl leading-[30px] max-2xl:text-lg min-lg:whitespace-pre-line max-lg:text-sm">
-                {`Tem/mã định danh đã\nđược phát hành`}
+                {aboutLang.code}
               </span>
             </div>
             <div className="flex flex-col gap-[10px] items-center max-lg:gap-1.5">
@@ -384,7 +382,7 @@ export default function AboutSection() {
                 80,000+
               </span>
               <span className="text-center text-[#002D87] text-xl leading-[30px] max-2xl:text-lg min-lg:whitespace-pre-line max-lg:text-sm">
-                {`Lượt xác thực trên\nhệ thống`}
+                {aboutLang.auth}
               </span>
             </div>
           </motion.div>

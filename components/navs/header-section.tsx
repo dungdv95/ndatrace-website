@@ -15,47 +15,51 @@ import {
 } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
+import { getDictionary } from "@/get-dictionary";
+import { usePathname } from "next/navigation";
+import { i18n, type Locale } from "@/i18n-config";
+import Link from "next/link";
 
 const lisNavs = [
   {
     id: 1,
-    name: "Trang chủ",
+    name: "homePage",
     href: "#about",
     idSection: "about",
   },
   {
     id: 2,
-    name: "Lĩnh vực",
+    name: "fields",
     href: "#field",
     idSection: "field",
   },
   {
     id: 3,
-    name: "Lợi ích",
+    name: "benefits",
     href: "#benefit",
     idSection: "benefit",
   },
   {
     id: 4,
-    name: "Tính năng",
+    name: "features",
     href: "#feature",
     idSection: "feature",
   },
   {
     id: 5,
-    name: "Công nghệ",
+    name: "technology",
     href: "#technology",
     idSection: "technology",
   },
   {
     id: 6,
-    name: "Blog",
+    name: "blog",
     href: "#inquiry",
     idSection: "inquiry",
   },
   {
     id: 7,
-    name: "Liên hệ",
+    name: "contact",
     href: "#contact",
     idSection: "contact",
   },
@@ -66,23 +70,37 @@ const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
 export default function HeaderSection({
   isScrolledToTop,
   isScrolledToTopDesktop,
+  dictionary,
 }: {
   isScrolledToTop: boolean;
   isScrolledToTopDesktop: boolean;
+  dictionary: Awaited<ReturnType<typeof getDictionary>>;
 }) {
   const isMobile = useIsMobile();
 
   if (isMobile) {
-    return <MobileHeader isScrolledToTop={isScrolledToTop} />;
+    return (
+      <MobileHeader
+        headerTitle={dictionary?.header}
+        isScrolledToTop={isScrolledToTop}
+      />
+    );
   }
 
-  return <DesktopHeader isScrolledToTopDesktop={isScrolledToTopDesktop} />;
+  return (
+    <DesktopHeader
+      headerTitle={dictionary?.header}
+      isScrolledToTopDesktop={isScrolledToTopDesktop}
+    />
+  );
 }
 
 function DesktopHeader({
   isScrolledToTopDesktop,
+  headerTitle,
 }: {
   isScrolledToTopDesktop: boolean;
+  headerTitle: Awaited<ReturnType<typeof getDictionary>>["header"];
 }) {
   const [isVie, setIsVie] = useState(true);
   const [activeSection, setActiveSection] = useState("");
@@ -204,7 +222,7 @@ function DesktopHeader({
                   event.preventDefault();
                 }}
               >
-                {item.name}
+                {headerTitle[item.name as keyof typeof headerTitle]}
               </span>
             ))}
           </div>
@@ -248,47 +266,11 @@ function DesktopHeader({
                   event.preventDefault();
                 }}
               >
-                {item.name}
+                {headerTitle[item.name as keyof typeof headerTitle]}
               </span>
             ))}
-            <div className="p-1 border border-[#1849A9] rounded-[4px] flex gap-1 items-center max-lg:hidden">
-              <div
-                className={cn(
-                  "cursor-pointer rounded-[4px] px-2 py-0.5 ",
-                  isVie ? "bg-[#1849A9]" : "bg-transparent"
-                )}
-                onClick={() => {
-                  setIsVie(true);
-                }}
-              >
-                <span
-                  className={cn(
-                    " text-base leading-6",
-                    isVie ? "text-[#FAFAFA]" : "text-[#194185] "
-                  )}
-                >
-                  Vie
-                </span>
-              </div>
-              <div
-                className={cn(
-                  "cursor-pointer rounded-[4px] px-2 py-0.5 ",
-                  !isVie ? "bg-[#1849A9]" : "bg-transparent"
-                )}
-                onClick={() => {
-                  setIsVie(false);
-                }}
-              >
-                <span
-                  className={cn(
-                    " text-base leading-6",
-                    !isVie ? "text-[#FAFAFA]" : "text-[#194185] "
-                  )}
-                >
-                  Eng
-                </span>
-              </div>
-            </div>
+
+            <LocalSwitch />
           </div>
         </motion.div>
       </div>
@@ -296,7 +278,13 @@ function DesktopHeader({
   );
 }
 
-function MobileHeader({ isScrolledToTop }: { isScrolledToTop: boolean }) {
+function MobileHeader({
+  isScrolledToTop,
+  headerTitle,
+}: {
+  isScrolledToTop: boolean;
+  headerTitle: Awaited<ReturnType<typeof getDictionary>>["header"];
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVie, setIsVie] = useState(true);
   const [activeSection, setActiveSection] = useState("");
@@ -405,7 +393,7 @@ function MobileHeader({ isScrolledToTop }: { isScrolledToTop: boolean }) {
                 <SheetDescription></SheetDescription>
               </SheetHeader>
               <div className="h-full flex flex-col justify-between">
-                <div className="relative flex flex-col gap-4">
+                <div className="z-10 relative flex flex-col gap-4">
                   <div className="flex justify-end">
                     <Button
                       className="h-10 w-10 bg-white hover:bg-white shadow-xl rounded-full"
@@ -445,50 +433,13 @@ function MobileHeader({ isScrolledToTop }: { isScrolledToTop: boolean }) {
                           event.preventDefault();
                         }}
                       >
-                        {item.name}
+                        {headerTitle[item.name as keyof typeof headerTitle]}
                       </span>
                     ))}
-                    <div className="p-1 border border-[#1849A9] rounded-[4px] flex gap-1 items-center w-fit">
-                      <div
-                        className={cn(
-                          "cursor-pointer rounded-[4px] px-2 py-0.5 ",
-                          isVie ? "bg-[#1849A9]" : "bg-transparent"
-                        )}
-                        onClick={() => {
-                          setIsVie(true);
-                        }}
-                      >
-                        <span
-                          className={cn(
-                            " text-base leading-6",
-                            isVie ? "text-[#FAFAFA]" : "text-[#194185] "
-                          )}
-                        >
-                          Vie
-                        </span>
-                      </div>
-                      <div
-                        className={cn(
-                          "cursor-pointer rounded-[4px] px-2 py-0.5 ",
-                          !isVie ? "bg-[#1849A9]" : "bg-transparent"
-                        )}
-                        onClick={() => {
-                          setIsVie(false);
-                        }}
-                      >
-                        <span
-                          className={cn(
-                            " text-base leading-6",
-                            !isVie ? "text-[#FAFAFA]" : "text-[#194185] "
-                          )}
-                        >
-                          Eng
-                        </span>
-                      </div>
-                    </div>
+                    <LocalSwitchMobile />
                   </div>
                 </div>
-                <div className="relative mb-[55px] flex justify-center">
+                <div className="z-0 relative mb-[55px] flex justify-center">
                   <div className="absolute bottom-0">
                     <Icons.mobileMenuStack className="w-[420px] h-[220px]" />
                   </div>
@@ -501,3 +452,82 @@ function MobileHeader({ isScrolledToTop }: { isScrolledToTop: boolean }) {
     </header>
   );
 }
+
+function LocalSwitch() {
+  const pathname = usePathname();
+  const redirectedPathname = (locale: Locale) => {
+    if (!pathname) return "/";
+    const segments = pathname.split("/");
+    segments[1] = locale;
+    return segments.join("/");
+  };
+
+  return (
+    <div className="p-1 border border-[#1849A9] rounded-[4px] flex gap-1 items-center max-lg:hidden">
+      {i18n.locales.map((locale) => {
+        return (
+          <Link
+            key={locale}
+            href={redirectedPathname(locale)}
+            className={cn(
+              "cursor-pointer rounded-[4px] px-2 py-0.5 ",
+              pathname.includes(locale) ? "bg-[#1849A9]" : "bg-transparent"
+            )}
+          >
+            <span
+              className={cn(
+                " text-base leading-6",
+                pathname.includes(locale) ? "text-[#FAFAFA]" : "text-[#194185] "
+              )}
+            >
+              {isEnglish(locale) ? "Eng" : "Vie"}
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+function LocalSwitchMobile() {
+  const pathname = usePathname();
+  const redirectedPathname = (locale: Locale) => {
+    if (!pathname) return "/";
+    const segments = pathname.split("/");
+    segments[1] = locale;
+    return segments.join("/");
+  };
+
+  return (
+    <div className="p-1 border border-[#1849A9] rounded-[4px] flex gap-1 items-center w-fit">
+      {i18n.locales.map((locale) => {
+        return (
+          <Link
+            key={locale}
+            href={redirectedPathname(locale)}
+            className={cn(
+              "cursor-pointer rounded-[4px] px-2 py-0.5 ",
+              pathname.includes(locale) ? "bg-[#1849A9]" : "bg-transparent"
+            )}
+          >
+            <span
+              className={cn(
+                " text-base leading-6",
+                pathname.includes(locale) ? "text-[#FAFAFA]" : "text-[#194185] "
+              )}
+            >
+              {isEnglish(locale) ? "Eng" : "Vie"}
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+const isEnglish = (locale: string) => {
+  if (locale == "en") {
+    return true;
+  }
+  return false;
+};

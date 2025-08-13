@@ -1,0 +1,100 @@
+{
+  "header": {
+    "homePage": "Trang chủ",
+    "fields": "Lĩnh vực",
+    "benefits": "Lợi ích",
+    "features": "Tính năng",
+    "technology": "Công nghệ",
+    "blog": "Blog",
+    "blogProducts": "Sản phẩm",
+    "blogCustomer": "Khách hàng",
+    "blogTechnology": "Công nghệ",
+    "blogNews": "Tin tức",
+    "contact": "Liên hệ"
+  },
+  "about": {
+    "title": "Nền tảng Quốc gia về Định danh, Xác thực và\nTruy xuất nguồn gốc hàng hoá",
+    "description": "NDATrace là giải pháp truy xuất nguồn gốc hàng hoá toàn diện, giúp theo dõi minh bạch toàn bộ hành trình\nsản phẩm trong chuỗi cung ứng, từ sản xuất đến tay người tiêu dùng.",
+    "titleButton": "Xem thống kê",
+    "aboutImg": "/images/about-bg.png",
+    "business": "Doanh nghiệp trong và ngoài nước đồng hành",
+    "commodity": "Loại mặt hàng được định danh và xác thực",
+    "code": "Tem/mã định danh đã được phát hành",
+    "auth": "Lượt xác thực trên hệ thống"
+  },
+  "fields": {
+    "title": "Lĩnh vực áp dụng",
+    "pharma": "Dược phẩm & y tế",
+    "food": "Thực phẩm & nông nghiệp",
+    "fashion": "Thời  trang",
+    "produce": "Công nghiệp sản xuất",
+    "logistic": "Logistic & vận tải",
+    "diamond": "Kim cương & Đá quý",
+    "cosmetics": "Hoá mỹ phẩm"
+  },
+  "benefits": {
+    "title": "Lợi ích của NDATrace",
+    "protect": "Bảo vệ thương hiệu",
+    "preserve": "Bảo toàn dữ liệu",
+    "custom": "Tăng giá trị với khách hàng",
+    "integrated": "Tích hợp toàn cầu",
+    "protectDescription": "Chống giả mạo và bảo mật tuyệt đối, giúp người dùng dễ dàng nhận biết hàng thật hàng giả, bảo vệ thương hiệu và tăng giá trị sản phẩm",
+    "preserveDescription": "Doanh nghiệp và người dùng có toàn quyền kiểm soát dữ liệu của mình, chỉ chia sẻ thông tin cần thiết với các bên liên quan",
+    "customDescription": "Dễ dàng tương tác hai chiều với khách hàng, nhận các phản hồi và gia tăng tỷ lệ mua lại, sự trung thành của khách hàng thông qua các chương trình tích điểm, thành viên, khuyến mãi",
+    "integratedDescription": "NDATrace tuân thủ các tiêu chuẩn toàn cầu như W3C DID và GS1, cho phép liên kết dễ dàng với các hệ thống truy xuất quốc tế. Điều này đặc biệt quan trọng cho các ngành xuất nhập khẩu"
+  },
+  "features": {
+    "title": "Tính năng của NDATrace",
+    "description": "NDATrace giúp các tổ chức, doanh nghiệp, cơ quan quản lý, người tiêu dùng dễ dàng lưu trữ, theo dõi, xác minh\nvà truy xuất thông tin của toàn bộ hành trình sản phẩm từ sản xuất, vận hành cho tới phân phối một cách minh\nbạch, an toàn và hiệu quả",
+    "identify": "Định danh",
+    "identifyDescription": "Mỗi sản phẩm sẽ được phát hành mã định danh phi tập trung (DID) theo chuẩn W3C được thể hiện dưới dạng QR hoặc chip định danh, đáp ứng tiêu chuẩn mã vạch GS1 Digital Link. Từ đó giúp hàng hóa được lưu thông thuận lợi với tiêu chuẩn toàn cầu.",
+    "access": "Truy xuất",
+    "accessDescription": "Hiển thị các thông tin, nguồn gốc và hoạt động xác thực trong vòng đời sản phẩm. Cho phép người dùng đánh giá, phản hồi và tích điểm sản phẩm sau khi mua hàng.",
+    "auth": "Xác thực",
+    "authDescription": "Công cụ cho phép tổ chức, doanh nghiệp (Bên cấp phát) đăng ký tài khoản, khởi tạo DID sản phẩm và cấp phép phát hành bằng chứng xác thực VC cho các bên xác minh trong chuỗi cung ứng. Từ đó kiểm soát và giám sát toàn bộ vòng đời sản phẩm, quản trị quy trình sản xuất và vận hành tới tay người dùng."
+  },
+  "techlonogy": {
+    "title": "Công nghệ của NDATrace",
+    "img": "/images/tech.png",
+    "ndaDid": "Hệ thống Định danh Phi tập trung\nQuốc gia",
+    "ndaDidDescription": "Xác minh danh tính, bảo vệ quyền riêng tư, phát hành và quản lý DIDs/VCs theo chuẩn W3C.",
+    "ndaTrace": "Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá",
+    "ndaTraceDescription": "Định danh từng món hàng với tiêu chuẩn mã vạch GS1 Data Link. Cung cấp công cụ quản lý, giám sát dòng đời sản phẩm từ đó tăng tính tương tác và độ tin cậy với người tiêu dùng.",
+    "ndaChain": "Nền tảng Chuỗi khối\nQuốc gia",
+    "ndaChainDescription": "Đảm bảo tính bất biến, minh bạch, hỗ trợ hợp đồng thông minh để tự động hóa quy trình",
+    "contactText": "NDATrace đồng hành cùng doanh nghiệp xây dựng hệ thống truy xuất an toàn, minh bạch, đạt chuẩn quốc gia.",
+    "contactButton": "Liên hệ ngay",
+    "seeImg": "Xem hình phóng to"
+  },
+  "blogs": {
+    "title": "Blog",
+    "news": "Tin tức",
+    "question": "Câu hỏi thường gặp",
+    "ndaTrace": "NDATrace là gì?",
+    "ndaTraceAns": "NDATrace là Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá, ứng dụng công nghệ blockchain trên nền tảng sử dụng NDADID (Hệ thống định danh phi tập trung quốc gia) và NDAChain (Nền tảng Chuỗi khối Quốc gia) để đảm bảo tính minh bạch, an toàn và chống giả mạo cho tất cả các bên liên quan.",
+    "ndaTraceUid": "NDATrace UID là gì?",
+    "ndaTraceUidAns": "NDATrace UID là thông tin định danh duy nhất, liên kết với mã định danh phi tập trung (DID) theo chuẩn W3C và được thể hiện dưới dạng mã QR hoặc chip định danh, đáp ứng tiêu chuẩn mã vạch Quốc Tế GS1 Data Link.",
+    "ndaTraceCustom": "Khách hàng sử dụng NDATrace để truy xuất xác thực nguồn gốc hàng hoá như thế nào?",
+    "ndaTraceCustomAns": "Các tổ chức (Bên cấp phát - Issuer) đăng ký tài khoản trên NDATrace Portal để khởi tạo mã định danh (DID) sản phẩm và thực hiện xác thực cho các hoạt động trong chuỗi cung ứng (phát hành VC).\nCác bên tham gia trong chuỗi cung ứng (từ nhà sản xuất, cơ quan kiểm định, đơn vị vận chuyển - phân phối đến người tiêu dùng) có thể dễ dàng kiểm tra thông tin, nguồn gốc và hoạt động xác thực trong vòng đời sản phẩm thông qua NDATrace UID (dưới dạng mã QR hoặc chip định danh) mà không cần đăng ký tài khoản. Ứng dụng còn cho phép người dùng đánh giá, phản hồi và tích điểm sản phẩm sau khi mua hàng.",
+    "ndaTraceObj": "Những đối tượng nào có thể sử dụng NDATrace?",
+    "ndaTraceObjAns": "Tất cả mọi đối tượng trong chuỗi cung ứng đều có thể truy xuất nguồn gốc thông qua NDATrace UID. Tuy nhiên, chỉ có các Bên cấp phát (Issuer) đã đăng ký tài khoản trên NDATrace Portal mới có thể khởi tạo DID sản phẩm và xác thực hoạt động (phát hành VC).",
+    "ndaTraceWhy": "Tại sao NDATrace tối ưu hơn các giải pháp truy xuất nguồn gốc thông thường?",
+    "ndaTraceWhyAns": "Hoạt động trên nền tảng quốc gia NDAChain và NDADID, NDATrace vượt trội nhờ ứng dụng công nghệ chuỗi khối (blockchain) và định danh phi tập trung (DID) đáp ứng các chuẩn quốc tế, giúp đảm bảo minh bạch và không thể làm giả. Không chỉ truy xuất nguồn gốc, NDATrace còn mang đến trải nghiệm cho người dùng cuối như tích điểm, đánh giá sản phẩm và phản hồi sau mua - tạo vòng đời tương tác số toàn diện so với các giải pháp khác."
+  },
+  "footer": {
+    "introduction": "Giới thiệu",
+    "benefits": "Lợi ích",
+    "features": "Tính năng",
+    "technology": "Công nghệ",
+    "Faqs": "Hỏi đáp",
+    "contact": "Liên hệ",
+    "transparent": "Minh bạch Chuỗi cung ứng\nNâng tầm hàng Việt",
+    "transparentText": "NDATrace – Nền tảng chiến lược kiến tạo hạ tầng thương mại số quốc gia, hướng tới một nền kinh tế hiện đại, nơi mỗi sản phẩm có danh tính số và mọi giao dịch đều minh bạch, đáng tin cậy.",
+    "addr": "37 Trần Bình Trọng, Phường Cửa Nam, Hà Nội",
+    "product": "Sản phẩm",
+    "ndaChain": "NDAChain - Nền tảng Blockchain quốc gia",
+    "ndaDid": "NDADID - Hệ thống Định danh phi tập trung",
+    "ndaTrace": "NDATrace - Nền tảng quốc gia về Định danh, Xác thực và Truy xuất nguồn gốc hàng hoá",
+    "ndaKey": "NDAKey - Ứng dụng định danh phi tập trung"
+  }
+}

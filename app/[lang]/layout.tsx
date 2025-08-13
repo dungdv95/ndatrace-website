@@ -1,11 +1,13 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "./theme-provider";
 import LayoutPage from "@/components/navs/layout-page";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/sonner";
+import { i18n, type Locale } from "@/i18n-config";
+import { getDictionary } from "@/get-dictionary";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -52,13 +54,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
+
+export default async function RootLayout(props: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const params = await props.params;
+  const dictionary = await getDictionary(params.lang);
+
+  const { children } = props;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={params.lang} suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -67,12 +77,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers>
-            <LayoutPage>{children}</LayoutPage>
+            <LayoutPage dictionary={dictionary}>{children}</LayoutPage>
           </Providers>
         </ThemeProvider>
         <Toaster richColors position="bottom-center" />
       </body>
-      <GoogleAnalytics gaId="G-1234567890" />
+      <GoogleAnalytics gaId="G-1P4BG00GV2" />
     </html>
   );
 }

@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import HeaderSection from "./header-section";
+import { getDictionary } from "@/get-dictionary";
 
 interface LayoutProps {
   children: React.ReactNode;
+  dictionary: Awaited<ReturnType<typeof getDictionary>>;
 }
 
-export default function LayoutPage({ children }: LayoutProps) {
+export default function LayoutPage({ children, dictionary }: LayoutProps) {
   const [isScrolledToTop, setIsScrolledToTop] = useState(true);
   const [isScrolledToTopDesktop, setIsScrolledToTopDesktop] = useState(true);
   const [show, setShow] = useState(false);
@@ -44,6 +46,7 @@ export default function LayoutPage({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-white overflow-hidden font-display selection:bg-blue-300">
       <HeaderSection
+        dictionary={dictionary}
         isScrolledToTop={isScrolledToTop}
         isScrolledToTopDesktop={isScrolledToTopDesktop}
       />

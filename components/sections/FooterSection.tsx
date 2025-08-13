@@ -4,43 +4,49 @@ import { useIsMobile } from "../hooks/use-mobile";
 import { Separator } from "../ui/separator";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
+import { getDictionary } from "@/get-dictionary";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
 
 const navs = [
   {
     id: 1,
-    title: "Giới thiệu",
+    title: "introduction",
     idSection: "about",
   },
   {
     id: 2,
-    title: "Lĩnh vực",
-    idSection: "field",
-  },
-  {
-    id: 3,
-    title: "Lợi ích",
+    title: "benefits",
     idSection: "benefit",
   },
+
   {
-    id: 4,
-    title: "Tính năng",
+    id: 3,
+    title: "features",
     idSection: "feature",
   },
   {
-    id: 5,
-    title: "Công nghệ",
+    id: 4,
+    title: "technology",
     idSection: "technology",
   },
   {
-    id: 6,
-    title: "Blog",
+    id: 5,
+    title: "Faqs",
     idSection: "inquiry",
+  },
+  {
+    id: 6,
+    title: "contact",
+    idSection: "contact",
   },
 ];
 
-export default function FooterSection() {
+export default function FooterSection({
+  footerLang,
+}: {
+  footerLang: Awaited<ReturnType<typeof getDictionary>>["footer"];
+}) {
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -91,7 +97,7 @@ export default function FooterSection() {
                 }}
                 className="text-[#194185] text-xl leading-[30px] font-semibold"
               >
-                Minh bạch Chuỗi cung ứng
+                {footerLang.transparent.split("\n")[0]}
               </motion.span>
               <motion.span
                 viewport={{ once: true }}
@@ -102,7 +108,7 @@ export default function FooterSection() {
                 }}
                 className="text-[#194185] text-xl leading-[30px] font-semibold"
               >
-                Nâng tầm hàng Việt
+                {footerLang.transparent.split("\n")[1]}
               </motion.span>
 
               <motion.span
@@ -114,9 +120,7 @@ export default function FooterSection() {
                 }}
                 className="mt-5 text-[#194185] text-lg leading-7"
               >
-                NDATrace - Nền tảng chiến lược kiến tạo hạ tầng thương mại số
-                quốc gia, hướng tới một nền kinh tế hiện đại, nơi mỗi sản phẩm
-                có danh tính số và mọi giao dịch đều minh bạch, đáng tin cậy.
+                {footerLang.transparentText}
               </motion.span>
             </div>
             <motion.div
@@ -140,7 +144,7 @@ export default function FooterSection() {
                 }}
                 className=" text-[#194185] text-2xl leading-8 font-semibold"
               >
-                Liên hệ
+                {footerLang.contact}
               </motion.span>
 
               <motion.div
@@ -168,7 +172,7 @@ export default function FooterSection() {
                 }}
                 className="text-[#194185] text-base leading-6"
               >
-                37 Trần Bình Trọng, Phường Cửa Nam, Hà Nội
+                {footerLang.addr}
               </motion.span>
 
               <motion.span
@@ -216,7 +220,7 @@ export default function FooterSection() {
                 }}
                 className="text-[#194185] text-2xl leading-8 font-semibold"
               >
-                Sản phẩm
+                {footerLang.product}
               </motion.span>
               <motion.span
                 viewport={{ once: true }}
@@ -230,7 +234,7 @@ export default function FooterSection() {
                   router.push("https://ndachain.vn/");
                 }}
               >
-                NDAChain - Nền tảng Blockchain quốc gia
+                {footerLang.ndaChain}
               </motion.span>
               <motion.span
                 viewport={{ once: true }}
@@ -244,7 +248,7 @@ export default function FooterSection() {
                   router.push("https://ndachain.vn/");
                 }}
               >
-                NDADID - Hệ thống Định danh phi tập trung
+                {footerLang.ndaDid}
               </motion.span>
 
               <motion.span
@@ -256,8 +260,7 @@ export default function FooterSection() {
                 }}
                 className="text-[#194185] text-base leading-6"
               >
-                NDATrace - Nền tảng quốc gia về Định danh, Xác thực và Truy xuất
-                nguồn gốc hàng hoá
+                {footerLang.ndaTrace}
               </motion.span>
 
               <motion.span
@@ -272,7 +275,7 @@ export default function FooterSection() {
                   router.push("https://www.ndakey.vn/");
                 }}
               >
-                NDAKey - Ứng dụng định danh phi tập trung
+                {footerLang.ndaKey}
               </motion.span>
             </div>
           </div>
@@ -352,7 +355,7 @@ export default function FooterSection() {
                     className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-normal font-medium tracking-[-0.6px]"
                     key={index}
                   >
-                    {item.title}
+                    {footerLang[item.title as keyof typeof footerLang]}
                   </motion.span>
                 ))}
               </div>
@@ -368,10 +371,8 @@ export default function FooterSection() {
                   }}
                   className="w-[32%] flex-shrink-0"
                 >
-                  <span className="text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl max-lg:text-lg">
-                    Minh bạch Chuỗi cung ứng
-                    <br />
-                    Nâng tầm hàng Việt
+                  <span className="text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl max-lg:text-lg whitespace-pre-line">
+                    {footerLang.transparent}
                   </span>
                 </motion.div>
 
@@ -385,10 +386,10 @@ export default function FooterSection() {
                   className="w-full flex gap-[30px]"
                 >
                   <span className="w-[45%] text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl max-lg:text-lg">
-                    Liên hệ
+                    {footerLang.contact}
                   </span>
                   <span className="w-[45%] text-[#194185] text-2xl leading-8 font-semibold max-xl:text-xl max-lg:text-lg">
-                    Sản phẩm
+                    {footerLang.product}
                   </span>
                 </motion.div>
               </div>
@@ -403,10 +404,7 @@ export default function FooterSection() {
                   className="w-[32%] flex-shrink-0"
                 >
                   <span className="text-[#194185] text-lg leading-7 text-balance max-xl:text-base max-lg:text-sm">
-                    NDATrace - Nền tảng chiến lược kiến tạo hạ tầng thương mại
-                    số quốc gia, hướng tới một nền kinh tế hiện đại, nơi mỗi sản
-                    phẩm có danh tính số và mọi giao dịch đều minh bạch, đáng
-                    tin cậy.
+                    {footerLang.transparentText}
                   </span>
                 </motion.div>
 
@@ -427,7 +425,7 @@ export default function FooterSection() {
                       info@ndatrace.vn
                     </Link>
                     <span className="text-[#194185] text-base leading-6 max-lg:text-sm ">
-                      {`37 Trần Bình Trọng, Phường Cửa Nam, Hà Nội`}
+                      {footerLang.addr}
                     </span>
                     <div className="mt-1.5 flex gap-6">
                       <Link
@@ -469,7 +467,7 @@ export default function FooterSection() {
                         router.push("https://ndachain.vn/");
                       }}
                     >
-                      NDAChain - Nền tảng Blockchain quốc gia
+                      {footerLang.ndaChain}
                     </motion.span>
 
                     <motion.span
@@ -484,7 +482,7 @@ export default function FooterSection() {
                         router.push("https://ndachain.vn/");
                       }}
                     >
-                      NDADID - Hệ thống Định danh phi tập trung
+                      {footerLang.ndaDid}
                     </motion.span>
 
                     <motion.span
@@ -496,8 +494,7 @@ export default function FooterSection() {
                       }}
                       className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-6 max-lg:text-sm "
                     >
-                      NDATrace - Nền tảng quốc gia về Định danh, Xác thực và
-                      Truy xuất nguồn gốc hàng hoá
+                      {footerLang.ndaTrace}
                     </motion.span>
                     <motion.span
                       viewport={{ once: true }}
@@ -511,7 +508,7 @@ export default function FooterSection() {
                         router.push("https://www.ndakey.vn/");
                       }}
                     >
-                      NDAKey - Ứng dụng định danh phi tập trung
+                      {footerLang.ndaKey}
                     </motion.span>
                   </div>
                 </div>

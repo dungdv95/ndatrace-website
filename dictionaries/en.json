@@ -1,0 +1,100 @@
+{
+  "header": {
+    "homePage": "Homepage",
+    "fields": "Fields",
+    "benefits": "Benefits",
+    "features": "Features",
+    "technology": "Technology",
+    "blog": "Blog",
+    "blogProducts": "Products",
+    "blogCustomer": "Customer",
+    "blogTechnology": "Technology",
+    "blogNews": "News",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "National platform for Product Identification,\nVerification, and Traceability",
+    "description": "NDATrace is a comprehensive product traceability solution that enables transparent tracking of the entire\njourney of a product through the supply chain, from production to the hands of consumers.",
+    "titleButton": "View statisticks",
+    "aboutImg": "/images/about-bg-eng.png",
+    "business": "Domestic and international enterprises partnered",
+    "commodity": "Product types identified and authenticated",
+    "code": "Identification labels/codes issued",
+    "auth": "Authentication instances on the system"
+  },
+  "fields": {
+    "title": "Application Fields",
+    "pharma": "Pharmaceuticals & Healthcare",
+    "food": "Food & Agriculture",
+    "fashion": "Fashion & Apparel",
+    "produce": "Manufacturing Industry",
+    "logistic": "Logistics & Transportation",
+    "diamond": "Diamonds & Jewelry",
+    "cosmetics": "Chemicals & Cosmetics"
+  },
+  "benefits": {
+    "title": "Benefits of NDATrace",
+    "protect": "Brand Protection",
+    "preserve": "Data Integrity",
+    "custom": "Enhanced Customer Value",
+    "integrated": "Global Integration",
+    "protectDescription": "Prevent counterfeiting and ensure absolute security, enabling users to easily distinguish genuine products from fakes, protect the brand, and increase product value",
+    "preserveDescription": "Allow enterprises and users to retain full control over their data, share only necessary information with relevant stakeholders.",
+    "customDescription": "Facilitate seamless two-way interaction with customers, gather feedback, and boost repurchase rates and customer loyalty through loyalty programs, membership, and promotions.",
+    "integratedDescription": "Comply with global standards such as W3C DID and GS1, enable seamless linkage with international traceability systems - especially important for import-export industries."
+  },
+  "features": {
+    "title": "Features of NDATrace",
+    "description": "NDATrace enables organizations, businesses, regulatory authorities, and consumers to easily store, track, verify,\nand retrieve information on the entire product journey—from production and operation to distribution—in a\ntransparent, secure, and efficient manner.",
+    "identify": "Identification",
+    "identifyDescription": "Assign each item a decentralized identifier (DID) in the format of a QR code or identification chip, complying with W3C and GS1 Data Link standards to facilitate smooth global circulation.",
+    "access": "Traceability",
+    "accessDescription": "Displays detailed information, origin, and verification activities across the product’s lifecycle. Enables users to review, provide feedback, and earn reward points after purchase.",
+    "auth": "Verification",
+    "authDescription": "Provide a tool for organizations and enterprises (Issuers) to register accounts, create product DIDs, and authorize the issuance of Verifiable Credentials (VCs) to designated Verifiers within the supply chain. This enables end-to-end lifecycle management, from manufacturing and operations to final delivery to end users."
+  },
+  "techlonogy": {
+    "title": "Our Technology",
+    "img": "/images/tech-eng.png",
+    "ndaDid": "National Decentralized Identity\nSystem",
+    "ndaDidDescription": "Identity verification, privacy protection, and issuance & management of DIDs/VCs in compliance with W3C standards.",
+    "ndaTrace": "National Platform for Identification,\nAuthentication, and Product Traceability",
+    "ndaTraceDescription": "Identify each item using the GS1 Digital Link barcode standard, providing tools to manage and monitor the product lifecycle, thereby enhancing consumer interaction and trust.",
+    "ndaChain": "National Blockchain\nPlatform",
+    "ndaChainDescription": "Ensure immutability and transparency, with smart contract support to automate processes.",
+    "contactText": "NDATrace partners with businesses to build a secure, transparent, and nationally compliant traceability system.",
+    "contactButton": "Contact Us Now",
+    "seeImg": "View enlarged image"
+  },
+  "blogs": {
+    "title": "Blog",
+    "news": "News",
+    "question": "Frequently Asked Questions",
+    "ndaTrace": "What is NDATrace?",
+    "ndaTraceAns": "NDATrace is the National platform for Product Identification, Verification, and Traceability. It applies blockchain technology based on NDADID (Vietnam's National Decentralized Identity System) and NDAChain (Vietnam's National Blockchain Platform) to ensure transparency, security, and anti-counterfeiting protection for all stakeholders.",
+    "ndaTraceUid": "What is NDATrace UID?",
+    "ndaTraceUidAns": "NDATrace UID is a unique identification linked to a decentralized identifier (DID) compliant with W3C standards, presented as a QR code or Identification chip, and meeting the international GS1 Data Link barcode standard.",
+    "ndaTraceCustom": "How do customers use NDATrace to verify product origin?",
+    "ndaTraceCustomAns": "Organizations (Issuers) register accounts on the NDATrace Portal to create product DIDs and perform verifications within the supply chain (issuing Verifiable Credentials - VCs).\nParticipants across the supply chain - from manufacturers, inspection agencies, transport and distribution units to consumers - can easily check information, origin, and verification activities throughout the product lifecycle via the NDATrace UID (in the form of QR codes or identification chips) without needing to register an account. The application also allows users to rate, provide feedback, and accumulate reward points after purchase.",
+    "ndaTraceObj": "Who can use NDATrace?",
+    "ndaTraceObjAns": "All supply chain participants can trace product origins via NDATrace UID. However, only Issuers registered on the NDATrace Portal can create product DIDs and verify supply chain activities (issue VCs)",
+    "ndaTraceWhy": "Why is NDATrace more optimized than traditional traceability solutions?",
+    "ndaTraceWhyAns": "Operating on the national NDAChain and NDADID platforms, NDATrace excels by applying blockchain technology and decentralized identity (DID) that meet international standards, ensuring transparency and tamper-proof authenticity. Beyond traceability, NDATrace enhances end-user experience with features like reward points, product reviews, and post-purchase feedback, creating a fully digital interactive lifecycle compared to other solutions."
+  },
+  "footer": {
+    "introduction": "Introduction",
+    "benefits": "Benefits",
+    "features": "Features",
+    "technology": "Technology",
+    "Faqs": "FAQs",
+    "contact": "Contact",
+    "transparent": "Supply Chain Transparency\nElevating Vietnamese Products",
+    "transparentText": "NDATrace – A strategic platform for building the national digital commerce infrastructure, aiming for a modern economy where every product has a digital identity and every transaction is transparent and trustworthy.",
+    "addr": "37 Tran Binh Trong Street, Cua Nam Ward, Hanoi",
+    "product": "Products",
+    "ndaChain": "NDAChain - National Blockchain Platform",
+    "ndaDid": "NDADID - National Decentralized Identity System",
+    "ndaTrace": "NDATrace - National Platform for Identification, Authentication, and Product Traceability",
+    "ndaKey": "NDAKey - Decentralized Identity Application"
+  }
+}

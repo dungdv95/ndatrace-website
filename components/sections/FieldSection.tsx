@@ -1,8 +1,13 @@
+import { getDictionary } from "@/get-dictionary";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Icons } from "../icons";
 import { motion } from "motion/react";
 
-export default function FieldSection() {
+export default function FieldSection({
+  fieldLang,
+}: {
+  fieldLang: Awaited<ReturnType<typeof getDictionary>>["fields"];
+}) {
   const isMobile = useIsMobile();
 
   if (isMobile) {
@@ -20,7 +25,7 @@ export default function FieldSection() {
           >
             <div className="h-[667px] w-[667px]">
               <img
-                src="images/benefit-circle.png"
+                src="/images/benefit-circle.png"
                 className="object-cover h-full w-full"
               />
             </div>
@@ -36,7 +41,7 @@ export default function FieldSection() {
               }}
               className="text-[#0057D6] text-xl leading-[30px] font-semibold"
             >
-              Lĩnh vực áp dụng
+              {fieldLang.title}
             </motion.span>
 
             <motion.div
@@ -49,7 +54,7 @@ export default function FieldSection() {
               className="h-[441px] w-[218px]"
             >
               <img
-                src="images/ip16Plus.png"
+                src="/images/ip16Plus.png"
                 className="object-cover h-full w-full"
               />
             </motion.div>
@@ -69,7 +74,7 @@ export default function FieldSection() {
               <Icons.benefitMilk className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#1570EF] text-xs leading-[18px] font-semibold">
-              Dược phẩm & y tế
+              {fieldLang.pharma}
             </span>
           </motion.div>
 
@@ -86,7 +91,7 @@ export default function FieldSection() {
               <Icons.benefitCosmetics className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#0BA5EC] text-xs leading-[18px] font-semibold">
-              Hoá mỹ phẩm
+              {fieldLang.cosmetics}
             </span>
           </motion.div>
 
@@ -103,7 +108,7 @@ export default function FieldSection() {
               <Icons.benefitFood className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#087443] text-xs leading-[18px] font-semibold">
-              Thực phẩm & nông nghiệp
+              {fieldLang.food}
             </span>
           </motion.div>
 
@@ -120,7 +125,7 @@ export default function FieldSection() {
               <Icons.benefitDiamond className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#6172F3] text-xs leading-[18px] font-semibold ">
-              {`Kim cương & Đá quý`}
+              {fieldLang.diamond}
             </span>
           </motion.div>
 
@@ -137,7 +142,7 @@ export default function FieldSection() {
               <Icons.benefitDress className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#EAAA08] text-xs leading-[18px] font-semibold">
-              Thời trang
+              {fieldLang.fashion}
             </span>
           </motion.div>
 
@@ -154,7 +159,7 @@ export default function FieldSection() {
               <Icons.benefitLogistic className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#FF9C66] text-xs leading-[18px] font-semibold">
-              Logistic & vận tải
+              {fieldLang.logistic}
             </span>
           </motion.div>
 
@@ -171,7 +176,7 @@ export default function FieldSection() {
               <Icons.benefitSetting className="w-[30px] h-[30px]" />
             </div>
             <span className="text-[#F97066] text-xs leading-[18px] font-semibold">
-              Công nghiệp sản xuất
+              {fieldLang.produce}
             </span>
           </motion.div>
         </div>
@@ -183,7 +188,7 @@ export default function FieldSection() {
     <div id="field" className="pb-[68px] pt-[42px] flex justify-center">
       <div className="relative h-[811px] w-[811px]">
         <img
-          src="images/benefit-circle.png"
+          src="/images/benefit-circle.png"
           className="object-cover h-full w-full"
         />
         <motion.div
@@ -196,7 +201,7 @@ export default function FieldSection() {
           className="z-10 absolute w-full flex justify-center top-[93px]"
         >
           <span className=" text-[#0057D6] text-4xl font-semibold leading-11 tracking-[-0.72px]">
-            Lĩnh vực áp dụng
+            {fieldLang.title}
           </span>
         </motion.div>
 
@@ -211,7 +216,7 @@ export default function FieldSection() {
         >
           <div className="h-[441px] w-[218px] ">
             <img
-              src="images/ip16Plus.png"
+              src="/images/ip16Plus.png"
               className="object-cover h-full w-full"
             />
           </div>
@@ -224,14 +229,14 @@ export default function FieldSection() {
           transition={{
             duration: 2.0,
           }}
-          className="z-10 absolute top-[25%] left-[-44px] max-lg:left-[30px]"
+          className="z-10 absolute top-[25%] left-[-44px] max-lg:left-[-10px]"
         >
           <div className=" bg-[#EFF8FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitMilk className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#1570EF] text-lg leading-7 font-semibold max-lg:text-base">
-              Dược phẩm & y tế
+              {fieldLang.pharma}
             </span>
           </div>
         </motion.div>
@@ -250,7 +255,7 @@ export default function FieldSection() {
               <Icons.benefitFood className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#087443] text-lg leading-7 font-semibold max-lg:text-base">
-              Thực phẩm & nông nghiệp
+              {fieldLang.food}
             </span>
           </div>
         </motion.div>
@@ -269,7 +274,7 @@ export default function FieldSection() {
               <Icons.benefitDress className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#EAAA08] text-lg leading-7 font-semibold max-lg:text-base">
-              Thời trang
+              {fieldLang.fashion}
             </span>
           </div>
         </motion.div>
@@ -281,14 +286,14 @@ export default function FieldSection() {
           transition={{
             duration: 2.0,
           }}
-          className="absolute bottom-[86px] flex justify-center w-full"
+          className="absolute bottom-[70px] flex justify-center w-full"
         >
           <div className=" bg-[#FEF3F2] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitSetting className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#F97066] text-lg leading-7 font-semibold max-lg:text-base">
-              Công nghiệp sản xuất
+              {fieldLang.produce}
             </span>
           </div>
         </motion.div>
@@ -307,7 +312,7 @@ export default function FieldSection() {
               <Icons.benefitLogistic className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#FF9C66] text-lg leading-7 font-semibold max-lg:text-base">
-              Logistic & vận tải
+              {fieldLang.logistic}
             </span>
           </div>
         </motion.div>
@@ -326,7 +331,7 @@ export default function FieldSection() {
               <Icons.benefitDiamond className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#6172F3] text-lg leading-7 font-semibold max-lg:text-base">
-              Kim cương & Đá quý
+              {fieldLang.diamond}
             </span>
           </div>
         </motion.div>
@@ -338,14 +343,14 @@ export default function FieldSection() {
           transition={{
             duration: 2.0,
           }}
-          className="absolute top-[25%] right-[-8px] max-lg:right-[20px]"
+          className="absolute top-[25%] right-[-8px] max-lg:right-[5px]"
         >
           <div className=" bg-[#EFF4FF] px-2 py-1 rounded-[8px] flex gap-[10px] items-center">
             <div>
               <Icons.benefitCosmetics className="max-xl:w-10 max-xl:h-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-[#0BA5EC] text-lg leading-7 font-semibold max-lg:text-base">
-              Hoá mỹ phẩm
+              {fieldLang.cosmetics}
             </span>
           </div>
         </motion.div>

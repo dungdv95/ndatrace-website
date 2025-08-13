@@ -9,39 +9,40 @@ import {
 } from "../ui/carousel";
 import { Button } from "../ui/button";
 import { motion } from "motion/react";
+import { getDictionary } from "@/get-dictionary";
 
 const listBenefit = [
   {
     id: 1,
     icon: <Icons.benefitShield />,
-    title: "Bảo vệ thương hiệu",
-    description:
-      "Chống giả mạo và bảo mật tuyệt đối, giúp người dùng dễ dàng nhận biết hàng thật hàng giả, bảo vệ thương hiệu và tăng giá trị sản phẩm",
+    title: "protect",
+    description: "protectDescription",
   },
   {
     id: 2,
     icon: <Icons.benefitData />,
-    title: "Bảo toàn dữ liệu",
-    description:
-      "Doanh nghiệp và người dùng có toàn quyền kiểm soát dữ liệu của mình, chỉ chia sẻ thông tin cần thiết với các bên liên quan",
+    title: "preserve",
+    description: "preserveDescription",
   },
   {
     id: 3,
     icon: <Icons.benefitCustom />,
-    title: "Tăng giá trị với khách hàng",
-    description:
-      "Dễ dàng tương tác hai chiều với khách hàng, nhận các phản hồi và gia tăng tỷ lệ mua lại, sự trung thành của khách hàng thông qua các chương trình tích điểm, thành viên, khuyến mãi",
+    title: "custom",
+    description: "customDescription",
   },
   {
     id: 4,
     icon: <Icons.benefitGlobal />,
-    title: "Tích hợp toàn cầu",
-    description:
-      "NDATrace tuân thủ các tiêu chuẩn toàn cầu như W3C DID và GS1, cho phép liên kết dễ dàng với các hệ thống truy xuất quốc tế. Điều này đặc biệt quan trọng cho các ngành xuất nhập khẩu",
+    title: "integrated",
+    description: "integratedDescription",
   },
 ];
 
-export default function BenefitSection() {
+export default function BenefitSection({
+  benefitLang,
+}: {
+  benefitLang: Awaited<ReturnType<typeof getDictionary>>["benefits"];
+}) {
   const isMobile = useIsMobile();
 
   if (isMobile) {
@@ -59,7 +60,7 @@ export default function BenefitSection() {
           }}
           className="text-[#0057D6] text-xl leading-[30px] font-semibold"
         >
-          Lợi ích của NDATrace
+          {benefitLang.title}
         </motion.span>
 
         <motion.div
@@ -72,12 +73,12 @@ export default function BenefitSection() {
           className="mt-[27px] h-[441px] w-[218px]"
         >
           <img
-            src="images/ip16Plus.png"
+            src="/images/ip16Plus.png"
             className="object-cover h-full w-full"
           />
         </motion.div>
 
-        <BenefitSlide />
+        <BenefitSlide benefitLang={benefitLang} />
       </section>
     );
   }
@@ -97,7 +98,7 @@ export default function BenefitSection() {
         className="flex justify-center mb-[47px]"
       >
         <span className=" text-[#0057D6] text-4xl leading-11 font-semibold tracking-[-0.72px]">
-          Lợi ích của NDATrace
+          {benefitLang.title}
         </span>
       </motion.div>
 
@@ -116,12 +117,10 @@ export default function BenefitSection() {
               <Icons.benefitShield className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-end text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg">
-              Bảo vệ thương hiệu
+              {benefitLang.protect}
             </span>
             <span className="text-end text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
-              Chống giả mạo và bảo mật tuyệt đối, giúp người dùng dễ dàng nhận
-              biết hàng thật hàng giả, bảo vệ thương hiệu và tăng giá trị sản
-              phẩm
+              {benefitLang.protectDescription}
             </span>
           </motion.div>
 
@@ -138,11 +137,10 @@ export default function BenefitSection() {
               <Icons.benefitData className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-end text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg">
-              Bảo toàn dữ liệu
+              {benefitLang.preserve}
             </span>
             <span className="text-end text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
-              Doanh nghiệp và người dùng có toàn quyền kiểm soát dữ liệu của
-              mình, chỉ chia sẻ thông tin cần thiết với các bên liên quan
+              {benefitLang.preserveDescription}
             </span>
           </motion.div>
         </div>
@@ -157,7 +155,7 @@ export default function BenefitSection() {
         >
           <div className="h-[566px] w-[279px]">
             <img
-              src="images/ip16Plus.png"
+              src="/images/ip16Plus.png"
               className="object-cover h-full w-full"
             />
           </div>
@@ -177,12 +175,10 @@ export default function BenefitSection() {
               <Icons.benefitCustom className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-start text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg line-clamp-1">
-              Tăng giá trị với khách hàng
+              {benefitLang.custom}
             </span>
             <span className="text-start text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
-              Dễ dàng tương tác hai chiều với khách hàng, nhận các phản hồi và
-              gia tăng tỷ lệ mua lại, sự trung thành của khách hàng thông qua
-              các chương trình tích điểm, thành viên, khuyến mãi
+              {benefitLang.customDescription}
             </span>
           </motion.div>
 
@@ -199,12 +195,10 @@ export default function BenefitSection() {
               <Icons.benefitGlobal className="max-xl:h-10 max-xl:w-10 max-lg:w-8 max-lg:h-8" />
             </div>
             <span className="text-start text-[#002D87] text-2xl leading-8 font-medium max-xl:text-xl max-lg:text-lg line-clamp-1">
-              Tích hợp toàn cầu
+              {benefitLang.integrated}
             </span>
             <span className="text-start text-[#002D87] text-base leading-6 max-xl:text-sm max-lg:text-xs">
-              NDATrace tuân thủ các tiêu chuẩn toàn cầu như W3C DID và GS1, cho
-              phép liên kết dễ dàng với các hệ thống truy xuất quốc tế. Điều này
-              đặc biệt quan trọng cho các ngành xuất nhập khẩu
+              {benefitLang.integratedDescription}
             </span>
           </motion.div>
         </div>
@@ -213,7 +207,11 @@ export default function BenefitSection() {
   );
 }
 
-function BenefitSlide() {
+function BenefitSlide({
+  benefitLang,
+}: {
+  benefitLang: Awaited<ReturnType<typeof getDictionary>>["benefits"];
+}) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -258,10 +256,18 @@ function BenefitSlide() {
               <div className="h-full p-4 bg-benefit rounded-[16px] flex flex-col items-center gap-6">
                 <div>{listBenefit[index].icon}</div>
                 <span className="text-[#002D87] text-2xl leading-8 font-medium">
-                  {listBenefit[index].title}
+                  {
+                    benefitLang[
+                      listBenefit[index].title as keyof typeof benefitLang
+                    ]
+                  }
                 </span>
                 <span className="text-center text-[#002D87] text-base leading-6">
-                  {listBenefit[index].description}
+                  {
+                    benefitLang[
+                      listBenefit[index].description as keyof typeof benefitLang
+                    ]
+                  }
                 </span>
               </div>
             </CarouselItem>

@@ -21,33 +21,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { getDictionary } from "@/get-dictionary";
 
 const listTech = [
   {
     id: 1,
     icon: <Icons.techNdaDid className="max-lg:w-[74px] max-lg:h-[75px]" />,
-    title: "Hệ thống Định danh Phi tập trung\nQuốc gia",
-    description:
-      "Xác minh danh tính, bảo vệ quyền riêng tư, phát hành và quản lý DIDs/VCs theo chuẩn W3C.",
+    title: "ndaDid",
+    description: "ndaDidDescription",
   },
   {
     id: 2,
     icon: <Icons.techNdaTrace className="max-lg:w-[90px] max-lg:h-[75px]" />,
-    title:
-      "Nền tảng quốc gia về Định danh, Xác thực, Truy xuất nguồn gốc hàng hoá",
-    description:
-      "Định danh từng món hàng với tiêu chuẩn mã vạch GS1 Data Link. Cung cấp công cụ quản lý, giám sát dòng đời sản phẩm từ đó tăng tính tương tác và độ tin cậy với người tiêu dùng.",
+    title: "ndaTrace",
+    description: "ndaTraceDescription",
   },
   {
     id: 3,
     icon: <Icons.techNdaChain className="max-lg:w-[74px] max-lg:h-[75px]" />,
-    title: "Nền tảng Chuỗi khối\nQuốc gia",
-    description:
-      "Đảm bảo tính bất biến, minh bạch, hỗ trợ hợp đồng thông minh để tự động hóa quy trình",
+    title: "ndaChain",
+    description: "ndaChainDescription",
   },
 ];
 
-export default function TechSection() {
+export default function TechSection({
+  techLang,
+}: {
+  techLang: Awaited<ReturnType<typeof getDictionary>>["techlonogy"];
+}) {
   const [isExpand, setIsExpand] = useState(false);
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -64,7 +65,7 @@ export default function TechSection() {
           }}
           className="text-center text-[#0057D6] text-xl leading-[30px] font-semibold"
         >
-          Công nghệ của NDATrace
+          {techLang.title}
         </motion.span>
 
         <motion.div
@@ -78,10 +79,7 @@ export default function TechSection() {
         >
           <ScrollArea type="always" className={cn("w-full")}>
             <div className="w-[1100px] h-[576px] mb-3">
-              <img
-                src="images/tech.png"
-                className="object-cover h-full w-full"
-              />
+              <img src={techLang.img} className="object-cover h-full w-full" />
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
@@ -103,7 +101,7 @@ export default function TechSection() {
                   className="h-5 p-0 cursor-pointer text-center text-[#1570EF] text-sm leading-5 underline focus-visible:ring-0"
                   variant="ghost"
                 >
-                  Xem hình phóng to
+                  {techLang.seeImg}
                 </Button>
               </DialogTrigger>
             </motion.div>
@@ -119,7 +117,7 @@ export default function TechSection() {
               <div className="flex flex-col gap-3">
                 <div className="h-full w-full flex justify-center items-center">
                   <img
-                    src="images/tech.png"
+                    src={techLang.img}
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -138,7 +136,7 @@ export default function TechSection() {
               </div>
             </DialogContent>
           </Dialog>
-          <SlideTech />
+          <SlideTech techLang={techLang} />
           <motion.div
             viewport={{ once: true }}
             initial={{ opacity: 0, y: 40 }}
@@ -148,23 +146,21 @@ export default function TechSection() {
             }}
             className="relative mt-[236px] h-[460px] bg-tech-about"
           >
-            {" "}
             <div className="absolute w-full px-4 bottom-[85px] flex flex-col items-center gap-[33px]">
               <div className="h-[326px] w-[343px]">
                 <img
-                  src="images/tech-about.png"
+                  src="/images/tech-about.png"
                   className="object-cover h-full w-full"
                 />
               </div>
               <span className="text-center text-[#194185] text-xl leading-7 font-semibold min-[31.25rem]:whitespace-pre-line">
-                {`NDATrace đồng hành cùng\ndoanh nghiệp xây dựng hệ thống truy xuất
-                an toàn, minh bạch, đạt chuẩn quốc gia.`}
+                {techLang.contactText}
               </span>
               <Link
                 href="mailto:info@ndatrace.vn"
                 className="flex items-center justify-center h-11 w-[200px] bg-[#3176EE] hover:bg-[#3176EE]/80 rounded-[8px] text-white text-lg leading-7 font-semibold"
               >
-                Liên hệ ngay
+                {techLang.contactButton}
               </Link>
             </div>
           </motion.div>
@@ -188,7 +184,7 @@ export default function TechSection() {
           }}
           className="text-center text-[#0057D6] text-4xl leading-11 font-semibold"
         >
-          Công nghệ của NDATrace
+          {techLang.title}
         </motion.span>
 
         <motion.div
@@ -200,7 +196,7 @@ export default function TechSection() {
           }}
           className="mt-5 flex justify-center max-xl:mt-0"
         >
-          <img src="images/tech.png" className="object-cover h-full w-full" />
+          <img src={techLang.img} className="object-cover h-full w-full" />
         </motion.div>
 
         <div className="flex justify-between gap-[30px] max-xl:gap-7 max-lg:gap-4">
@@ -218,10 +214,10 @@ export default function TechSection() {
               <div className="flex flex-col gap-6 max-xl:gap-4 max-lg:gap-3">
                 <div className="flex justify-center">{item.icon}</div>
                 <span className="text-center text-[#194185] text-base leading-6 font-semibold max-xl:text-sm min-lg:whitespace-pre-line">
-                  {item.title}
+                  {techLang[item.title as keyof typeof techLang]}
                 </span>
                 <span className="text-[#194185] text-base leading-6 max-xl:text-sm max-lg:text-xs">
-                  {item.description}
+                  {techLang[item.description as keyof typeof techLang]}
                 </span>
               </div>
             </motion.div>
@@ -238,7 +234,9 @@ export default function TechSection() {
                   duration: 1.1,
                 }}
                 className="text-[#194185] text-xl leading-7 font-semibold whitespace-pre-line max-xl:text-lg max-lg:text-base"
-              >{`NDATrace đồng hành cùng doanh nghiệp xây dựng hệ thống truy xuất an toàn, minh bạch, đạt chuẩn quốc gia.`}</motion.span>
+              >
+                {techLang.contactText}
+              </motion.span>
 
               <motion.div
                 viewport={{ once: true }}
@@ -252,7 +250,7 @@ export default function TechSection() {
                   href="mailto:info@ndatrace.vn"
                   className="cursor-pointer flex justify-center items-center h-10 w-[190px] bg-[#3176EE] hover:bg-[#3176EE]/80 rounded-[8px] text-white text-lg leading-7 font-semibold"
                 >
-                  Liên hệ ngay
+                  {techLang.contactButton}
                 </Link>
               </motion.div>
             </div>
@@ -268,7 +266,7 @@ export default function TechSection() {
               >
                 <div className="h-[384px] w-[404px] max-xl:h-[333px] max-xl:w-[350px] max-lg:h-[285px] max-lg:w-[300px]">
                   <img
-                    src="images/tech-about.png"
+                    src="/images/tech-about.png"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -281,7 +279,11 @@ export default function TechSection() {
   );
 }
 
-function SlideTech() {
+function SlideTech({
+  techLang,
+}: {
+  techLang: Awaited<ReturnType<typeof getDictionary>>["techlonogy"];
+}) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -326,10 +328,14 @@ function SlideTech() {
               <div className="h-full bg-tech p-6 rounded-[12px] flex flex-col items-center gap-6">
                 <div>{listTech[index].icon}</div>
                 <span className="text-center text-[#194185] text-base leading-6 font-semibold max-[31.25rem]:whitespace-pre-line">
-                  {listTech[index].title}
+                  {techLang[listTech[index].title as keyof typeof techLang]}
                 </span>
                 <span className=" text-[#194185] text-base leading-6">
-                  {listTech[index].description}
+                  {
+                    techLang[
+                      listTech[index].description as keyof typeof techLang
+                    ]
+                  }
                 </span>
               </div>
             </CarouselItem>
