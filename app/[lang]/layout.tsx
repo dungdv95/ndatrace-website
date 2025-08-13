@@ -1,13 +1,13 @@
+import LayoutData from "@/components/navs/layout-data";
+import { Toaster } from "@/components/ui/sonner";
+import { getDictionary } from "@/get-dictionary";
+import { i18n, type Locale } from "@/i18n-config";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import { ThemeProvider } from "./theme-provider";
 import Providers from "./providers";
-import { Toaster } from "@/components/ui/sonner";
-import { i18n, type Locale } from "@/i18n-config";
-import { getDictionary } from "@/get-dictionary";
-import LayoutData from "@/components/navs/layout-data";
+import { ThemeProvider } from "./theme-provider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
