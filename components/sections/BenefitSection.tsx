@@ -86,7 +86,7 @@ export default function BenefitSection({
   return (
     <section
       id="benefit"
-      className="container mx-auto 2xl:px-[123px] xl:px-[60px]"
+      className="pt-7 container mx-auto 2xl:px-[123px] xl:px-[60px]"
     >
       <motion.div
         viewport={{ once: true }}

@@ -3,8 +3,10 @@ import { Icons } from "../icons";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Separator } from "../ui/separator";
 import { motion } from "motion/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getDictionary } from "@/get-dictionary";
+import { useStore } from "../navs/store";
+import { randomNumber } from "@/lib/utils";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -33,7 +35,7 @@ const navs = [
   {
     id: 5,
     title: "Faqs",
-    idSection: "inquiry",
+    idSection: "faq",
   },
   {
     id: 6,
@@ -48,6 +50,8 @@ export default function FooterSection({
   footerLang: Awaited<ReturnType<typeof getDictionary>>["footer"];
 }) {
   const isMobile = useIsMobile();
+  const setSectionId = useStore((state) => state.setSectionId);
+  const pathName = usePathname();
   const router = useRouter();
 
   if (isMobile) {
@@ -64,13 +68,14 @@ export default function FooterSection({
               }}
               className="w-fit cursor-pointer"
               onClick={(event) => {
-                wait().then(() => {
-                  const el = document.getElementById("about");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
+                if (inBlogPage(pathName)) {
+                  if (pathName.includes("vi")) {
+                    router.push("/vi");
+                  } else {
+                    router.push("/en");
                   }
-                });
-                event.preventDefault();
+                }
+                setSectionId("about" + "_" + randomNumber(4));
               }}
             >
               <Icons.logoFooter className="max-xl:w-[301px] max-xl:h-[69px]" />
@@ -314,14 +319,15 @@ export default function FooterSection({
               >
                 <div
                   className="w-fit cursor-pointer"
-                  onClick={(event) => {
-                    wait().then(() => {
-                      const el = document.getElementById("about");
-                      if (el) {
-                        el.scrollIntoView({ behavior: "smooth" });
+                  onClick={() => {
+                    if (inBlogPage(pathName)) {
+                      if (pathName.includes("vi")) {
+                        router.push("/vi");
+                      } else {
+                        router.push("/en");
                       }
-                    });
-                    event.preventDefault();
+                    }
+                    setSectionId("about" + "_" + randomNumber(4));
                   }}
                 >
                   <Icons.logoFooter className="max-xl:w-[260px] max-xl:h-[60px]" />
@@ -338,19 +344,14 @@ export default function FooterSection({
                       duration: 1.1,
                     }}
                     onClick={(event) => {
-                      wait().then(() => {
-                        const el = document.getElementById(item.idSection);
-                        if (el) {
-                          const rect = el.getBoundingClientRect();
-                          const scrollTop =
-                            window.pageYOffset ||
-                            document.documentElement.scrollTop;
-                          const offset = 105; // số px muốn dịch xuống thêm
-                          const targetY = rect.top + scrollTop - offset;
-                          window.scrollTo({ top: targetY, behavior: "smooth" });
+                      if (inBlogPage(pathName)) {
+                        if (pathName.includes("vi")) {
+                          router.push("/vi");
+                        } else {
+                          router.push("/en");
                         }
-                      });
-                      event.preventDefault();
+                      }
+                      setSectionId(item.idSection + "_" + randomNumber(4));
                     }}
                     className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-normal font-medium tracking-[-0.6px]"
                     key={index}
@@ -533,3 +534,7 @@ export default function FooterSection({
     </section>
   );
 }
+
+const inBlogPage = (pathName: string) => {
+  return pathName.includes("/blogs");
+};

@@ -23,6 +23,48 @@ export default function MainPage({
   const isMobile = useIsMobile();
   const pathName = usePathname();
 
+  if (isMobile) {
+    return (
+      <div className="bg-[#FAFAFA]">
+        <div className="pt-[72px]">
+          <Tabs value={tab} onValueChange={setTab} className="gap-0">
+            <div className="flex justify-center  py-4">
+              <TabsList className="w-[80%] bg-transparent gap-2 h-fit">
+                <div className="w-full grid grid-cols-2 gap-2">
+                  <TabsTrigger
+                    className="p-2.5 h-11 w-full !bg-white !shadow-none text-[#194185] text-base leading-6 data-[state=active]:font-bold data-[state=active]:!bg-[#EFF8FF]"
+                    value="all"
+                  >
+                    {blogListLang.all}
+                  </TabsTrigger>
+                  {listCategory.map((category, index) => (
+                    <TabsTrigger
+                      key={index}
+                      className="p-2.5 h-11 w-full !bg-white !shadow-none text-[#194185] text-base leading-6 data-[state=active]:font-bold data-[state=active]:!bg-[#EFF8FF]"
+                      value={category.id}
+                    >
+                      {getTitleCategory(category.id, pathName)}
+                    </TabsTrigger>
+                  ))}
+                </div>
+              </TabsList>
+            </div>
+            <div className="pt-4 px-[15px] bg-white">
+              <TabsContent value="all">
+                <BlogComponent tab={tab} isMobile={isMobile} />
+              </TabsContent>
+              {listCategory.map((item, index) => (
+                <TabsContent key={index} value={item.id}>
+                  <BlogComponent tab={tab} isMobile={isMobile} />
+                </TabsContent>
+              ))}
+            </div>
+          </Tabs>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-[146px]">
       <Tabs value={tab} onValueChange={setTab} className="gap-9">
@@ -49,11 +91,11 @@ export default function MainPage({
         </div>
         <div className="container mx-auto 2xl:px-[123px] xl:px-[60px]">
           <TabsContent value="all">
-            <BlogComponent tab={tab} />
+            <BlogComponent tab={tab} isMobile={isMobile} />
           </TabsContent>
           {listCategory.map((item, index) => (
             <TabsContent key={index} value={item.id}>
-              <BlogComponent tab={tab} />
+              <BlogComponent tab={tab} isMobile={isMobile} />
             </TabsContent>
           ))}
         </div>
@@ -62,7 +104,7 @@ export default function MainPage({
   );
 }
 
-function BlogComponent({ tab }: { tab: string }) {
+function BlogComponent({ tab, isMobile }: { tab: string; isMobile: boolean }) {
   const {
     data: data,
     error,
@@ -83,7 +125,7 @@ function BlogComponent({ tab }: { tab: string }) {
   });
 
   if (isFetching) {
-    return <LoadDesktop />;
+    return <>{isMobile ? <LoadMobile /> : <LoadDesktop />}</>;
   }
   if (isError) {
     return <ErrorNotice error={error as Error} />;
@@ -92,7 +134,99 @@ function BlogComponent({ tab }: { tab: string }) {
   if (data === undefined || data === null) {
     return null;
   }
-  return <BlogView data={data} />;
+  return (
+    <>{isMobile ? <BlogViewMobile data={data} /> : <BlogView data={data} />}</>
+  );
+}
+
+function BlogViewMobile({ data }: { data: BlogProps[] }) {
+  const router = useRouter();
+  const pathName = usePathname();
+  return (
+    <motion.div
+      viewport={{ once: true }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1.1,
+      }}
+      className="flex flex-col gap-6"
+    >
+      <div className="flex flex-col gap-2">
+        <div
+          className="cursor-pointer w-full h-[230px]"
+          onClick={() => {
+            router.push(`/blogs/${data[0]?.slug}`);
+          }}
+        >
+          <img
+            src={data[0]?.thumbnail}
+            className="object-cover h-full w-full rounded-[16px]"
+          />
+        </div>
+        <div className="mt-1">
+          <div className="flex gap-2 items-center">
+            {data[0]?.categoryIds.map((item, index: number) => (
+              <Button
+                key={index}
+                className="h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
+              >
+                {getTitleCategory(item, pathName)}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        <span
+          className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
+          onClick={() => {
+            router.push(`/blogs/${data[0]?.slug}`);
+          }}
+        >
+          {data[0]?.name}
+        </span>
+
+        <span className="text-[#194185] text-sm leading-5 ">
+          {moment(data[0]?.createdAt).format("DD/MM/YYYY")}
+        </span>
+        <span className="mt-2 text-[#194185] text-sm leading-5 ">
+          {data[0]?.description}
+        </span>
+      </div>
+      <div className="flex flex-col gap-6">
+        {data.slice(1).map((item: any, index: number) => (
+          <div key={index} className="flex gap-4 items-start">
+            <div className="w-[118px] h-[91px] flex-shrink-0">
+              <img
+                src={item.thumbnail}
+                className="object-cover h-full w-full  rounded-[10px]"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <div>
+                <div className="flex gap-2 items-center">
+                  {data[0]?.categoryIds.map((item, index: number) => (
+                    <Button
+                      key={index}
+                      className="mt-1 h-[22px] bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
+                    >
+                      {getTitleCategory(item, pathName)}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+              <span className="text-[#194185] text-sm leading-6 font-semibold">
+                {item.name}
+              </span>
+              <span className="text-[#194185] text-sm leading-5">
+                {moment(item?.createdAt).format("DD/MM/YYYY")}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
 }
 
 function BlogView({ data }: { data: BlogProps[] }) {
@@ -342,6 +476,38 @@ function LoadDesktop() {
             <Skeleton className="h-[230px] w-full" />
             <Skeleton className="h-6 w-[70px]" />
             <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-5 w-[90px]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LoadMobile() {
+  return (
+    <div className="flex flex-col gap-4">
+      <Skeleton className="w-full h-[220px]" />
+      <div className="flex flex-col gap-2">
+        <Skeleton className="h-6 w-[70px]" />
+        <Skeleton className="h-16 w-full" />
+        <Skeleton className="h-5 w-[90px]" />
+        <Skeleton className="h-28 w-full" />
+      </div>
+      <div className="mt-4 flex flex-col gap-5">
+        <div className="flex gap-[30px]">
+          <Skeleton className="h-[154px] w-[200px] flex-shrink-0" />
+          <div className="w-full flex flex-col gap-4">
+            <Skeleton className="h-6 w-[70px]" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-5 w-[90px]" />
+          </div>
+        </div>
+        <div className="flex gap-[30px]">
+          <Skeleton className="h-[154px] w-[200px] flex-shrink-0" />
+          <div className="w-full flex flex-col gap-4">
+            <Skeleton className="h-6 w-[70px]" />
+            <Skeleton className="h-10 w-full" />
             <Skeleton className="h-5 w-[90px]" />
           </div>
         </div>

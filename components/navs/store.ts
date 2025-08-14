@@ -31,21 +31,27 @@ export type BlogProps = {
 
 type State = {
   listCategory: CategoryProps[];
+  idSection: string;
 };
 
 type Actions = {
   setCategories: (listCategory: CategoryProps[]) => void;
+  setSectionId: (idSection: string) => void;
   reset: () => void;
 };
 
 const initialState: State = {
   listCategory: [],
+  idSection: "about",
 };
 
 export const useStore = create<State & Actions>()((set, get) => ({
   ...initialState,
   setCategories(listCategory: CategoryProps[]) {
     set({ listCategory });
+  },
+  setSectionId(idSection: string) {
+    set({ idSection });
   },
   reset() {
     set(initialState);

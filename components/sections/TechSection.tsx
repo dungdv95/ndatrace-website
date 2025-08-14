@@ -172,7 +172,7 @@ export default function TechSection({
   return (
     <section
       id="technology"
-      className="mt-[46px] container mx-auto 2xl:px-[123px] xl:px-[60px] max-xl:mt-[54px]"
+      className="pt-[46px] container mx-auto 2xl:px-[123px] xl:px-[60px] max-xl:mt-[54px]"
     >
       <div className="flex flex-col gap-8">
         <motion.span

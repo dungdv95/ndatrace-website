@@ -155,12 +155,9 @@ function DesktopBlog({
   const pathName = usePathname();
 
   return (
-    <section
-      id="inquiry"
-      className="pt-[100px] container mx-auto 2xl:px-[123px] xl:px-[60px]"
-    >
-      <div className="flex flex-col gap-[94px]">
-        <div className="flex flex-col gap-10">
+    <div className="pt-[100px] container mx-auto 2xl:px-[123px] xl:px-[60px]">
+      <div className="flex flex-col">
+        <section id="inquiry" className="flex flex-col gap-10">
           <motion.span
             viewport={{ once: true }}
             initial={{ opacity: 0, y: 40 }}
@@ -307,8 +304,8 @@ function DesktopBlog({
               ))}
             </div>
           </div>
-        </div>
-        <div className="flex gap-[30px]">
+        </section>
+        <section id="faq" className="pt-[94px] flex gap-[30px]">
           <div className="relative w-1/2">
             <motion.span
               viewport={{ once: true }}
@@ -378,9 +375,9 @@ function DesktopBlog({
               ))}
             </Accordion>
           </motion.div>
-        </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -430,6 +427,7 @@ function MoblieBlog({
   data: BlogProps[];
   blogLang: Awaited<ReturnType<typeof getDictionary>>["blogs"];
 }) {
+  const pathName = usePathname();
   const router = useRouter();
   console.log("data", data);
   const [qaValue, setQaValue] = useState("ndaTrace");
@@ -472,16 +470,16 @@ function MoblieBlog({
               duration: 1.1,
             }}
           >
-            <Button
-              onClick={() => {
-                router.push(
-                  `https://www.ndatrace.vn/vn/blogs/${data[0]?.slug}`
-                );
-              }}
-              className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]"
-            >
-              {blogLang.news}
-            </Button>
+            <div className="flex gap-2 items-center">
+              {data[0]?.categoryIds.map((item, index) => (
+                <Button
+                  key={index}
+                  className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]"
+                >
+                  {getTitleCategory(item, pathName)}
+                </Button>
+              ))}
+            </div>
           </motion.div>
 
           <motion.span
@@ -521,7 +519,7 @@ function MoblieBlog({
           </motion.span>
         </div>
         <div className="flex flex-col gap-6">
-          {data.slice(1, 4).map((item: any, index: number) => (
+          {data.slice(1, 4).map((item, index: number) => (
             <motion.div
               viewport={{ once: true }}
               initial={{ opacity: 0, y: 40 }}
@@ -539,16 +537,17 @@ function MoblieBlog({
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <Button
-                  onClick={() => {
-                    router.push(
-                      `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
-                    );
-                  }}
-                  className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] w-[55px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]"
-                >
-                  {blogLang.news}
-                </Button>
+                <div className="flex gap-2 items-center">
+                  {item.categoryIds.map((category, idxCategory) => (
+                    <Button
+                      key={`category_${idxCategory}`}
+                      className="mt-1 bg-[#194185] hover:bg-[#194185]/80 rounded-[4px] h-[22px] text-[#EFF8FF]  text-xs leading-[18px] tracking-[-0.24px]"
+                    >
+                      {getTitleCategory(category, pathName)}
+                    </Button>
+                  ))}
+                </div>
+
                 <span className="text-[#194185] text-sm leading-6 font-semibold">
                   {item.name}
                 </span>

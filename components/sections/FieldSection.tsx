@@ -185,7 +185,7 @@ export default function FieldSection({
   }
 
   return (
-    <div id="field" className="pb-[68px] pt-[42px] flex justify-center">
+    <section id="field" className="pb-[50px] pt-[42px] flex justify-center">
       <div className="relative h-[811px] w-[811px]">
         <img
           src="/images/benefit-circle.png"
@@ -355,6 +355,6 @@ export default function FieldSection({
           </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

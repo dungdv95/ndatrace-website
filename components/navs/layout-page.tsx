@@ -4,15 +4,19 @@ import HeaderSection from "./header-section";
 import { getDictionary } from "@/get-dictionary";
 import { motion } from "motion/react";
 import FooterSection from "../sections/FooterSection";
+import { useStore } from "./store";
 
 interface LayoutProps {
   children: React.ReactNode;
   dictionary: Awaited<ReturnType<typeof getDictionary>>;
 }
 
+const wait = () => new Promise((resolve) => setTimeout(resolve, 100));
+
 export default function LayoutPage({ children, dictionary }: LayoutProps) {
   const [isScrolledToTop, setIsScrolledToTop] = useState(true);
   const [isScrolledToTopDesktop, setIsScrolledToTopDesktop] = useState(true);
+  const idSection = useStore((state) => state.idSection);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +47,22 @@ export default function LayoutPage({ children, dictionary }: LayoutProps) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    let sectionId = idSection.split("_")[0];
+    console.log("sectionId", sectionId);
+    wait().then(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const offset = 105; // số px muốn dịch xuống thêm
+        const targetY = rect.top + scrollTop - offset;
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
+    });
+  }, [idSection]);
 
   return (
     <div className="min-h-screen bg-white overflow-hidden font-display selection:bg-blue-300">

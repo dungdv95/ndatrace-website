@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, randomNumber } from "@/lib/utils";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Icons } from "../icons";
 import { useEffect, useRef, useState } from "react";
@@ -19,6 +19,7 @@ import { getDictionary } from "@/get-dictionary";
 import { usePathname, useRouter } from "next/navigation";
 import { i18n, type Locale } from "@/i18n-config";
 import Link from "next/link";
+import { useStore } from "./store";
 
 const lisNavs = [
   {
@@ -103,32 +104,11 @@ function DesktopHeader({
   headerTitle: Awaited<ReturnType<typeof getDictionary>>["header"];
 }) {
   const router = useRouter();
-  const [activeSection, setActiveSection] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "-100px 0px -100px 0px",
-      }
-    );
-
-    lisNavs.forEach((nav) => {
-      const element = document.getElementById(nav.idSection);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const idSection = useStore((state) => state.idSection);
+  const setSectionId = useStore((state) => state.setSectionId);
+  const pathName = usePathname();
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -175,24 +155,21 @@ function DesktopHeader({
                 key={index}
                 className={cn(
                   "cursor-pointer text-base leading-normal tracking-[-0.6px] max-lg:text-xs",
-                  activeSection === item.idSection
-                    ? "text-[#0057D6] font-bold hover:text-[#0057D6]/70"
-                    : "text-[#194185] font-medium hover:text-[#194185]/70"
+                  getColorActive(
+                    idSection.split("_")[0],
+                    pathName,
+                    item.idSection
+                  )
                 )}
-                onClick={(event) => {
-                  wait().then(() => {
-                    const el = document.getElementById(item.idSection);
-                    if (el) {
-                      const rect = el.getBoundingClientRect();
-                      const scrollTop =
-                        window.pageYOffset ||
-                        document.documentElement.scrollTop;
-                      const offset = 105; // số px muốn dịch xuống thêm
-                      const targetY = rect.top + scrollTop - offset;
-                      window.scrollTo({ top: targetY, behavior: "smooth" });
+                onClick={() => {
+                  if (inBlogPage(pathName)) {
+                    if (pathName.includes("vi")) {
+                      router.push("/vi");
+                    } else {
+                      router.push("/en");
                     }
-                  });
-                  event.preventDefault();
+                  }
+                  setSectionId(item.idSection + "_" + randomNumber(4));
                 }}
               >
                 {headerTitle[item.name as keyof typeof headerTitle]}
@@ -201,14 +178,15 @@ function DesktopHeader({
           </div>
           <div
             className="cursor-pointer grow-0"
-            onClick={(event) => {
-              wait().then(() => {
-                const el = document.getElementById("about");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth" });
+            onClick={() => {
+              if (inBlogPage(pathName)) {
+                if (pathName.includes("vi")) {
+                  router.push("/vi");
+                } else {
+                  router.push("/en");
                 }
-              });
-              event.preventDefault();
+              }
+              setSectionId("about" + "_" + randomNumber(4));
             }}
           >
             <Icons.ndaTraceLogoIcons className="max-lg:w-[180px]" />
@@ -219,27 +197,31 @@ function DesktopHeader({
                 key={index}
                 className={cn(
                   "cursor-pointer text-[#194185] font-medium text-base leading-normal tracking-[-0.6px] max-lg:text-xs",
-                  activeSection === item.idSection
-                    ? "text-[#0057D6] font-bold hover:text-[#0057D6]/70"
-                    : "text-[#194185] font-medium hover:text-[#194185]/70"
+                  getColorActive(
+                    idSection.split("_")[0],
+                    pathName,
+                    item.idSection
+                  )
                 )}
-                onClick={(event) => {
+                onClick={() => {
                   if (item.name === "blog") {
-                    router.push("/blogs");
+                    if (pathName.includes("vi")) {
+                      router.push("/vi/blogs");
+                    } else {
+                      router.push("/en/blogs");
+                    }
+                    // setSectionId(item.idSection + "_" + randomNumber(4));
                   } else {
-                    wait().then(() => {
-                      const el = document.getElementById(item.idSection);
-                      if (el) {
-                        const rect = el.getBoundingClientRect();
-                        const scrollTop =
-                          window.pageYOffset ||
-                          document.documentElement.scrollTop;
-                        const offset = 105; // số px muốn dịch xuống thêm
-                        const targetY = rect.top + scrollTop - offset;
-                        window.scrollTo({ top: targetY, behavior: "smooth" });
+                    if (inBlogPage(pathName)) {
+                      if (item.name !== "contact") {
+                        if (pathName.includes("vi")) {
+                          router.push("/vi");
+                        } else {
+                          router.push("/en");
+                        }
                       }
-                    });
-                    event.preventDefault();
+                    }
+                    setSectionId(item.idSection + "_" + randomNumber(4));
                   }
                 }}
               >
@@ -263,33 +245,12 @@ function MobileHeader({
   headerTitle: Awaited<ReturnType<typeof getDictionary>>["header"];
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isVie, setIsVie] = useState(true);
-  const [activeSection, setActiveSection] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "-100px 0px -100px 0px",
-      }
-    );
-
-    lisNavs.forEach((nav) => {
-      const element = document.getElementById(nav.idSection);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const setSectionId = useStore((state) => state.setSectionId);
+  const idSection = useStore((state) => state.idSection);
+  const pathName = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -387,27 +348,35 @@ function MobileHeader({
                       <span
                         key={index}
                         className={cn(
-                          "text-[#1849A9] text-xl leading-[30px] font-medium",
-                          activeSection === item.idSection && "font-semibold"
+                          "text-[#1849A9] text-xl leading-[30px] ",
+                          getColorActiveMobile(
+                            idSection.split("_")[0],
+                            pathName,
+                            item.idSection
+                          )
                         )}
-                        onClick={(event) => {
+                        onClick={() => {
                           setMobileMenuOpen(false);
-                          wait().then(() => {
-                            const el = document.getElementById(item.idSection);
-                            if (el) {
-                              const rect = el.getBoundingClientRect();
-                              const scrollTop =
-                                window.pageYOffset ||
-                                document.documentElement.scrollTop;
-                              const offset = 90; // số px muốn dịch xuống thêm
-                              const targetY = rect.top + scrollTop - offset;
-                              window.scrollTo({
-                                top: targetY,
-                                behavior: "smooth",
-                              });
+                          if (item.name === "blog") {
+                            if (pathName.includes("vi")) {
+                              router.push("/vi/blogs");
+                            } else {
+                              router.push("/en/blogs");
                             }
-                          });
-                          event.preventDefault();
+                          } else {
+                            if (inBlogPage(pathName)) {
+                              if (item.name !== "contact") {
+                                if (pathName.includes("vi")) {
+                                  router.push("/vi");
+                                } else {
+                                  router.push("/en");
+                                }
+                              }
+                            }
+                            setSectionId(
+                              item.idSection + "_" + randomNumber(4)
+                            );
+                          }
                         }}
                       >
                         {headerTitle[item.name as keyof typeof headerTitle]}
@@ -507,4 +476,48 @@ const isEnglish = (locale: string) => {
     return true;
   }
   return false;
+};
+
+const inBlogPage = (pathName: string) => {
+  return pathName.includes("/blogs");
+};
+
+const getColorActive = (
+  sectionId: string,
+  pathName: string,
+  itemSectionId: string
+) => {
+  if (pathName.includes("/blog")) {
+    if (itemSectionId === "inquiry") {
+      return "text-[#0057D6] font-bold hover:text-[#0057D6]/70";
+    } else {
+      return "text-[#194185] font-medium hover:text-[#194185]/70";
+    }
+  } else {
+    if (sectionId === itemSectionId) {
+      return "text-[#0057D6] font-bold hover:text-[#0057D6]/70";
+    } else {
+      return "text-[#194185] font-medium hover:text-[#194185]/70";
+    }
+  }
+};
+
+const getColorActiveMobile = (
+  sectionId: string,
+  pathName: string,
+  itemSectionId: string
+) => {
+  if (pathName.includes("/blog")) {
+    if (itemSectionId === "inquiry") {
+      return "font-bold";
+    } else {
+      return "font-medium";
+    }
+  } else {
+    if (sectionId === itemSectionId) {
+      return "font-bold";
+    } else {
+      return "font-medium";
+    }
+  }
 };
