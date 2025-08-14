@@ -8,3 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 export function randomNumber(length: number) {
   return Array.from({ length }, () => Math.floor(Math.random() * 10)).join("");
 }
+
+export function getEng(pathName: string) {
+  if (pathName.includes("vi")) {
+    return "vi";
+  }
+  return "en";
+}

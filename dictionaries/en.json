@@ -1,11 +1,11 @@
 {
   "header": {
-    "homePage": "Homepage",
+    "homePage": "Home",
     "fields": "Fields",
     "benefits": "Benefits",
     "features": "Features",
     "technology": "Technology",
-    "blog": "Blog",
+    "blog": "News",
     "blogProducts": "Products",
     "blogCustomer": "Customer",
     "blogTechnology": "Technology",
@@ -15,7 +15,7 @@
   "about": {
     "title": "National platform for Product Identification,\nVerification and Traceability",
     "description": "NDATrace is a comprehensive product traceability solution that enables transparent tracking of the entire\njourney of a product through the supply chain, from production to the hands of consumers.",
-    "titleButton": "View statisticks",
+    "titleButton": "View statistics",
     "aboutImg": "/images/about-bg-eng.png",
     "business": "Domestic and international enterprises partnered",
     "commodity": "Product types identified and authenticated",
@@ -63,7 +63,7 @@
     "ndaChain": "National Blockchain\nPlatform",
     "ndaChainDescription": "Ensure immutability and transparency, with smart contract support to automate processes.",
     "contactText": "NDATrace partners with businesses to build a secure, transparent, and nationally compliant traceability system.",
-    "contactButton": "Contact Us Now",
+    "contactButton": "Contact Us",
     "seeImg": "View enlarged image"
   },
   "blogs": {

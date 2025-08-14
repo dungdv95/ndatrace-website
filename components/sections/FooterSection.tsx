@@ -8,7 +8,8 @@ import { getDictionary } from "@/get-dictionary";
 import { useStore } from "../navs/store";
 import { randomNumber } from "@/lib/utils";
 
-const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
+const wait = () => new Promise((resolve) => setTimeout(resolve, 400));
+const wait50 = () => new Promise((resolve) => setTimeout(resolve, 50));
 
 const navs = [
   {
@@ -67,15 +68,21 @@ export default function FooterSection({
                 duration: 1.1,
               }}
               className="w-fit cursor-pointer"
-              onClick={(event) => {
+              onClick={() => {
                 if (inBlogPage(pathName)) {
                   if (pathName.includes("vi")) {
                     router.push("/vi");
                   } else {
                     router.push("/en");
                   }
+                  wait().then(() => {
+                    setSectionId("about" + "_" + randomNumber(4));
+                  });
+                } else {
+                  wait50().then(() => {
+                    setSectionId("about" + "_" + randomNumber(4));
+                  });
                 }
-                setSectionId("about" + "_" + randomNumber(4));
               }}
             >
               <Icons.logoFooter className="max-xl:w-[301px] max-xl:h-[69px]" />
@@ -326,8 +333,14 @@ export default function FooterSection({
                       } else {
                         router.push("/en");
                       }
+                      wait().then(() => {
+                        setSectionId("about" + "_" + randomNumber(4));
+                      });
+                    } else {
+                      wait50().then(() => {
+                        setSectionId("about" + "_" + randomNumber(4));
+                      });
                     }
-                    setSectionId("about" + "_" + randomNumber(4));
                   }}
                 >
                   <Icons.logoFooter className="max-xl:w-[260px] max-xl:h-[60px]" />
@@ -350,8 +363,14 @@ export default function FooterSection({
                         } else {
                           router.push("/en");
                         }
+                        wait().then(() => {
+                          setSectionId(item.idSection + "_" + randomNumber(4));
+                        });
+                      } else {
+                        wait50().then(() => {
+                          setSectionId(item.idSection + "_" + randomNumber(4));
+                        });
                       }
-                      setSectionId(item.idSection + "_" + randomNumber(4));
                     }}
                     className="cursor-pointer text-[#194185] hover:text-[#194185]/70 text-base leading-normal font-medium tracking-[-0.6px]"
                     key={index}

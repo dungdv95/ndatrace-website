@@ -4,24 +4,47 @@ import ErrorNotice from "@/components/notice/notice-error";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDictionary } from "@/get-dictionary";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import apis from "@/lib/apis/blogs";
 import { BlogProps, useStore } from "@/components/navs/store";
 import { Skeleton } from "@/components/ui/skeleton";
 import { motion } from "motion/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import moment from "moment";
+import BlogDetail from "./blog-detail";
+import { getEng } from "@/lib/utils";
 
 export default function MainPage({
   blogListLang,
 }: {
   blogListLang: Awaited<ReturnType<typeof getDictionary>>["blogList"];
 }) {
+  return (
+    <Suspense>
+      <PageContent blogListLang={blogListLang} />
+    </Suspense>
+  );
+}
+
+function PageContent({
+  blogListLang,
+}: {
+  blogListLang: Awaited<ReturnType<typeof getDictionary>>["blogList"];
+}) {
+  const slug = useSearchParams().get("slug");
   const listCategory = useStore((state) => state.listCategory);
   const [tab, setTab] = useState("all");
   const isMobile = useIsMobile();
   const pathName = usePathname();
+
+  useEffect(() => {
+    if (slug) {
+      setTab("detail");
+    } else {
+      setTab("all");
+    }
+  }, [slug]);
 
   if (isMobile) {
     return (
@@ -46,6 +69,9 @@ export default function MainPage({
                       {getTitleCategory(category.id, pathName)}
                     </TabsTrigger>
                   ))}
+                  <TabsTrigger className="hidden" value="detail">
+                    Detail
+                  </TabsTrigger>
                 </div>
               </TabsList>
             </div>
@@ -58,6 +84,9 @@ export default function MainPage({
                   <BlogComponent tab={tab} isMobile={isMobile} />
                 </TabsContent>
               ))}
+              <TabsContent value="detail">
+                <BlogDetail slug={slug} isMobile={isMobile} />
+              </TabsContent>
             </div>
           </Tabs>
         </div>
@@ -86,6 +115,9 @@ export default function MainPage({
                   {getTitleCategory(category.id, pathName)}
                 </TabsTrigger>
               ))}
+              <TabsTrigger className="hidden" value="detail">
+                Detail
+              </TabsTrigger>
             </TabsList>
           </div>
         </div>
@@ -98,6 +130,9 @@ export default function MainPage({
               <BlogComponent tab={tab} isMobile={isMobile} />
             </TabsContent>
           ))}
+          <TabsContent value="detail">
+            <BlogDetail slug={slug} isMobile={isMobile} />
+          </TabsContent>
         </div>
       </Tabs>
     </div>
@@ -117,7 +152,7 @@ function BlogComponent({ tab, isMobile }: { tab: string; isMobile: boolean }) {
         pageIndex: 1,
         pageSize: 10,
         applicationFilter: "ndatrace",
-        categoryIdFilter: tab !== "all" ? tab : "",
+        categoryIdFilter: tab !== "all" && tab !== "detail" ? tab : "",
       }),
     retry: 0,
     // keepPreviousData: true,
@@ -156,7 +191,7 @@ function BlogViewMobile({ data }: { data: BlogProps[] }) {
         <div
           className="cursor-pointer w-full h-[230px]"
           onClick={() => {
-            router.push(`/blogs/${data[0]?.slug}`);
+            router.push(`/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`);
           }}
         >
           <img
@@ -180,7 +215,7 @@ function BlogViewMobile({ data }: { data: BlogProps[] }) {
         <span
           className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
           onClick={() => {
-            router.push(`/blogs/${data[0]?.slug}`);
+            router.push(`/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`);
           }}
         >
           {data[0]?.name}
@@ -194,9 +229,14 @@ function BlogViewMobile({ data }: { data: BlogProps[] }) {
         </span>
       </div>
       <div className="flex flex-col gap-6">
-        {data.slice(1).map((item: any, index: number) => (
+        {data.slice(1).map((item, index: number) => (
           <div key={index} className="flex gap-4 items-start">
-            <div className="w-[118px] h-[91px] flex-shrink-0">
+            <div
+              className="w-[118px] h-[91px] flex-shrink-0"
+              onClick={() => {
+                router.push(`/${getEng(pathName)}/blogs?slug=${item?.slug}`);
+              }}
+            >
               <img
                 src={item.thumbnail}
                 className="object-cover h-full w-full  rounded-[10px]"
@@ -215,7 +255,12 @@ function BlogViewMobile({ data }: { data: BlogProps[] }) {
                   ))}
                 </div>
               </div>
-              <span className="text-[#194185] text-sm leading-6 font-semibold">
+              <span
+                onClick={() => {
+                  router.push(`/${getEng(pathName)}/blogs?slug=${item?.slug}`);
+                }}
+                className="text-[#194185] text-sm leading-6 font-semibold"
+              >
                 {item.name}
               </span>
               <span className="text-[#194185] text-sm leading-5">
@@ -248,7 +293,7 @@ function BlogView({ data }: { data: BlogProps[] }) {
           <div
             className="cursor-pointer w-full h-[320px]"
             onClick={() => {
-              router.push(`/blogs/${data[0]?.slug}`);
+              router.push(`/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`);
             }}
           >
             <img
@@ -273,7 +318,7 @@ function BlogView({ data }: { data: BlogProps[] }) {
           <span
             className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
             onClick={() => {
-              router.push(`/blogs/${data[0]?.slug}`);
+              router.push(`/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`);
             }}
           >
             {data[0]?.name}
@@ -295,7 +340,7 @@ function BlogView({ data }: { data: BlogProps[] }) {
               <div
                 className="cursor-pointer w-[191px] h-[147px] flex-shrink-0 max-lg:w-[169px] max-lg:h-[130px]"
                 onClick={() => {
-                  router.push(`/blogs/${item.slug}`);
+                  router.push(`/${getEng(pathName)}/blogs?slug=${item.slug}`);
                 }}
               >
                 <img
@@ -308,11 +353,6 @@ function BlogView({ data }: { data: BlogProps[] }) {
                   {item.categoryIds.map((category, idxCategory: number) => (
                     <Button
                       key={`category_${idxCategory}`}
-                      //   onClick={() => {
-                      //     router.push(
-                      //       `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
-                      //     );
-                      //   }}
                       className="h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
                     >
                       {/* {blogLang.news} */}
@@ -323,7 +363,7 @@ function BlogView({ data }: { data: BlogProps[] }) {
                 <span
                   className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base"
                   onClick={() => {
-                    router.push(`/blogs/${item.slug}`);
+                    router.push(`/${getEng(pathName)}/blogs?slug=${item.slug}`);
                   }}
                 >
                   {item.name}
@@ -363,7 +403,7 @@ function BlogView({ data }: { data: BlogProps[] }) {
                 <span
                   className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base"
                   onClick={() => {
-                    router.push(`/blogs/${item.slug}`);
+                    router.push(`/${getEng(pathName)}/blogs?slug=${item.slug}`);
                   }}
                 >
                   {item.name}
@@ -382,6 +422,7 @@ function BlogView({ data }: { data: BlogProps[] }) {
 
 const getTitleCategory = (categoryIds: string, pathName: string) => {
   let listCategory = useStore.getState().listCategory;
+  console.log("listCategory", listCategory);
   if (pathName.includes("en")) {
     return listCategory.find((el) => el.id === categoryIds)?.translations.en
       .values.name;

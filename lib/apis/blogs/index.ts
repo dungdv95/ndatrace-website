@@ -30,7 +30,7 @@ async function getBlogPost({
   if (response.status !== 200) {
     throw {
       code: data?.code,
-      message: data?.error ? data?.error : data?.message,
+      message: data?.message ? data?.message : "Can not fetch api!",
     };
   }
 
@@ -56,14 +56,37 @@ async function getCategories({
   if (response.status !== 200) {
     throw {
       code: data?.code,
-      message: data?.error ? data?.error : data?.message,
+      message: data?.message ? data?.message : "Can not fetch api!",
     };
   }
 
   return data ? data?.categories : [];
 }
 
+async function getBlogPostDetail({ slugFilter }: { slugFilter: string }) {
+  const response = await customFetch(
+    `${API.BLOG.GET}?slugFilter=${slugFilter}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (response.status !== 200) {
+    throw {
+      code: data?.code,
+      message: data?.message ? data?.message : "Can not fetch api!",
+    };
+  }
+
+  return data ? data?.blogs : [];
+}
+
 export default Object.freeze({
   getBlogPost,
   getCategories,
+  getBlogPostDetail,
 });

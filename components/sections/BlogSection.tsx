@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { cn, getEng } from "@/lib/utils";
 import { Icons } from "../icons";
 import { useIsMobile } from "../hooks/use-mobile";
 import { motion } from "motion/react";
@@ -181,7 +181,9 @@ function DesktopBlog({
                 }}
                 className="cursor-pointer w-full h-[320px]"
                 onClick={() => {
-                  router.push(`/blogs/${data[0]?.slug}`);
+                  router.push(
+                    `/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`
+                  );
                 }}
               >
                 <img
@@ -219,7 +221,9 @@ function DesktopBlog({
                 }}
                 className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-lg:text-lg"
                 onClick={() => {
-                  router.push(`/blogs/${data[0]?.slug}`);
+                  router.push(
+                    `/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`
+                  );
                 }}
               >
                 {data[0]?.name}
@@ -263,7 +267,9 @@ function DesktopBlog({
                   <div
                     className="cursor-pointer w-[191px] h-[147px] flex-shrink-0 max-lg:w-[169px] max-lg:h-[130px]"
                     onClick={() => {
-                      router.push(`/blogs/${item.slug}`);
+                      router.push(
+                        `/${getEng(pathName)}/blogs?slug=${item.slug}`
+                      );
                     }}
                   >
                     <img
@@ -276,11 +282,6 @@ function DesktopBlog({
                       {item.categoryIds.map((category, idxCategory) => (
                         <Button
                           key={`category_${idxCategory}`}
-                          //   onClick={() => {
-                          //     router.push(
-                          //       `https://www.ndatrace.vn/vn/blogs/${item?.slug}`
-                          //     );
-                          //   }}
                           className="h-[22px] bg-[#194185] hover:bg-[#194185]/80 text-[#EFF8FF] text-xs leading-[18px] tracking-[-0.24px]"
                         >
                           {/* {blogLang.news} */}
@@ -291,7 +292,9 @@ function DesktopBlog({
                     <span
                       className="cursor-pointer text-[#194185] text-xl leading-[30px] font-semibold max-xl:text-lg max-lg:text-base"
                       onClick={() => {
-                        router.push(`/blogs/${item.slug}`);
+                        router.push(
+                          `/${getEng(pathName)}/blogs?slug=${item.slug}`
+                        );
                       }}
                     >
                       {item.name}
@@ -455,6 +458,9 @@ function MoblieBlog({
               duration: 1.1,
             }}
             className="w-full h-full"
+            onClick={() => {
+              router.push(`/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`);
+            }}
           >
             <img
               src={data[0]?.thumbnail}
@@ -490,6 +496,9 @@ function MoblieBlog({
               duration: 1.1,
             }}
             className="text-[#194185] text-xl leading-[30px] font-semibold max-[28.125rem]:whitespace-pre-line"
+            onClick={() => {
+              router.push(`/${getEng(pathName)}/blogs?slug=${data[0]?.slug}`);
+            }}
           >
             {data[0]?.name}
           </motion.span>
@@ -530,7 +539,12 @@ function MoblieBlog({
               key={index}
               className="flex gap-4 items-start"
             >
-              <div className="w-[118px] h-[91px] flex-shrink-0">
+              <div
+                className="w-[118px] h-[91px] flex-shrink-0"
+                onClick={() => {
+                  router.push(`/${getEng(pathName)}/blogs?slug=${item.slug}`);
+                }}
+              >
                 <img
                   src={item.thumbnail}
                   className="object-cover h-full w-full  rounded-[10px]"
@@ -548,7 +562,12 @@ function MoblieBlog({
                   ))}
                 </div>
 
-                <span className="text-[#194185] text-sm leading-6 font-semibold">
+                <span
+                  className="text-[#194185] text-sm leading-6 font-semibold"
+                  onClick={() => {
+                    router.push(`/${getEng(pathName)}/blogs?slug=${item.slug}`);
+                  }}
+                >
                   {item.name}
                 </span>
                 <span className="text-[#194185] text-sm leading-5">

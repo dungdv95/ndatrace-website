@@ -19,6 +19,7 @@ export default function LayoutData({ children, dictionary }: LayoutProps) {
   const getCategories = useMutation({
     mutationFn: apis.getCategories,
     onSuccess: (data: any) => {
+      console.log("data cate", data);
       setCategories(data);
     },
     onError: (error: any) => {

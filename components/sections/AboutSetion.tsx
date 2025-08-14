@@ -333,7 +333,7 @@ export default function AboutSection({
         </div>
       </div>
       <div className="relative z-30 mt-[63px] container mx-auto 2xl:px-[123px] xl:px-[60px]">
-        <div className="flex justify-between gap-[230px]">
+        <div className="flex justify-between gap-[300px]">
           <motion.div
             viewport={{ once: true }}
             initial={{ opacity: 0, y: 40 }}
@@ -341,7 +341,7 @@ export default function AboutSection({
             transition={{
               duration: 1.1,
             }}
-            className="w-1/2 flex gap-8 items-center justify-center"
+            className="w-1/2 flex gap-8 items-center justify-end"
           >
             <div className="flex flex-col gap-[10px] items-center max-lg:gap-1.5">
               <span className="text-[#002D87] text-[30px] leading-[38px] font-semibold max-2xl:text-2xl max-lg:text-xl">
@@ -367,7 +367,7 @@ export default function AboutSection({
             transition={{
               duration: 1.1,
             }}
-            className="w-1/2 flex gap-8 items-center justify-center"
+            className="w-1/2 flex gap-8 items-center justify-start"
           >
             <div className="flex flex-col gap-[10px] items-center max-lg:gap-1.5">
               <span className="text-[#002D87] text-[30px] leading-[38px] font-semibold max-2xl:text-2xl max-lg:text-xl">

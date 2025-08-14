@@ -5,7 +5,7 @@
     "benefits": "Lợi ích",
     "features": "Tính năng",
     "technology": "Công nghệ",
-    "blog": "Blog",
+    "blog": "Tin tức",
     "blogProducts": "Sản phẩm",
     "blogCustomer": "Khách hàng",
     "blogTechnology": "Công nghệ",
@@ -24,11 +24,11 @@
   },
   "fields": {
     "title": "Lĩnh vực áp dụng",
-    "pharma": "Dược phẩm & y tế",
-    "food": "Thực phẩm & nông nghiệp",
+    "pharma": "Dược phẩm & Y tế",
+    "food": "Thực phẩm & Nông nghiệp",
     "fashion": "Thời  trang",
     "produce": "Công nghiệp sản xuất",
-    "logistic": "Logistic & vận tải",
+    "logistic": "Logistic & Vận tải",
     "diamond": "Kim cương & Đá quý",
     "cosmetics": "Hoá mỹ phẩm"
   },

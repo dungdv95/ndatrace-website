@@ -66,7 +66,8 @@ const lisNavs = [
   },
 ];
 
-const wait = () => new Promise((resolve) => setTimeout(resolve, 300));
+const wait = () => new Promise((resolve) => setTimeout(resolve, 400));
+const wait50 = () => new Promise((resolve) => setTimeout(resolve, 50));
 
 export default function HeaderSection({
   isScrolledToTop,
@@ -168,8 +169,14 @@ function DesktopHeader({
                     } else {
                       router.push("/en");
                     }
+                    wait().then(() => {
+                      setSectionId(item.idSection + "_" + randomNumber(4));
+                    });
+                  } else {
+                    wait50().then(() => {
+                      setSectionId(item.idSection + "_" + randomNumber(4));
+                    });
                   }
-                  setSectionId(item.idSection + "_" + randomNumber(4));
                 }}
               >
                 {headerTitle[item.name as keyof typeof headerTitle]}
@@ -185,8 +192,14 @@ function DesktopHeader({
                 } else {
                   router.push("/en");
                 }
+                wait().then(() => {
+                  setSectionId("about" + "_" + randomNumber(4));
+                });
+              } else {
+                wait50().then(() => {
+                  setSectionId("about" + "_" + randomNumber(4));
+                });
               }
-              setSectionId("about" + "_" + randomNumber(4));
             }}
           >
             <Icons.ndaTraceLogoIcons className="max-lg:w-[180px]" />
@@ -210,7 +223,6 @@ function DesktopHeader({
                     } else {
                       router.push("/en/blogs");
                     }
-                    // setSectionId(item.idSection + "_" + randomNumber(4));
                   } else {
                     if (inBlogPage(pathName)) {
                       if (item.name !== "contact") {
@@ -220,8 +232,14 @@ function DesktopHeader({
                           router.push("/en");
                         }
                       }
+                      wait().then(() => {
+                        setSectionId(item.idSection + "_" + randomNumber(4));
+                      });
+                    } else {
+                      wait50().then(() => {
+                        setSectionId(item.idSection + "_" + randomNumber(4));
+                      });
                     }
-                    setSectionId(item.idSection + "_" + randomNumber(4));
                   }
                 }}
               >
@@ -292,15 +310,21 @@ function MobileHeader({
       >
         <div className="flex justify-between items-center">
           <div
-            onClick={(event) => {
-              setMobileMenuOpen(false);
-              wait().then(() => {
-                const el = document.getElementById("about");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth" });
+            onClick={() => {
+              if (inBlogPage(pathName)) {
+                if (pathName.includes("vi")) {
+                  router.push("/vi");
+                } else {
+                  router.push("/en");
                 }
-              });
-              event.preventDefault();
+                wait().then(() => {
+                  setSectionId("about" + "_" + randomNumber(4));
+                });
+              } else {
+                wait50().then(() => {
+                  setSectionId("about" + "_" + randomNumber(4));
+                });
+              }
             }}
             className="flex items-center gap-2"
           >
@@ -372,10 +396,18 @@ function MobileHeader({
                                   router.push("/en");
                                 }
                               }
+                              wait().then(() => {
+                                setSectionId(
+                                  item.idSection + "_" + randomNumber(4)
+                                );
+                              });
+                            } else {
+                              wait50().then(() => {
+                                setSectionId(
+                                  item.idSection + "_" + randomNumber(4)
+                                );
+                              });
                             }
-                            setSectionId(
-                              item.idSection + "_" + randomNumber(4)
-                            );
                           }
                         }}
                       >
