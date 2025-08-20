@@ -150,7 +150,7 @@ function BlogComponent({ tab, isMobile }: { tab: string; isMobile: boolean }) {
     queryFn: () =>
       apis.getBlogPost({
         pageIndex: 1,
-        pageSize: 10,
+        pageSize: 9999,
         applicationFilter: "ndatrace",
         categoryIdFilter: tab !== "all" && tab !== "detail" ? tab : "",
       }),
